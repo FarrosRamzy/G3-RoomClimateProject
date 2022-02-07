@@ -1,18 +1,21 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+This is the project git, where all of the team can write all of the code together without afraid of loosing any stuffs that they were created.
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+TODO: Remember to create your own branch before doing your tasks and never use the main branch except for integrations!
+
+To create your own branch:
+1. Go to Azure DevOps using the invite link from email.
+2. Choose the "Repos" menu.
+3. Select "main".
+4. Choose "+Branch".
+5. Name it like "<name>_dev".
 
 # Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+Later.
 
 # Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+Later. 
 
 If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
 - [ASP.NET Core](https://github.com/aspnet/Home)
