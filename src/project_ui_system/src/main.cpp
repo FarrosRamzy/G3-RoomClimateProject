@@ -44,7 +44,8 @@ void loop()
     break;
   case SEND:
     /* code */
-    sendTempAndHumidData(humid, temp);
+    sendTempAndHumidData(humid, temp);\
+    sendGasSensorData(co, co2, voc, gasStatus);
     break;
   default:
     break;

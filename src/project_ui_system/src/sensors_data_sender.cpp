@@ -14,7 +14,7 @@ void sendTempAndHumidData(float humid, float temp)
     Serial.println(F("C "));
 }
 
-void sendGasSensorData(float co, float co2, float voc, char gasStatus)
+void sendGasSensorData(float co, float co2, float voc, char gasStatus[])
 {
     ;
 }

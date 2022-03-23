@@ -34,8 +34,8 @@ void readCarbonDioxide(float *);
 void readOrganicCompounds(float *);
 
 void processGasSensors(float, float, float, char *);
-void processTempAndHumid(float, float, char, int *);
+void processTempAndHumid(float, float, char[], int *);
 
 void sendTempAndHumidData(float, float);
-void sendGasSensorData(float, float, float, char);
+void sendGasSensorData(float, float, float, char[]);
 #endif
