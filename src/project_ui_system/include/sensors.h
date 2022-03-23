@@ -24,5 +24,7 @@ void setupSensors();
 void setupHumidTempSensor();
 void readTempAndHumid(float*, float*);
 void readCarbonMonoxide();
+void processGasSensors(float,float,float,char*);
+void processTempAndHumid(float,float);
 
 #endif

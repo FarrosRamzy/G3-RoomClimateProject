@@ -9,6 +9,9 @@ float voc;
 
 STATE state;
 
+unsigned long respondTime = 5000;
+unsigned long startTime = millis();
+
 void setup()
 {
   // put your setup code here, to run once:
@@ -26,20 +29,10 @@ void loop()
     /* code */
     break;
   case READ:
-    /* code */
+    readTempAndHumid(&humid,&temp);
     break;
   case PROCESS:
-    /* code */
-    break;
-  case SEND:
-    /* code */
-    break;  
-  default:
-    break;
-  }
-
-  readTempAndHumid(&humid,&temp);
-  if (isnan(humid) || isnan(temp))
+    if (isnan(humid) || isnan(temp))
   {
     Serial.println(F("Failed to read from DHT sensor!"));
     return;
@@ -49,4 +42,11 @@ void loop()
   Serial.print(F("%  Temperature: "));
   Serial.print(temp);
   Serial.println(F("C "));
+    break;
+  case SEND:
+    /* code */
+    break;  
+  default:
+    break;
+  }
 }
