@@ -12,6 +12,10 @@
 #define DHTPIN 2
 #define DHTTYPE DHT11
 
+#define CO_GAS_RATIO 0.99
+#define CO_V 5
+#define TEN_BIT_ANALOG_VAL 1024
+
 enum STATE
 {
     IDLE,
@@ -23,7 +27,7 @@ enum STATE
 void setupSensors();
 void setupHumidTempSensor();
 void readTempAndHumid(float*, float*);
-void readCarbonMonoxide();
+void readCarbonMonoxide(float*);
 void processGasSensors(float,float,float,char*);
 void processTempAndHumid(float,float);
 

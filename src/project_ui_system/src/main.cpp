@@ -30,6 +30,7 @@ void loop()
     break;
   case READ:
     readTempAndHumid(&humid,&temp);
+    readCarbonMonoxide(&co);
     break;
   case PROCESS:
     if (isnan(humid) || isnan(temp))
