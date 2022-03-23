@@ -7,6 +7,10 @@ float co;
 float co2;
 float voc;
 
+int fanSpeed;
+
+char gasStatus[MAX_CHAR_ARRAY];
+
 STATE state;
 
 unsigned long respondTime = 5000;
@@ -17,7 +21,7 @@ void setup()
   // put your setup code here, to run once:
   Serial.begin(9600);
   state = IDLE;
-  void setupHumidTempSensor();
+  setupHumidTempSensor();
 }
 
 void loop()
@@ -29,24 +33,19 @@ void loop()
     /* code */
     break;
   case READ:
-    readTempAndHumid(&humid,&temp);
+    readTempAndHumid(&humid, &temp);
     readCarbonMonoxide(&co);
+
     break;
   case PROCESS:
-    if (isnan(humid) || isnan(temp))
-  {
-    Serial.println(F("Failed to read from DHT sensor!"));
-    return;
-  }
-  Serial.print(F(" Humidity: "));
-  Serial.print(humid);
-  Serial.print(F("%  Temperature: "));
-  Serial.print(temp);
-  Serial.println(F("C "));
+    processGasSensors(co, co2, voc, &gasStatus[0]);
+    processTempAndHumid(temp, humid, gasStatus, &fanSpeed);
+
     break;
   case SEND:
     /* code */
-    break;  
+    sendTempAndHumidData(humid, temp);
+    break;
   default:
     break;
   }
