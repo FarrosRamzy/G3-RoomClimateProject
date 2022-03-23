@@ -2,14 +2,27 @@
 #define SENSORS_H
 
 #include <DHT.h>
+#include <SPI.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_CCS811.h>
+#include <Wire.h>
 #include <Nextion.h>
+#include <SoftwareSerial.h>
 
 #define DHTPIN 2
 #define DHTTYPE DHT11
 
-DHT dht(DHTPIN, DHTTYPE);
+enum STATE
+{
+    IDLE,
+    READ,
+    PROCESS,
+    SEND
+};
 
-void readTempAndHumid(float*, float*);
 void setupSensors();
+void setupHumidTempSensor();
+void readTempAndHumid(float*, float*);
+void readCarbonMonoxide();
 
 #endif
