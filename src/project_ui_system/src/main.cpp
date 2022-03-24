@@ -31,7 +31,7 @@ void loop()
   switch (state)
   {
   case IDLE:
-    /* code */
+    //
     break;
   case READ:
     readTempAndHumid(&humid, &temp);
@@ -44,7 +44,6 @@ void loop()
 
     break;
   case SEND:
-    /* code */
     sendTempAndHumidData(humid, temp);
     sendGasSensorData(co, co2, voc, gasStatus);
     break;
