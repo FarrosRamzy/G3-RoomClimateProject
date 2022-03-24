@@ -8,6 +8,7 @@ float co2;
 float voc;
 
 int fanSpeed;
+int dataReceived = 0;
 
 char gasStatus[MAX_CHAR_ARRAY];
 char tvocSetupStatus[MAX_CHAR_ARRAY];
@@ -23,6 +24,7 @@ void setup()
   // put your setup code here, to run once:
   Serial.begin(9600);
   state = IDLE;
+  setupTouchsreen();
   setupHumidTempSensor();
   setupTVOCSensor(tvocSetupStatus);
 }
@@ -51,7 +53,7 @@ void loop()
     readTempAndHumid(&humid, &temp);
     readCarbonMonoxide(&co);
     readCarbonDioxide(&co2);
-    readOrganicCompounds(&voc);
+    readOrganicCompounds(&voc, &dataReceived);
     state = PROCESS;
     break;
   case PROCESS:

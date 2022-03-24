@@ -1,11 +1,5 @@
 #include <sensors.h>
 
-bool highConcentration = false;
-bool danger = false;
-
-unsigned long readInterval = 5000;
-unsigned long resetTime = 0;
-
 Adafruit_CCS811 ccs;
 
 void setupTVOCSensor(char sensorStatus[])
@@ -23,9 +17,19 @@ void setupTVOCSensor(char sensorStatus[])
     }
 }
 
-void readOrganicCompounds(float *voc)
+void readOrganicCompounds(float *voc, int *dataReceived)
 {
-    ;
+    if (ccs.available())
+    {
+        if (!ccs.readData())
+        {
+            *voc = ccs.getTVOC();
+            *dataReceived = 1;
+        }
+    }
+    else
+    {
+        *voc = 0;
+        *dataReceived = 0;
+    }
 }
-
-
