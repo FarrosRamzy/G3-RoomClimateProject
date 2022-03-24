@@ -27,6 +27,7 @@ void setup()
 void loop()
 {
   // put your main code here, to run repeatedly:
+
   switch (state)
   {
   case IDLE:
@@ -44,7 +45,7 @@ void loop()
     break;
   case SEND:
     /* code */
-    sendTempAndHumidData(humid, temp);\
+    sendTempAndHumidData(humid, temp);
     sendGasSensorData(co, co2, voc, gasStatus);
     break;
   default:
