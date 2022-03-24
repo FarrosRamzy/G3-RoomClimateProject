@@ -8,6 +8,7 @@
 #include <Wire.h>
 #include <Nextion.h>
 #include <SoftwareSerial.h>
+#include <string.h>
 
 #define DHTPIN 2
 #define DHTTYPE DHT11
@@ -26,14 +27,14 @@ enum STATE
     SEND
 };
 
-void setupSensors();
+void setupTVOCSensor(char[]);
 void setupHumidTempSensor();
 void readTempAndHumid(float *, float *);
 void readCarbonMonoxide(float *);
 void readCarbonDioxide(float *);
 void readOrganicCompounds(float *);
 
-void processGasSensors(float, float, float, char *);
+void processGasSensors(float, float, float, char[]);
 void processTempAndHumid(float, float, char[], int *);
 
 void sendTempAndHumidData(float, float);

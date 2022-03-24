@@ -10,11 +10,13 @@ float voc;
 int fanSpeed;
 
 char gasStatus[MAX_CHAR_ARRAY];
+char tvocSetupStatus[MAX_CHAR_ARRAY];
 
 STATE state;
 
-unsigned long respondTime = 5000;
-unsigned long startTime = millis();
+static unsigned long respondTime = 5000;
+static unsigned long startTime = millis();
+bool timePassed = false;
 
 void setup()
 {
@@ -22,6 +24,7 @@ void setup()
   Serial.begin(9600);
   state = IDLE;
   setupHumidTempSensor();
+  setupTVOCSensor(tvocSetupStatus);
 }
 
 void loop()
@@ -31,21 +34,35 @@ void loop()
   switch (state)
   {
   case IDLE:
-    //
+    static unsigned long passTime = millis();
+    if (!timePassed)
+    {
+      if (startTime - passTime > respondTime)
+      {
+        timePassed = true;
+      }
+    }
+    else
+    {
+      state = READ;
+    }
     break;
   case READ:
     readTempAndHumid(&humid, &temp);
     readCarbonMonoxide(&co);
-
+    readCarbonDioxide(&co2);
+    readOrganicCompounds(&voc);
+    state = PROCESS;
     break;
   case PROCESS:
-    processGasSensors(co, co2, voc, &gasStatus[0]);
+    processGasSensors(co, co2, voc, gasStatus);
     processTempAndHumid(temp, humid, gasStatus, &fanSpeed);
-
+    state = SEND;
     break;
   case SEND:
     sendTempAndHumidData(humid, temp);
     sendGasSensorData(co, co2, voc, gasStatus);
+    state = IDLE;
     break;
   default:
     break;
