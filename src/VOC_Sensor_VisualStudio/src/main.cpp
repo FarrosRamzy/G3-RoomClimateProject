@@ -17,48 +17,99 @@
  ***************************************************************************/
 
 #include <Arduino.h>
-#include <wire.h>
+#include <wire.h> //I2C
 #include <spi.h>
-#include "Adafruit_CCS811.h"
+#include "Adafruit_CCS811.h" //Sensor library
+
+bool highTvoc = false;
+bool danger = false;
+bool ventilation = false;
+
+unsigned long ventilationOnTime = 1000;
+unsigned long previousHighTvocTime = 0;
+
+unsigned long sensorInterval = 1000;
+unsigned long previousLowTvocTime = 0;
+
+
 
 Adafruit_CCS811 ccs;
 
-void setup() {
+void setup()
+{
   Serial.begin(9600);
 
   Serial.println("CCS811 test");
 
-  if (!ccs.begin()) {
+  if (!ccs.begin())
+  {
     Serial.println("Failed to start sensor! Please check your wiring.");
-    while (1);
+    //     while (1);
   }
 
   // Wait for the sensor to be ready
   while (!ccs.available());
 }
 
-void loop() {
+void loop()
+{
   if (ccs.available())
   {
     if (!ccs.readData())
     {
-      Serial.print("TVOC(ppb): ");
-      Serial.println(ccs.getTVOC());
-      if(ccs.getTVOC() < 250)
+      if (ccs.getTVOC() > 250)
       {
-        Serial.println("TVOC levels at safe levels");
+        Serial.print("TVOC (ppb): ");
+        Serial.println(ccs.getTVOC());
+        {
+          if (highTvoc == false)
+          {
+            highTvoc = true;
+
+            unsigned long highVocTime = millis();
+
+            if (highVocTime - previousHighTvocTime >= ventilationOnTime)
+            {
+              previousHighTvocTime = highVocTime;
+
+              if (ventilation == false)
+              {
+                ventilation = true;
+                Serial.println("High TVOC, Ventilation turned ON");
+              }
+            }
+          }
+        }
       }
-      else
+      else if (ccs.getTVOC() < 250)
       {
-        Serial.println("TVOC at danger level");
-        Serial.write("Turn on ventilation");
+        unsigned long lowVocTime = millis();
+
+        if (lowVocTime - previousLowTvocTime >= sensorInterval)
+        {
+          previousLowTvocTime = lowVocTime;
+          Serial.print("TVOC (ppb): ");
+          Serial.println(ccs.getTVOC());
+          {
+            if (highTvoc == true)
+            {
+              highTvoc = false;
+              {
+                if (ventilation == true)
+                {
+                  ventilation = false;
+                  Serial.println("Low TVOC, Ventilation turned OFF");
+                }
+              }
+            }
+          }
+        }
       }
     }
-    else 
+    else
     {
       Serial.println("ERROR!");
-      while (1);
+      // while (1);
     }
   }
-  delay(500);
 }
