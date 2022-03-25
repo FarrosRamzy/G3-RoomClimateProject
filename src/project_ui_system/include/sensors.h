@@ -11,6 +11,8 @@
 #include <string.h>
 
 #define DHTPIN 2
+#define CO2PIN 3
+
 #define DHTTYPE DHT11
 
 #define MAX_CHAR_ARRAY 255
@@ -29,6 +31,7 @@ enum STATE
 
 void setupTouchsreen();
 void setupTVOCSensor(char[]);
+void setupCO2Sensor();
 void setupHumidTempSensor();
 void readTempAndHumid(float *, float *);
 void readCarbonMonoxide(float *);
@@ -36,7 +39,7 @@ void readCarbonDioxide(float *);
 void readOrganicCompounds(float *, int *);
 
 void processGasSensors(float, float, float, char[]);
-void processTempAndHumid(float, float, char[], int *);
+void processFanSpeed(float, float, char[], int *);
 
 void sendTempAndHumidData(float, float);
 void sendGasSensorData(float, float, float, char[]);

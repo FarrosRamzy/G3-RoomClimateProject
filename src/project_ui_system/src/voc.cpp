@@ -6,13 +6,13 @@ void setupTVOCSensor(char sensorStatus[])
 {
     if (!ccs.begin())
     {
-        strcpy(sensorStatus, "Failed to start sensor! Please check your wiring.");
+        strcpy(sensorStatus, "Failed to start sensor!");
     }
     else
     {
         while (!ccs.available())
         {
-            strcpy(sensorStatus, "No Data Available.");
+            strcpy(sensorStatus, "No Data.");
         }
     }
 }

@@ -26,6 +26,7 @@ void setup()
   state = IDLE;
   setupTouchsreen();
   setupHumidTempSensor();
+  setupCO2Sensor();
   setupTVOCSensor(tvocSetupStatus);
 }
 
@@ -58,7 +59,7 @@ void loop()
     break;
   case PROCESS:
     processGasSensors(co, co2, voc, gasStatus);
-    processTempAndHumid(temp, humid, gasStatus, &fanSpeed);
+    //processFanSpeed(temp, humid, gasStatus, &fanSpeed);
     state = SEND;
     break;
   case SEND:
