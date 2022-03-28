@@ -21,6 +21,8 @@ void processGasSensors(float coVal, float co2Val, float vocVal, int vocData, cha
 
         if (coVal != 0)
         {
+            strcpy(gasStatus, "Normal");
+            if(coVal > 200)
             strcpy(gasStatus, "Danger");
         }
         else if (highCO2 != 0 || highTVOC != 0)
