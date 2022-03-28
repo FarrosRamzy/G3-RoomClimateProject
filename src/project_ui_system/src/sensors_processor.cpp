@@ -1,47 +1,53 @@
 #include <sensors.h>
 
-float highTVOC = 0;
-float highCO2 = 0;
+float highTVOC = 400;
+float highCO2 = 800;
 
-float lowTVOC = 40;
-float lowCO2 = 40;
+float lowTVOC = 100;
+float lowCO2 = 100;
 
-void processGasSensors(float coVal, float co2Val, float vocVal, char gasStatus[])
+void processGasSensors(float coVal, float co2Val, float vocVal, int vocData, char gasStatus[])
 {
-    if (vocVal >= 250)
+    if (vocData == 1)
     {
-        highTVOC = vocVal;
-    }
-    if (co2Val >= 180)
-    {
-        highCO2 = co2Val;
-    }
-    
-    if (coVal != 0)
-    {
-        strcpy(gasStatus, "Danger");
-    }
-    else if (highCO2 != 0 || highTVOC != 0)
-    {
-        if (vocVal >= highTVOC || co2Val >= highCO2)
+        if (vocVal >= highTVOC)
+        {
+            highTVOC = vocVal;
+        }
+        if (co2Val >= highCO2)
+        {
+            highCO2 = co2Val;
+        }
+
+        if (coVal != 0)
         {
             strcpy(gasStatus, "Danger");
         }
-        else if (vocVal < highTVOC || co2Val < highCO2)
+        else if (highCO2 != 0 || highTVOC != 0)
         {
-            strcpy(gasStatus, "Normal");
+            if (vocVal >= highTVOC || co2Val >= highCO2)
+            {
+                strcpy(gasStatus, "Danger");
+            }
+            else if (vocVal < highTVOC && co2Val < highCO2)
+            {
+                strcpy(gasStatus, "Normal");
+            }
+            else if (vocVal < lowTVOC && co2Val < lowCO2)
+            {
+                highCO2 = 400;
+                highTVOC = 800;
+                strcpy(gasStatus, "Clear");
+            }
         }
-        else if (vocVal < lowTVOC && co2Val < lowCO2)
+        else
         {
-            highCO2 = 0;
-            highTVOC = 0;
             strcpy(gasStatus, "Clear");
         }
-        
     }
-    else
+    else 
     {
-        strcpy(gasStatus, "Clear");
+        strcpy(gasStatus,"Error");
     }
     
 }

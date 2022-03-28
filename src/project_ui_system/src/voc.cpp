@@ -10,6 +10,7 @@ void setupTVOCSensor(char sensorStatus[])
     }
     else
     {
+        Serial.println("TVOC Setup Pass");
         while (!ccs.available())
         {
             strcpy(sensorStatus, "No Data.");
@@ -26,10 +27,15 @@ void readOrganicCompounds(float *voc, int *dataReceived)
             *voc = ccs.getTVOC();
             *dataReceived = 1;
         }
+        else
+        {
+            *voc = 0;
+            *dataReceived = 0;
+        }
     }
-    else
-    {
-        *voc = 0;
-        *dataReceived = 0;
-    }
+
+    Serial.print("voc: ");
+    Serial.println(*voc);
+    Serial.println("received: ");
+    Serial.println(*dataReceived);
 }

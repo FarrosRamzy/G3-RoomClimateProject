@@ -53,18 +53,20 @@ void loop()
   case READ:
     readTempAndHumid(&humid, &temp);
     readCarbonMonoxide(&co);
-    readCarbonDioxide(&co2);
+    //readCarbonDioxide(&co2, startTime);
     readOrganicCompounds(&voc, &dataReceived);
     state = PROCESS;
     break;
   case PROCESS:
-    processGasSensors(co, co2, voc, gasStatus);
-    //processFanSpeed(temp, humid, gasStatus, &fanSpeed);
+    processGasSensors(co, co2, voc, dataReceived,gasStatus);
+    // processFanSpeed(temp, humid, gasStatus, &fanSpeed);
     state = SEND;
     break;
   case SEND:
     sendTempAndHumidData(humid, temp);
     sendGasSensorData(co, co2, voc, gasStatus);
+    //
+    //
     state = IDLE;
     break;
   default:

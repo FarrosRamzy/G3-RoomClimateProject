@@ -12,7 +12,7 @@ void readCarbonMonoxide(float *coVal)
     gasVal = (CO_V - readVoltage) / readVoltage;
     ratio = gasVal / CO_GAS_RATIO;
 
-    if (ratio >= 0.7 && ratio < 2)
+    if (ratio < 2 || ratio >= 0.7)
     {
         *coVal = gasVal;
     }
@@ -20,4 +20,7 @@ void readCarbonMonoxide(float *coVal)
     {
         *coVal = 0;
     }
+
+    Serial.print("co: ");
+    Serial.println(*coVal);
 }

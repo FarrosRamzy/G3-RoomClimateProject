@@ -35,10 +35,10 @@ void setupCO2Sensor();
 void setupHumidTempSensor();
 void readTempAndHumid(float *, float *);
 void readCarbonMonoxide(float *);
-void readCarbonDioxide(float *);
+void readCarbonDioxide(float *, unsigned long);
 void readOrganicCompounds(float *, int *);
 
-void processGasSensors(float, float, float, char[]);
+void processGasSensors(float, float, float, int, char[]);
 void processFanSpeed(float, float, char[], int *);
 
 void sendTempAndHumidData(float, float);

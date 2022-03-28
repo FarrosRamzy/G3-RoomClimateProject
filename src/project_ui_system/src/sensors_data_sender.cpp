@@ -11,6 +11,10 @@ NexText aVOC = NexText(3, 7, "tbVOC");
 NexText aCO2 = NexText(3, 8, "tbCO2");
 NexText aCO = NexText(3, 9, "tbCO");
 
+NexTimer hTimer = NexTimer(0,11,"tm0");
+NexTimer rTimer = NexTimer(1,8,"tm0");
+NexTimer aTimer = NexTimer(3,4,"tm0");
+
 char Temp[10];
 char Humid[10];
 char CO[10];
@@ -19,7 +23,14 @@ char VOC[10];
 
 void setupTouchsreen()
 {
-  nexInit();
+  if (nexInit())
+  {
+    Serial.println("Touchscreen Setup Pass");
+  }
+  else
+  {
+    Serial.println("Touchscreen Setup Fail");
+  }
 }
 
 void sendTempAndHumidData(float humid, float temp)
@@ -41,6 +52,7 @@ void sendTempAndHumidData(float humid, float temp)
   {
     dtostrf(humid, 1, 0, Humid);
   }
+
   hTempVal.setText(Temp);
   hHumVal.setText(Humid);
   rTempVal.setText(Temp);
@@ -53,9 +65,9 @@ void sendGasSensorData(float co, float co2, float voc, char gasStatus[])
   dtostrf(co2, 6, 2, CO2);
   dtostrf(voc, 6, 2, VOC);
 
-  aCO.setText(Temp);
-  aCO2.setText(Humid);
-  aVOC.setText(Temp);
+  aCO.setText(CO);
+  aCO2.setText(CO2);
+  aVOC.setText(VOC);
 
   hAirQ.setText(gasStatus);
 }
