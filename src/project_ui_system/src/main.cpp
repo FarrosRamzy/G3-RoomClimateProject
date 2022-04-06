@@ -33,7 +33,6 @@ void setup()
 void loop()
 {
   // put your main code here, to run repeatedly:
-
   switch (state)
   {
   case IDLE:
@@ -53,7 +52,7 @@ void loop()
   case READ:
     readTempAndHumid(&humid, &temp);
     readCarbonMonoxide(&co);
-    //readCarbonDioxide(&co2, startTime);
+    readCarbonDioxide(&co2, startTime);
     readOrganicCompounds(&voc, &dataReceived);
     state = PROCESS;
     break;

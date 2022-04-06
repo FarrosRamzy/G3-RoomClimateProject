@@ -1,32 +1,31 @@
 #include <sensors.h>
 
-unsigned long int downTimer = 0;
-float pwm_value = 0;
-int lowValue = 0;
+SoftwareSerial mhzSerial(CO2_TX_PIN,CO2_RX_PIN);
+ErriezMHZ19B co2mhz19b(&mhzSerial);
 
 void setupCO2Sensor()
 {
-    pinMode(CO2PIN, INPUT);
+    mhzSerial.begin(9600);
+    co2mhz19b.setRange5000ppm();
+    co2mhz19b.setAutoCalibration(true);
+    while (!co2mhz19b.detect())
+    {
+        Serial.println(F("CO2 Loading ..."));
+    }
 }
 
 void readCarbonDioxide(float *co2, unsigned long startTimer)
 {
-    int measurements = 0;
-    while (measurements < 2)
+    float temporary = *co2;
+    if (co2mhz19b.isReady())
     {
-        Serial.print("before pwm ");
-        Serial.println(pwm_value);
-        pwm_value = pulseIn(CO2PIN, HIGH, 730000) / 1000;
-        if (pwm_value > 0)
+        if (co2mhz19b.readCO2() >= 0)
         {
-            Serial.println("pwm is here");
-            lowValue = (startTimer - downTimer) - pwm_value;
-            downTimer = millis();
-            measurements++;
+            *co2 = co2mhz19b.readCO2();
         }
     }
-    *co2 = (2000 * (pwm_value - 2) / (pwm_value + lowValue - 4));
-
-    Serial.print("co2: ");
-    Serial.println(*co2);
+    else
+    {
+        *co2 = temporary;
+    }
 }

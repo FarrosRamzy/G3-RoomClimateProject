@@ -8,10 +8,13 @@
 #include <Wire.h>
 #include <Nextion.h>
 #include <SoftwareSerial.h>
+#include <ErriezMHZ19B.h>
 #include <string.h>
 
 #define DHTPIN 2
-#define CO2PIN 3
+
+#define CO2_TX_PIN 4
+#define CO2_RX_PIN 5
 
 #define DHTTYPE DHT11
 
