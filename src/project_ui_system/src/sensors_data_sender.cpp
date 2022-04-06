@@ -1,5 +1,6 @@
 #include <sensors.h>
 
+// NexText hDateTime = NexText(0,1,"tbTimer");
 NexText hTempVal = NexText(0, 5, "tbTmpval");
 NexText hHumVal = NexText(0, 6, "tbHmdval");
 NexText hAirQ = NexText(0, 7, "tbAirQ");

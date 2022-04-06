@@ -1,10 +1,10 @@
 #include <sensors.h>
 
 float highTVOC = 400;
-float highCO2 = 800;
+float highCO2 = 2000;
 
 float lowTVOC = 100;
-float lowCO2 = 100;
+float lowCO2 = 500;
 
 void processGasSensors(float coVal, float co2Val, float vocVal, int vocData, char gasStatus[])
 {
@@ -19,13 +19,14 @@ void processGasSensors(float coVal, float co2Val, float vocVal, int vocData, cha
             highCO2 = co2Val;
         }
 
-        if (coVal != 0)
+        // if (coVal != 0)
+        // {
+        //     strcpy(gasStatus, "Normal");
+
+        // }
+        if (coVal > 200)
         {
-            strcpy(gasStatus, "Normal");
-            if(coVal > 200)
-            {
-                strcpy(gasStatus, "Danger");
-            }
+            strcpy(gasStatus, "Danger");
         }
         else if (highCO2 != 0 || highTVOC != 0)
         {
@@ -49,11 +50,10 @@ void processGasSensors(float coVal, float co2Val, float vocVal, int vocData, cha
             strcpy(gasStatus, "Clear");
         }
     }
-    else 
+    else
     {
-        strcpy(gasStatus,"Error");
+        strcpy(gasStatus, "Error");
     }
-    
 }
 
 void processFanSpeed(float tempVal, float humidVal, char gasStatus[], int *fanSpeed)
