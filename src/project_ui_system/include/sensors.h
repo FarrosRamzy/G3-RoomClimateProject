@@ -8,7 +8,9 @@
 #include <Wire.h>
 #include <Nextion.h>
 #include <SoftwareSerial.h>
+#include <AltSoftSerial.h>
 #include <ErriezMHZ19B.h>
+#include <TimeLib.h>
 #include <string.h>
 
 #define DHTPIN 2
@@ -36,6 +38,8 @@ void setupTouchsreen();
 void setupTVOCSensor(char[]);
 void setupCO2Sensor();
 void setupHumidTempSensor();
+void setupEspWifi();
+
 void readTempAndHumid(float *, float *);
 void readCarbonMonoxide(float *);
 void readCarbonDioxide(float *, unsigned long);

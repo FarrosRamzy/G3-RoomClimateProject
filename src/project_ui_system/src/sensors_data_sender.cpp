@@ -16,11 +16,11 @@ NexTimer hTimer = NexTimer(0,11,"tm0");
 NexTimer rTimer = NexTimer(1,8,"tm0");
 NexTimer aTimer = NexTimer(3,4,"tm0");
 
-char Temp[10];
-char Humid[10];
-char CO[10];
-char CO2[10];
-char VOC[10];
+char Temp[15];
+char Humid[15];
+char CO[15];
+char CO2[15];
+char VOC[15];
 
 void setupTouchsreen()
 {
@@ -38,7 +38,7 @@ void sendTempAndHumidData(float humid, float temp)
 {
   if (isnan(temp))
   {
-    strcpy(Temp,"unknown");
+    strcpy(Temp,"unavailable");
   }
   else
   {
@@ -47,7 +47,7 @@ void sendTempAndHumidData(float humid, float temp)
 
   if (isnan(humid))
   {
-    strcpy(Humid,"unknown");
+    strcpy(Humid,"unavailable");
   }
   else
   {
