@@ -25,6 +25,7 @@ void setup()
   Serial.begin(9600);
   state = IDLE;
   setupTouchsreen();
+  setupEspWifi();
   setupHumidTempSensor();
   setupCO2Sensor();
   setupTVOCSensor(tvocSetupStatus);
