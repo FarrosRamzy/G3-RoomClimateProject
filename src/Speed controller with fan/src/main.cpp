@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <analogWrite.h> //this is not necessary, but it is programmed on an ESP32 remove if used with arduino
+//#include <analogWrite.h> //this is not necessary, but it is programmed on an ESP32 remove if used with arduino
 
 const int motor1pin1 = 17;
 const int motor1pin2 = 18;
