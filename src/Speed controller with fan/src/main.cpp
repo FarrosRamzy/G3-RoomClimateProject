@@ -34,7 +34,7 @@ void loop()
   }
   else if(temp < 25 || hum <= 55)
   {
-    analogWrite(speedcontrol, 0);
+    analogWrite(speedcontrol, 128);
     delay(2000);
   }
 }
