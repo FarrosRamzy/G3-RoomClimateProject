@@ -1,0 +1,72 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
+{
+    "configurations": [
+        {
+            "name": "PlatformIO",
+            "includePath": [
+                "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/include",
+                "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/src",
+                "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit CCS811 Library",
+                "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit BusIO",
+                "C:/Users/coval/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/DHT sensor library",
+                "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit Unified Sensor",
+                "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Nextion",
+                "C:/Users/coval/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/SD",
+                "C:/Users/coval/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "C:/Users/coval/.platformio/packages/framework-arduino-avr/cores/arduino",
+                "C:/Users/coval/.platformio/packages/framework-arduino-avr/variants/standard",
+                "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit GFX Library",
+                "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit SSD1306",
+                "C:/Users/coval/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "C:/Users/coval/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/include",
+                    "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/src",
+                    "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit CCS811 Library",
+                    "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit BusIO",
+                    "C:/Users/coval/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/DHT sensor library",
+                    "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit Unified Sensor",
+                    "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Nextion",
+                    "C:/Users/coval/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/SD",
+                    "C:/Users/coval/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "C:/Users/coval/.platformio/packages/framework-arduino-avr/cores/arduino",
+                    "C:/Users/coval/.platformio/packages/framework-arduino-avr/variants/standard",
+                    "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit GFX Library",
+                    "c:/Users/coval/Documents/GitHub/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit SSD1306",
+                    "C:/Users/coval/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "C:/Users/coval/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=50205",
+                "ARDUINO_AVR_UNO",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_AVR",
+                "ARDUINO=10808",
+                "__AVR_ATmega328P__",
+                ""
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "compilerPath": "C:/Users/coval/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe",
+            "compilerArgs": [
+                "-mmcu=atmega328p",
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}
