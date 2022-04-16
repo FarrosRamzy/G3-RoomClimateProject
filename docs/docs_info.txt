@@ -1,1 +1,4 @@
-this folder is only for the team documents (doc/pdf/ppt).
+    @- This folder has the sole purpose of holding team documents such as: plans, designs, drafts
+scraps, pictures used in documents and many others alike.
+
+    @- Some of the formats in this folder can be: .docx, .pdf, .png and so on and so forth.
