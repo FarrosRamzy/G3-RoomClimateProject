@@ -26,6 +26,9 @@
 
 #define DHT_TYPE DHT11
 
+#define WIFI_ID "MSI_YZMAR"
+#define WIFI_PASSWORD "Yzmar252887"
+
 #define MAX_CHAR_ARRAY 255
 
 #define CO_GAS_RATIO 0.99

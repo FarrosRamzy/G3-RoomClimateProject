@@ -32,6 +32,7 @@ void setup()
   setupEspWifi();
   setupHumidTempSensor();
   setupCO2Sensor();
+  setupFanSystem();
   setupTVOCSensor(tvocSetupStatus);
 }
 
