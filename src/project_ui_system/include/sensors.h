@@ -20,9 +20,9 @@
 #define CO2_TX_PIN 4
 #define CO2_RX_PIN 5
 
-#define FAN_PIN_A 7
-#define FAN_PIN_B 8
-#define FAN_PWM_PIN 3
+#define FAN_PIN_A 12
+#define FAN_PIN_B 13
+#define FAN_PWM_PIN 11
 
 #define DHT_TYPE DHT11
 
