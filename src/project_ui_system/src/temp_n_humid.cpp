@@ -1,6 +1,6 @@
 #include <sensors.h>
 
-DHT dht(DHTPIN, DHTTYPE);
+DHT dht(DHT_PIN, DHT_TYPE);
 
 void setupHumidTempSensor()
 {

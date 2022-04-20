@@ -6,11 +6,10 @@ void setupTVOCSensor(char sensorStatus[])
 {
     if (!ccs.begin())
     {
-        strcpy(sensorStatus, "Failed to start sensor!");
+        strcpy(sensorStatus, "Unavailable.");
     }
     else
     {
-        Serial.println("TVOC Setup Pass");
         while (!ccs.available())
         {
             strcpy(sensorStatus, "No Data.");

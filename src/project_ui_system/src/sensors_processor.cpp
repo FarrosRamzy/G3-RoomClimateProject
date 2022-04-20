@@ -55,8 +55,3 @@ void processGasSensors(float coVal, float co2Val, float vocVal, int vocData, cha
         strcpy(gasStatus, "Error");
     }
 }
-
-void processFanSpeed(float tempVal, float humidVal, char gasStatus[], int *fanSpeed)
-{
-    ;
-}

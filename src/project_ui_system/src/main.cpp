@@ -8,7 +8,11 @@ float co2;
 float voc;
 
 int fanSpeed;
-int dataReceived = 0;
+int tvocDataReceived = 0;
+int coDataReceived = 0;
+int coDataReceived = 0;
+int humidDataReceived = 0;
+int tempDataReceived = 0;
 
 char gasStatus[MAX_CHAR_ARRAY];
 char tvocSetupStatus[MAX_CHAR_ARRAY];
@@ -54,11 +58,11 @@ void loop()
     readTempAndHumid(&humid, &temp);
     readCarbonMonoxide(&co);
     readCarbonDioxide(&co2, startTime);
-    readOrganicCompounds(&voc, &dataReceived);
+    readOrganicCompounds(&voc, &tvocDataReceived);
     state = PROCESS;
     break;
   case PROCESS:
-    processGasSensors(co, co2, voc, dataReceived,gasStatus);
+    processGasSensors(co, co2, voc, tvocDataReceived,gasStatus);
     // processFanSpeed(temp, humid, gasStatus, &fanSpeed);
     state = SEND;
     break;
