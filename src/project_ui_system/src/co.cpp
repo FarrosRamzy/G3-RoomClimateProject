@@ -21,6 +21,6 @@ void readCarbonMonoxide(float *coVal)
         *coVal = 0;
     }
 
-    Serial.print("co: ");
-    Serial.println(*coVal);
+    // Serial.print("co: ");
+    // Serial.println(*coVal);
 }

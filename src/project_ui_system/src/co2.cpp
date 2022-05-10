@@ -1,6 +1,6 @@
 #include <sensors.h>
 
-SoftwareSerial mhzSerial(CO2_TX_PIN,CO2_RX_PIN);
+SoftwareSerial mhzSerial(CO2_RX_PIN,CO2_TX_PIN);
 ErriezMHZ19B co2mhz19b(&mhzSerial);
 
 void setupCO2Sensor()
@@ -8,10 +8,10 @@ void setupCO2Sensor()
     mhzSerial.begin(9600);
     co2mhz19b.setRange5000ppm();
     co2mhz19b.setAutoCalibration(true);
-    while (!co2mhz19b.detect())
-    {
-        Serial.println(F("CO2 Loading ..."));
-    }
+    // while (!co2mhz19b.detect())
+    // {
+    //     Serial.println(F("CO2 Loading ..."));
+    // }
 }
 
 void readCarbonDioxide(float *co2, unsigned long startTimer)

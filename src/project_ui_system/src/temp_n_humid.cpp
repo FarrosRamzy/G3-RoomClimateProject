@@ -13,8 +13,8 @@ void readTempAndHumid(float *humid, float *temp)
     *humid = dht.readHumidity();
     *temp = dht.readTemperature();
 
-    Serial.print("temp: ");
-    Serial.println(*temp);
-    Serial.print("hum: ");
-    Serial.println(*humid);
+    // Serial.print("temp: ");
+    // Serial.println(*temp);
+    // Serial.print("hum: ");
+    // Serial.println(*humid);
 }

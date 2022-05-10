@@ -9,21 +9,20 @@ void setupFanSystem()
     digitalWrite(FAN_PIN_B, LOW);
 }
 
-void processFanSpeed(float tempVal, float humidVal, char gasStatus[], int *fanSpeed)
+void processFanSpeed(float tempVal, float humidVal, char gasStatus[])
 {
     if (tempVal >= 25 && humidVal >= 58)
     {
         analogWrite(FAN_PWM_PIN, 255);
-        delay(2000);
     }
     else if (tempVal < 25 || humidVal <= 55)
     {
         analogWrite(FAN_PWM_PIN, 128);
-        delay(2000);
     }
 }
 
-void setManualSpeed(int speed)
+void setManualSpeed(uint32_t speed)
 {
-    analogWrite(FAN_PWM_PIN, speed);
+    uint32_t actualSpeed = speed * 51;
+    analogWrite(FAN_PWM_PIN, actualSpeed);
 }

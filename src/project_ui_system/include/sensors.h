@@ -55,9 +55,16 @@ void readCarbonMonoxide(float *);
 void readCarbonDioxide(float *, unsigned long);
 void readOrganicCompounds(float *, int *);
 
+void readTouchInput();
 void processGasSensors(float, float, float, int, char[]);
-void processFanSpeed(float, float, char[], int *);
-void setManualSpeed(int speed);
+void processFanSpeed(float, float, char[]);
+void setManualSpeed(uint32_t speed);
+
+void readAutoManualState(bool *, bool *, uint32_t *, uint32_t *);
+void setTempBtnChange(void *);
+void setFanBtnChange(void *);
+void setTempSlide(void *);
+void setFanSlide(void *);
 
 void sendTempAndHumidData(float, float);
 void sendGasSensorData(float, float, float, char[]);

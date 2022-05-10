@@ -8,8 +8,8 @@ float lowCO2 = 500;
 
 void processGasSensors(float coVal, float co2Val, float vocVal, int vocData, char gasStatus[])
 {
-    if (vocData == 1)
-    {
+    // if (vocData == 1)
+    // {
         if (vocVal >= highTVOC)
         {
             highTVOC = vocVal;
@@ -49,9 +49,9 @@ void processGasSensors(float coVal, float co2Val, float vocVal, int vocData, cha
         {
             strcpy(gasStatus, "Clear");
         }
-    }
-    else
-    {
-        strcpy(gasStatus, "Error");
-    }
+    // }
+    // else
+    // {
+    //     strcpy(gasStatus, "Error");
+    // }
 }

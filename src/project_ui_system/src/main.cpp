@@ -9,10 +9,16 @@ float voc;
 
 int fanSpeed;
 int tvocDataReceived = 0;
-int coDataReceived = 0;
+int co2DataReceived = 0;
 int coDataReceived = 0;
 int humidDataReceived = 0;
 int tempDataReceived = 0;
+
+bool autoFan = true;
+bool autoTemp = true;
+
+uint32_t setTempVal;
+uint32_t setFanVal;
 
 char gasStatus[MAX_CHAR_ARRAY];
 char tvocSetupStatus[MAX_CHAR_ARRAY];
@@ -29,10 +35,10 @@ void setup()
   Serial.begin(9600);
   state = IDLE;
   setupTouchsreen();
-  setupEspWifi();
+  //setupEspWifi();
   setupHumidTempSensor();
-  setupCO2Sensor();
-  setupFanSystem();
+  //setupCO2Sensor();
+  //setupFanSystem();
   setupTVOCSensor(tvocSetupStatus);
 }
 
@@ -56,22 +62,29 @@ void loop()
     }
     break;
   case READ:
+    //readTouchInput();
+    //readAutoManualState(&autoFan, &autoTemp, &setTempVal, &setFanVal);
     readTempAndHumid(&humid, &temp);
     readCarbonMonoxide(&co);
-    readCarbonDioxide(&co2, startTime);
+    //readCarbonDioxide(&co2, startTime);
     readOrganicCompounds(&voc, &tvocDataReceived);
     state = PROCESS;
     break;
   case PROCESS:
-    processGasSensors(co, co2, voc, tvocDataReceived,gasStatus);
-    // processFanSpeed(temp, humid, gasStatus, &fanSpeed);
+    processGasSensors(co, co2, voc, tvocDataReceived, gasStatus);
+    // if (autoFan)
+    // {
+    //   setManualSpeed(setFanVal);
+    // }
+    // else if (!autoFan)
+    // {
+    //   processFanSpeed(temp, humid, gasStatus);
+    // }
     state = SEND;
     break;
   case SEND:
     sendTempAndHumidData(humid, temp);
     sendGasSensorData(co, co2, voc, gasStatus);
-    //
-    //
     state = IDLE;
     break;
   default:
