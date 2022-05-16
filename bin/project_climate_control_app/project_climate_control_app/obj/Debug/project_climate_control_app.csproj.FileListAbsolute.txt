@@ -75,3 +75,7 @@ C:\Users\andyv\OneDrive\Bureaublad\project_climate_control_app\project_climate_c
 C:\Users\andyv\OneDrive\Bureaublad\project_climate_control_app\project_climate_control_app\obj\Debug\project_climate_control_app.csproj.CopyComplete
 C:\Users\andyv\OneDrive\Bureaublad\project_climate_control_app\project_climate_control_app\obj\Debug\project_climate_control_app.exe
 C:\Users\andyv\OneDrive\Bureaublad\project_climate_control_app\project_climate_control_app\obj\Debug\project_climate_control_app.pdb
+C:\Users\coval\Dropbox\FONTYS\1 st .SCH.OOL\SEM II\GIT Cloud Storage\G3-RoomClimateProject\bin\Aplication Test\project_climate_control_app\project_climate_control_app\obj\Debug\project_climate_control_app.csproj.AssemblyReference.cache
+C:\Users\coval\Dropbox\FONTYS\1 st .SCH.OOL\SEM II\GIT Cloud Storage\G3-RoomClimateProject\bin\Aplication Test\project_climate_control_app\project_climate_control_app\obj\Debug\project_climate_control_app.csproj.ResolveComReference.cache
+C:\Users\coval\Dropbox\FONTYS\1 st .SCH.OOL\SEM II\GIT Cloud Storage\G3-RoomClimateProject\bin\Aplication Test\project_climate_control_app\project_climate_control_app\obj\Debug\project_climate_control_app.exe
+C:\Users\coval\Dropbox\FONTYS\1 st .SCH.OOL\SEM II\GIT Cloud Storage\G3-RoomClimateProject\bin\Aplication Test\project_climate_control_app\project_climate_control_app\obj\Debug\project_climate_control_app.pdb

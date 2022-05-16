@@ -1,7 +1,7 @@
 ﻿
 namespace Main_Panel_Controls
 {
-    partial class Form1
+    partial class MainPanel
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,17 @@ namespace Main_Panel_Controls
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // MainPanel
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Name = "MainPanel";
+            this.Text = "Airios Indoor Climate Control - Main Panel";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Main_Panel_Controls
 {
-    public partial class Form1 : Form
+    public partial class MainPanel : Form
     {
-        public Form1()
+        public MainPanel()
         {
             InitializeComponent();
         }
