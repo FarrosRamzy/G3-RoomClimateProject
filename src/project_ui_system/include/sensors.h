@@ -8,15 +8,26 @@
 #include <Wire.h>
 #include <Nextion.h>
 #include <SoftwareSerial.h>
+#include <AltSoftSerial.h>
 #include <ErriezMHZ19B.h>
+#include <TimeLib.h>
 #include <string.h>
 
-#define DHTPIN 2
+#define DHT_PIN 2
+
+#define CO_PIN A0
 
 #define CO2_TX_PIN 4
 #define CO2_RX_PIN 5
 
-#define DHTTYPE DHT11
+#define FAN_PIN_A 12
+#define FAN_PIN_B 13
+#define FAN_PWM_PIN 11
+
+#define DHT_TYPE DHT11
+
+#define WIFI_ID "MSI_YZMAR"
+#define WIFI_PASSWORD "Yzmar252887"
 
 #define MAX_CHAR_ARRAY 255
 
@@ -36,13 +47,24 @@ void setupTouchsreen();
 void setupTVOCSensor(char[]);
 void setupCO2Sensor();
 void setupHumidTempSensor();
+void setupFanSystem();
+void setupEspWifi();
+
 void readTempAndHumid(float *, float *);
 void readCarbonMonoxide(float *);
 void readCarbonDioxide(float *, unsigned long);
 void readOrganicCompounds(float *, int *);
 
+void readTouchInput();
 void processGasSensors(float, float, float, int, char[]);
-void processFanSpeed(float, float, char[], int *);
+void processFanSpeed(float, float, char[]);
+void setManualSpeed(uint32_t speed);
+
+void readAutoManualState(bool *, bool *, uint32_t *, uint32_t *);
+void setTempBtnChange(void *);
+void setFanBtnChange(void *);
+void setTempSlide(void *);
+void setFanSlide(void *);
 
 void sendTempAndHumidData(float, float);
 void sendGasSensorData(float, float, float, char[]);

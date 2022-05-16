@@ -1,6 +1,6 @@
 #include <sensors.h>
 
-DHT dht(DHTPIN, DHTTYPE);
+DHT dht(DHT_PIN, DHT_TYPE);
 
 void setupHumidTempSensor()
 {
@@ -13,8 +13,8 @@ void readTempAndHumid(float *humid, float *temp)
     *humid = dht.readHumidity();
     *temp = dht.readTemperature();
 
-    Serial.print("temp: ");
-    Serial.println(*temp);
-    Serial.print("hum: ");
-    Serial.println(*humid);
+    // Serial.print("temp: ");
+    // Serial.println(*temp);
+    // Serial.print("hum: ");
+    // Serial.println(*humid);
 }

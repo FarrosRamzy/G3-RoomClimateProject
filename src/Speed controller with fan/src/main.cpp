@@ -1,9 +1,9 @@
 #include <Arduino.h>
 //#include <analogWrite.h> //this is not necessary, but it is programmed on an ESP32 remove if used with arduino
 
-const int motor1pin1 = 17;
-const int motor1pin2 = 18;
-int speedcontrol = 22;
+const int motor1pin1 = A2;
+const int motor1pin2 = A1;
+int speedcontrol = A0;
 
 void setup() 
 {
@@ -13,6 +13,7 @@ void setup()
   pinMode(speedcontrol, OUTPUT); 
   digitalWrite(motor1pin1, HIGH);
   digitalWrite(motor1pin2, LOW);
+  analogWrite(speedcontrol, 255);
 }
 
 void setManualSpeed(int speed)
