@@ -37,8 +37,8 @@ void setup()
   setupTouchsreen();
   //setupEspWifi();
   setupHumidTempSensor();
-  //setupCO2Sensor();
-  //setupFanSystem();
+  setupCO2Sensor();
+  setupFanSystem();
   setupTVOCSensor(tvocSetupStatus);
 }
 
@@ -62,11 +62,11 @@ void loop()
     }
     break;
   case READ:
-    //readTouchInput();
-    //readAutoManualState(&autoFan, &autoTemp, &setTempVal, &setFanVal);
+    readTouchInput();
+    readAutoManualState(&autoFan, &autoTemp, &setTempVal, &setFanVal);
     readTempAndHumid(&humid, &temp);
     readCarbonMonoxide(&co);
-    //readCarbonDioxide(&co2, startTime);
+    readCarbonDioxide(&co2, startTime);
     readOrganicCompounds(&voc, &tvocDataReceived);
     state = PROCESS;
     break;

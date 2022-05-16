@@ -33,8 +33,8 @@ void readOrganicCompounds(float *voc, int *dataReceived)
         }
     }
 
-    Serial.print("voc: ");
-    Serial.println(*voc);
-    Serial.println("received: ");
-    Serial.println(*dataReceived);
+    // Serial.print("voc: ");
+    // Serial.println(*voc);
+    // Serial.println("received: ");
+    // Serial.println(*dataReceived);
 }

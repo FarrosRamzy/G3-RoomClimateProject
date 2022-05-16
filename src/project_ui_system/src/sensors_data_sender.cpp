@@ -66,10 +66,11 @@ void setupTouchsreen()
   {
     Serial.println("Touchscreen Setup Fail");
   }
-  // setTempBtn.attachPop(setTempBtnChange, &setTempBtn);
-  // setFanSpeedBtn.attachPop(setFanBtnChange, &setFanSpeedBtn);
-  // setTemp.attachPop(setTempSlide);
-  // setFanSpeed.attachPop(setFanSlide);
+  
+  setTempBtn.attachPop(setTempBtnChange, &setTempBtn);
+  setFanSpeedBtn.attachPop(setFanBtnChange, &setFanSpeedBtn);
+  setTemp.attachPop(setTempSlide);
+  setFanSpeed.attachPop(setFanSlide);
 }
 
 void readAutoManualState(bool *fanIsAuto, bool *tempIsAuto, uint32_t *manualTempVal, uint32_t *manualFanSpeed)
