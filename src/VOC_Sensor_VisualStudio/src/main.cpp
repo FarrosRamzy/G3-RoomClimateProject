@@ -31,13 +31,22 @@ unsigned long previousHighTvocTime = 0;
 unsigned long sensorInterval = 1000;
 unsigned long previousLowTvocTime = 0;
 
+unsigned long previousMillis;
+unsigned long interval = 500; // start value set to 1 second
 
+int ledState = LOW;           // led is off at start.
+
+const int buzzer = 9; // buzzer to arduino pin 9
+const int LED = 3;
+int sound = 450;
 
 Adafruit_CCS811 ccs;
 
 void setup()
 {
   Serial.begin(9600);
+  pinMode(LED, OUTPUT);
+  pinMode(buzzer, OUTPUT);
 
   Serial.println("CCS811 test");
 
@@ -48,7 +57,32 @@ void setup()
   }
 
   // Wait for the sensor to be ready
-  while (!ccs.available());
+  while (!ccs.available())
+    ;
+}
+
+void alarm()
+{
+  digitalWrite(LED, HIGH);
+  
+  unsigned long currentMillis = millis();
+
+  if (currentMillis - previousMillis >= interval)
+  {
+    previousMillis = currentMillis;
+
+    if (sound == 450)
+    {
+      sound = 550;
+      interval = 300;
+    }
+    else
+    {
+      interval = 400;
+      sound = 550;
+    }
+    tone(buzzer, sound);
+  }
 }
 
 void loop()
@@ -57,7 +91,7 @@ void loop()
   {
     if (!ccs.readData())
     {
-      if (ccs.getTVOC() > 250)
+      if (ccs.getTVOC() > 50)
       {
         Serial.print("TVOC (ppb): ");
         Serial.println(ccs.getTVOC());
@@ -75,13 +109,14 @@ void loop()
               if (ventilation == false)
               {
                 ventilation = true;
+                alarm();
                 Serial.println("High TVOC, Ventilation turned ON");
               }
             }
           }
         }
       }
-      else if (ccs.getTVOC() < 250)
+      else if (ccs.getTVOC() < 50)
       {
         unsigned long lowVocTime = millis();
 
@@ -98,6 +133,8 @@ void loop()
                 if (ventilation == true)
                 {
                   ventilation = false;
+                  noTone(buzzer);
+                  digitalWrite(LED, LOW);
                   Serial.println("Low TVOC, Ventilation turned OFF");
                 }
               }
