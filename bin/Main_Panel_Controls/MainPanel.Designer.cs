@@ -235,13 +235,14 @@ namespace Main_Panel_Controls
             this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMinimize.FlatAppearance.BorderSize = 0;
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMinimize.Location = new System.Drawing.Point(570, 2);
+            this.btnMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.World, ((byte)(0)));
+            this.btnMinimize.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnMinimize.Location = new System.Drawing.Point(556, -1);
             this.btnMinimize.Margin = new System.Windows.Forms.Padding(2);
             this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(36, 30);
+            this.btnMinimize.Size = new System.Drawing.Size(50, 30);
             this.btnMinimize.TabIndex = 4;
-            this.btnMinimize.Text = "—";
+            this.btnMinimize.Text = "‐";
             this.btnMinimize.UseVisualStyleBackColor = true;
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             // 
