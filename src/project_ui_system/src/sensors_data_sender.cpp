@@ -58,19 +58,12 @@ NexTouch *nextion_listen_list[] = {&setTempBtn, &setTemp, &setFanSpeedBtn, &setF
 
 void setupTouchsreen()
 {
-  if (nexInit())
-  {
-    Serial.println("Touchscreen Setup Pass");
-  }
-  else
-  {
-    Serial.println("Touchscreen Setup Fail");
-  }
-  
-  setTempBtn.attachPop(setTempBtnChange, &setTempBtn);
-  setFanSpeedBtn.attachPop(setFanBtnChange, &setFanSpeedBtn);
-  setTemp.attachPop(setTempSlide);
-  setFanSpeed.attachPop(setFanSlide);
+    //Serial.println("Touchscreen Setup Pass");
+    nexInit();
+    setTempBtn.attachPop(setTempBtnChange, &setTempBtn);
+    setFanSpeedBtn.attachPop(setFanBtnChange, &setFanSpeedBtn);
+    setTemp.attachPop(setTempSlide);
+    setFanSpeed.attachPop(setFanSlide);
 }
 
 void readAutoManualState(bool *fanIsAuto, bool *tempIsAuto, uint32_t *manualTempVal, uint32_t *manualFanSpeed)

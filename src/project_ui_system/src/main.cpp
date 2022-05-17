@@ -34,7 +34,7 @@ void setup()
   // put your setup code here, to run once:
   Serial.begin(9600);
   state = IDLE;
-  setupTouchsreen();
+  //setupTouchsreen();
   //setupEspWifi();
   setupHumidTempSensor();
   setupCO2Sensor();
@@ -72,14 +72,14 @@ void loop()
     break;
   case PROCESS:
     processGasSensors(co, co2, voc, tvocDataReceived, gasStatus);
-    // if (autoFan)
-    // {
-    //   setManualSpeed(setFanVal);
-    // }
-    // else if (!autoFan)
-    // {
-    //   processFanSpeed(temp, humid, gasStatus);
-    // }
+    if (autoFan)
+    {
+      setManualSpeed(setFanVal);
+    }
+    else if (!autoFan)
+    {
+      processFanSpeed(temp, humid, gasStatus);
+    }
     state = SEND;
     break;
   case SEND:
