@@ -178,5 +178,25 @@ namespace indoor_climate_control_application
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
+
+        private void HomeFormButton_MouseHover(object sender, EventArgs e)
+        {
+            HomeFormButton.BackColor = Color.White;
+        }
+
+        private void RoomsFormButton_MouseHover(object sender, EventArgs e)
+        {
+            RoomsFormButton.BackColor = Color.White;
+        }
+
+        private void WeatherFormButton_MouseHover(object sender, EventArgs e)
+        {
+            WeatherForm.BackColor = Color.White;
+        }
+
+        private void DatabaseFormButton_MouseHover(object sender, EventArgs e)
+        {
+            DatabaseFormButton.BackColor = Color.White;
+        }
     }
 }

@@ -64,7 +64,7 @@ namespace indoor_climate_control_application
             this.ButtonPanel.Controls.Add(this.LogoPanel);
             this.ButtonPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.ButtonPanel.Location = new System.Drawing.Point(0, 0);
-            this.ButtonPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ButtonPanel.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonPanel.Name = "ButtonPanel";
             this.ButtonPanel.Size = new System.Drawing.Size(156, 492);
             this.ButtonPanel.TabIndex = 0;
@@ -77,13 +77,14 @@ namespace indoor_climate_control_application
             this.DatabaseFormButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DatabaseFormButton.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DatabaseFormButton.Location = new System.Drawing.Point(0, 324);
-            this.DatabaseFormButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DatabaseFormButton.Margin = new System.Windows.Forms.Padding(2);
             this.DatabaseFormButton.Name = "DatabaseFormButton";
             this.DatabaseFormButton.Size = new System.Drawing.Size(156, 53);
             this.DatabaseFormButton.TabIndex = 3;
             this.DatabaseFormButton.Text = "Database";
             this.DatabaseFormButton.UseVisualStyleBackColor = false;
             this.DatabaseFormButton.Click += new System.EventHandler(this.DatabaseFormButton_Click);
+            this.DatabaseFormButton.MouseHover += new System.EventHandler(this.DatabaseFormButton_MouseHover);
             // 
             // WeatherFormButton
             // 
@@ -93,13 +94,14 @@ namespace indoor_climate_control_application
             this.WeatherFormButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.WeatherFormButton.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WeatherFormButton.Location = new System.Drawing.Point(0, 271);
-            this.WeatherFormButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.WeatherFormButton.Margin = new System.Windows.Forms.Padding(2);
             this.WeatherFormButton.Name = "WeatherFormButton";
             this.WeatherFormButton.Size = new System.Drawing.Size(156, 53);
             this.WeatherFormButton.TabIndex = 2;
             this.WeatherFormButton.Text = "Weather";
             this.WeatherFormButton.UseVisualStyleBackColor = false;
             this.WeatherFormButton.Click += new System.EventHandler(this.WeatherFormButton_Click);
+            this.WeatherFormButton.MouseHover += new System.EventHandler(this.WeatherFormButton_MouseHover);
             // 
             // RoomsFormButton
             // 
@@ -110,7 +112,7 @@ namespace indoor_climate_control_application
             this.RoomsFormButton.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RoomsFormButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.RoomsFormButton.Location = new System.Drawing.Point(0, 218);
-            this.RoomsFormButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RoomsFormButton.Margin = new System.Windows.Forms.Padding(2);
             this.RoomsFormButton.Name = "RoomsFormButton";
             this.RoomsFormButton.Size = new System.Drawing.Size(156, 53);
             this.RoomsFormButton.TabIndex = 1;
@@ -118,6 +120,7 @@ namespace indoor_climate_control_application
             this.RoomsFormButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.RoomsFormButton.UseVisualStyleBackColor = false;
             this.RoomsFormButton.Click += new System.EventHandler(this.RoomsFormButton_Click);
+            this.RoomsFormButton.MouseHover += new System.EventHandler(this.RoomsFormButton_MouseHover);
             // 
             // HomeFormButton
             // 
@@ -129,7 +132,7 @@ namespace indoor_climate_control_application
             this.HomeFormButton.Image = global::indoor_climate_control_application.Properties.Resources.home_icon_2;
             this.HomeFormButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.HomeFormButton.Location = new System.Drawing.Point(0, 165);
-            this.HomeFormButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.HomeFormButton.Margin = new System.Windows.Forms.Padding(2);
             this.HomeFormButton.Name = "HomeFormButton";
             this.HomeFormButton.Size = new System.Drawing.Size(156, 53);
             this.HomeFormButton.TabIndex = 0;
@@ -137,6 +140,7 @@ namespace indoor_climate_control_application
             this.HomeFormButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.HomeFormButton.UseVisualStyleBackColor = false;
             this.HomeFormButton.Click += new System.EventHandler(this.HomeFormButton_Click);
+            this.HomeFormButton.MouseHover += new System.EventHandler(this.HomeFormButton_MouseHover);
             // 
             // LogoPanel
             // 
@@ -144,7 +148,7 @@ namespace indoor_climate_control_application
             this.LogoPanel.Controls.Add(this.LogoBox);
             this.LogoPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.LogoPanel.Location = new System.Drawing.Point(0, 0);
-            this.LogoPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LogoPanel.Margin = new System.Windows.Forms.Padding(2);
             this.LogoPanel.Name = "LogoPanel";
             this.LogoPanel.Size = new System.Drawing.Size(156, 165);
             this.LogoPanel.TabIndex = 0;
@@ -165,7 +169,7 @@ namespace indoor_climate_control_application
             // 
             this.LogoBox.Image = global::indoor_climate_control_application.Properties.Resources.AiriosLogoIcon;
             this.LogoBox.Location = new System.Drawing.Point(32, 10);
-            this.LogoBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LogoBox.Margin = new System.Windows.Forms.Padding(2);
             this.LogoBox.Name = "LogoBox";
             this.LogoBox.Size = new System.Drawing.Size(84, 80);
             this.LogoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -178,7 +182,7 @@ namespace indoor_climate_control_application
             this.ViewFormPanel.Controls.Add(this.button1);
             this.ViewFormPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ViewFormPanel.Location = new System.Drawing.Point(156, 0);
-            this.ViewFormPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ViewFormPanel.Margin = new System.Windows.Forms.Padding(2);
             this.ViewFormPanel.Name = "ViewFormPanel";
             this.ViewFormPanel.Size = new System.Drawing.Size(696, 492);
             this.ViewFormPanel.TabIndex = 2;
@@ -186,7 +190,7 @@ namespace indoor_climate_control_application
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(56, 19);
             this.button1.TabIndex = 0;
@@ -198,7 +202,7 @@ namespace indoor_climate_control_application
             this.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ExitButton.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExitButton.Location = new System.Drawing.Point(664, 2);
-            this.ExitButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ExitButton.Margin = new System.Windows.Forms.Padding(2);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(30, 32);
             this.ExitButton.TabIndex = 0;
@@ -213,7 +217,7 @@ namespace indoor_climate_control_application
             this.WindowButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.WindowButton.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WindowButton.Location = new System.Drawing.Point(629, 2);
-            this.WindowButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.WindowButton.Margin = new System.Windows.Forms.Padding(2);
             this.WindowButton.Name = "WindowButton";
             this.WindowButton.Size = new System.Drawing.Size(30, 32);
             this.WindowButton.TabIndex = 1;
@@ -228,7 +232,7 @@ namespace indoor_climate_control_application
             this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MinimizeButton.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MinimizeButton.Location = new System.Drawing.Point(595, 2);
-            this.MinimizeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimizeButton.Margin = new System.Windows.Forms.Padding(2);
             this.MinimizeButton.Name = "MinimizeButton";
             this.MinimizeButton.Size = new System.Drawing.Size(30, 32);
             this.MinimizeButton.TabIndex = 2;
@@ -257,7 +261,7 @@ namespace indoor_climate_control_application
             this.TitlePanel.Controls.Add(this.WindowButton);
             this.TitlePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TitlePanel.Location = new System.Drawing.Point(156, 0);
-            this.TitlePanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TitlePanel.Margin = new System.Windows.Forms.Padding(2);
             this.TitlePanel.Name = "TitlePanel";
             this.TitlePanel.Size = new System.Drawing.Size(696, 81);
             this.TitlePanel.TabIndex = 3;
@@ -272,7 +276,7 @@ namespace indoor_climate_control_application
             this.Controls.Add(this.ViewFormPanel);
             this.Controls.Add(this.ButtonPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(856, 499);
             this.Name = "MainPanel";
             this.Text = "MainPanel";
