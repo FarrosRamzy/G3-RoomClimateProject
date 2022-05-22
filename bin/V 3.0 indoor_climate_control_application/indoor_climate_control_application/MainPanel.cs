@@ -75,24 +75,29 @@ namespace indoor_climate_control_application
             {
                 if (currentClickedButton != clickedButton as Button)
                 {
-                    DeactivateButton();
+                    DeClickedButton();
                     Color colour = SelectThemeColor(subForm);
                     currentClickedButton = clickedButton as Button;
                     if (currentClickedButton != null)
                     {
-                        currentClickedButton.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 10.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-
-                        currentClickedButton.BackColor = colour;
-                        
-                        ButtonPanel.BackColor = colour;
-                        LogoPanel.BackColor = colour;
-                        TitlePanel.BackColor = colour;
+                        ClickedButton(colour);
                     }
                 }
             }
         }
 
-        private void DeactivateButton()
+        private void ClickedButton(Color colour)
+        {
+            currentClickedButton.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 10.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+            currentClickedButton.BackColor = colour;
+
+            ButtonPanel.BackColor = colour;
+            LogoPanel.BackColor = colour;
+            TitlePanel.BackColor = colour;
+        }
+
+        private void DeClickedButton()
         {
             foreach (Control uiObject in ButtonPanel.Controls)
             {
@@ -142,15 +147,7 @@ namespace indoor_climate_control_application
 
         private void WindowButton_Click(object sender, EventArgs e)
         {
-            //Think of another way to do this
-            if (WindowState == FormWindowState.Normal)
-            {
-                WindowState = FormWindowState.Maximized;
-            }
-            else
-            {
-                WindowState = FormWindowState.Normal;
-            }
+            WindowState = (WindowState == FormWindowState.Normal) ? FormWindowState.Maximized : FormWindowState.Normal; 
         }
 
         private void MinimizeButton_Click(object sender, EventArgs e)
@@ -159,6 +156,24 @@ namespace indoor_climate_control_application
         }
 
         private void TitlePanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void LogoPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void LogoBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void TitleLabel_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
