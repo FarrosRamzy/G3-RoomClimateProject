@@ -28,7 +28,6 @@
                 "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit SSD1306",
                 "C:/Users/farro/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                 "C:/Users/farro/.platformio/packages/framework-arduino-avr/libraries/HID/src",
-                "C:/Users/farro/.platformio/packages/tool-unity",
                 ""
             ],
             "browse": {
@@ -54,12 +53,11 @@
                     "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit SSD1306",
                     "C:/Users/farro/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                     "C:/Users/farro/.platformio/packages/framework-arduino-avr/libraries/HID/src",
-                    "C:/Users/farro/.platformio/packages/tool-unity",
                     ""
                 ]
             },
             "defines": [
-                "PLATFORMIO=50205",
+                "PLATFORMIO=60001",
                 "ARDUINO_AVR_UNO",
                 "F_CPU=16000000L",
                 "ARDUINO_ARCH_AVR",

@@ -26,6 +26,8 @@
 
 #define DHT_TYPE DHT11
 
+#define MAX_PROCESS_TIMER 2000
+
 #define WIFI_ID "MSI_YZMAR"
 #define WIFI_PASSWORD "Yzmar252887"
 
@@ -33,6 +35,12 @@
 
 #define CO_GAS_RATIO 0.99
 #define CO_V 5
+
+#define NORMAL_TEMPERTAURE 26
+
+#define HIGHEST_HUMIDITY 68
+#define NORMAL_HUMIDITY 50
+
 #define TEN_BIT_ANALOG_VAL 1024
 
 enum STATE
@@ -57,15 +65,18 @@ void readOrganicCompounds(float *, int *);
 
 void readTouchInput();
 void processGasSensors(float, float, float, int, char[]);
-void processFanSpeed(float, float, char[]);
-void setManualSpeed(uint32_t speed);
+void processFanSpeed(float, float, char[], uint32_t *);
+void setManualSpeed(uint32_t);
 
 void readAutoManualState(bool *, bool *, uint32_t *, uint32_t *);
 void setTempBtnChange(void *);
+
+void setFanDirection();
 void setFanBtnChange(void *);
 void setTempSlide(void *);
 void setFanSlide(void *);
 
 void sendTempAndHumidData(float, float);
+void sendFanSpeedValue(uint32_t);
 void sendGasSensorData(float, float, float, char[]);
 #endif

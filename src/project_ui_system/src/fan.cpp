@@ -5,24 +5,38 @@ void setupFanSystem()
     pinMode(FAN_PIN_A, OUTPUT);
     pinMode(FAN_PIN_B, OUTPUT);
     pinMode(FAN_PWM_PIN, OUTPUT);
+    setFanDirection();
+}
+
+void setFanDirection()
+{
     digitalWrite(FAN_PIN_A, LOW);
     digitalWrite(FAN_PIN_B, HIGH);
 }
 
-void processFanSpeed(float tempVal, float humidVal, char gasStatus[])
+void processFanSpeed(float tempVal, float humidVal, char gasStatus[], uint32_t *fanSpeed)
 {
-    if (tempVal >= 25 || humidVal >= 58)
+    if (tempVal >= NORMAL_TEMPERTAURE || humidVal >= HIGHEST_HUMIDITY || gasStatus == "Danger")
     {
-        analogWrite(FAN_PWM_PIN, 255);
+        *fanSpeed = 255;
+        analogWrite(FAN_PWM_PIN, *fanSpeed);
     }
-    else if (tempVal < 25 && humidVal < 55)
+    else if (tempVal < NORMAL_TEMPERTAURE && humidVal < NORMAL_HUMIDITY && (gasStatus == "Clear" || gasStatus == "Normal"))
     {
-        analogWrite(FAN_PWM_PIN, 128);
+        *fanSpeed = 128;
+        analogWrite(FAN_PWM_PIN, *fanSpeed);
     }
 }
 
 void setManualSpeed(uint32_t speed)
 {
     uint32_t actualSpeed = speed * 51;
-    analogWrite(FAN_PWM_PIN, actualSpeed);
+    if (actualSpeed == 0)
+    {
+        analogWrite(FAN_PWM_PIN, 0);
+    }
+    else
+    {
+        analogWrite(FAN_PWM_PIN, actualSpeed);
+    }
 }

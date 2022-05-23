@@ -1,14 +1,13 @@
-#include <sensors.h>
+#include <trial_system.h>
 
 DHT dht(DHT_PIN, DHT_TYPE);
 
-void setupHumidTempSensor()
+void setupDHTSensor()
 {
     dht.begin();
-    //Serial.println("DHT Setup Pass");
 }
 
-void readTempAndHumid(float *humidity, float *temperature)
+void readTemperatureAndHumidity(float *humidity, float *temperature)
 {
     float humidityRead = dht.readHumidity();
     float temperatureRead = dht.readTemperature();

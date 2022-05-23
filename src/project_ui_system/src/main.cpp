@@ -1,21 +1,23 @@
 #include <Arduino.h>
 #include <sensors.h>
 
-float humid;
-float temp;
+float humidity;
+float temperature;
 float co;
 float co2;
 float voc;
 
-int fanSpeed;
-int tvocDataReceived = 0;
-int co2DataReceived = 0;
-int coDataReceived = 0;
-int humidDataReceived = 0;
-int tempDataReceived = 0;
+uint32_t manualFanSpeed;
+uint32_t autoFanSpeed;
+int tvocDataReceived;
+int co2DataReceived;
+int coDataReceived;
+int humidDataReceived;
+int tempDataReceived;
 
-bool autoFan = true;
-bool autoTemp = true;
+bool autoFan;
+bool autoTemp;
+bool currentProcessPassed;
 
 uint32_t setTempVal;
 uint32_t setFanVal;
@@ -25,35 +27,66 @@ char tvocSetupStatus[MAX_CHAR_ARRAY];
 
 STATE state;
 
-static unsigned long respondTime = 5000;
-static unsigned long startTime = millis();
-bool timePassed = false;
+static unsigned long startTime;
 
 void setup()
 {
   // put your setup code here, to run once:
   Serial.begin(9600);
   state = IDLE;
-  //setupTouchsreen();
-  //setupEspWifi();
+  humidity = 0;
+  temperature = 0;
+  
+  co = 0;
+  co2 = 0;
+  voc = 0;
+
+  tvocDataReceived = 0;
+  coDataReceived = 0;
+  co2DataReceived = 0;
+  humidDataReceived = 0;
+  tempDataReceived = 0;
+
+  manualFanSpeed = 0;
+  autoFanSpeed = 0;
+
+  autoFan = true;
+  autoTemp = true;
+  currentProcessPassed = false;
+
+  setTempVal = 0;
+  setFanVal = 0;
+
+  Serial.begin(9600);
+
+  setupTouchsreen();
+  // setupEspWifi();
+
   setupHumidTempSensor();
-  setupCO2Sensor();
+  // setupCO2Sensor();
+  // setupTVOCSensor(tvocSetupStatus);
+
   setupFanSystem();
-  setupTVOCSensor(tvocSetupStatus);
+
+  startTime = millis();
+  Serial.println("SETUP");
 }
 
 void loop()
 {
   // put your main code here, to run repeatedly:
+  readTouchInput();
+  readAutoManualState(&autoFan, &autoTemp, &setTempVal, &setFanVal);
   switch (state)
   {
   case IDLE:
-    static unsigned long passTime = millis();
-    if (!timePassed)
+    if (!currentProcessPassed)
     {
-      if (startTime - passTime > respondTime)
+      if (millis() - startTime > MAX_PROCESS_TIMER)
       {
-        timePassed = true;
+        currentProcessPassed = true;
+        startTime = millis();
+        Serial.println("IDLE");
       }
     }
     else
@@ -62,29 +95,32 @@ void loop()
     }
     break;
   case READ:
-    readTouchInput();
-    readAutoManualState(&autoFan, &autoTemp, &setTempVal, &setFanVal);
-    readTempAndHumid(&humid, &temp);
+    readTempAndHumid(&humidity, &temperature);
     readCarbonMonoxide(&co);
-    readCarbonDioxide(&co2, startTime);
-    readOrganicCompounds(&voc, &tvocDataReceived);
+    // readCarbonDioxide(&co2, startTime);
+    // readOrganicCompounds(&voc, &tvocDataReceived);
     state = PROCESS;
     break;
   case PROCESS:
     processGasSensors(co, co2, voc, tvocDataReceived, gasStatus);
     if (autoFan)
     {
-      setManualSpeed(setFanVal);
+      processFanSpeed(temperature, humidity, gasStatus, &autoFanSpeed);
     }
     else if (!autoFan)
     {
-      processFanSpeed(temp, humid, gasStatus);
+      setManualSpeed(setFanVal);
     }
     state = SEND;
     break;
   case SEND:
-    sendTempAndHumidData(humid, temp);
+    sendTempAndHumidData(humidity, temperature);
     sendGasSensorData(co, co2, voc, gasStatus);
+    if (autoFan)
+    {
+      sendFanSpeedValue(autoFanSpeed);
+    }
+    currentProcessPassed = false;
     state = IDLE;
     break;
   default:
