@@ -84,7 +84,6 @@ namespace indoor_climate_control_application
             this.DatabaseFormButton.Text = "Database";
             this.DatabaseFormButton.UseVisualStyleBackColor = false;
             this.DatabaseFormButton.Click += new System.EventHandler(this.DatabaseFormButton_Click);
-            this.DatabaseFormButton.MouseHover += new System.EventHandler(this.DatabaseFormButton_MouseHover);
             // 
             // WeatherFormButton
             // 
@@ -101,7 +100,6 @@ namespace indoor_climate_control_application
             this.WeatherFormButton.Text = "Weather";
             this.WeatherFormButton.UseVisualStyleBackColor = false;
             this.WeatherFormButton.Click += new System.EventHandler(this.WeatherFormButton_Click);
-            this.WeatherFormButton.MouseHover += new System.EventHandler(this.WeatherFormButton_MouseHover);
             // 
             // RoomsFormButton
             // 
@@ -120,7 +118,6 @@ namespace indoor_climate_control_application
             this.RoomsFormButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.RoomsFormButton.UseVisualStyleBackColor = false;
             this.RoomsFormButton.Click += new System.EventHandler(this.RoomsFormButton_Click);
-            this.RoomsFormButton.MouseHover += new System.EventHandler(this.RoomsFormButton_MouseHover);
             // 
             // HomeFormButton
             // 
@@ -140,7 +137,6 @@ namespace indoor_climate_control_application
             this.HomeFormButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.HomeFormButton.UseVisualStyleBackColor = false;
             this.HomeFormButton.Click += new System.EventHandler(this.HomeFormButton_Click);
-            this.HomeFormButton.MouseHover += new System.EventHandler(this.HomeFormButton_MouseHover);
             // 
             // LogoPanel
             // 
@@ -179,8 +175,8 @@ namespace indoor_climate_control_application
             // 
             // ViewFormPanel
             // 
+            this.ViewFormPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ViewFormPanel.Controls.Add(this.button1);
-            this.ViewFormPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ViewFormPanel.Location = new System.Drawing.Point(156, 0);
             this.ViewFormPanel.Margin = new System.Windows.Forms.Padding(2);
             this.ViewFormPanel.Name = "ViewFormPanel";

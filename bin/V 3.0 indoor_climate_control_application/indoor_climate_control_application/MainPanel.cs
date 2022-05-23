@@ -90,7 +90,7 @@ namespace indoor_climate_control_application
         {
             currentClickedButton.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 10.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
-            currentClickedButton.BackColor = colour;
+            currentClickedButton.BackColor = Color.White;
 
             ButtonPanel.BackColor = colour;
             LogoPanel.BackColor = colour;
@@ -123,6 +123,7 @@ namespace indoor_climate_control_application
         private void HomeFormButton_Click(object sender, EventArgs e)
         {
             HandleSelectedMenu(HomeForm, sender);
+
         }
 
         private void RoomsFormButton_Click(object sender, EventArgs e)
@@ -177,26 +178,6 @@ namespace indoor_climate_control_application
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
-        }
-
-        private void HomeFormButton_MouseHover(object sender, EventArgs e)
-        {
-            HomeFormButton.BackColor = Color.White;
-        }
-
-        private void RoomsFormButton_MouseHover(object sender, EventArgs e)
-        {
-            RoomsFormButton.BackColor = Color.White;
-        }
-
-        private void WeatherFormButton_MouseHover(object sender, EventArgs e)
-        {
-            WeatherForm.BackColor = Color.White;
-        }
-
-        private void DatabaseFormButton_MouseHover(object sender, EventArgs e)
-        {
-            DatabaseFormButton.BackColor = Color.White;
         }
     }
 }

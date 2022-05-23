@@ -19,7 +19,8 @@ namespace indoor_climate_control_application.subForms
 
         private void Home_Load(object sender, EventArgs e)
         {
-
+     
         }
+
     }
 }
