@@ -12,16 +12,17 @@ void setFanDirection()
 {
     digitalWrite(FAN_PIN_A, LOW);
     digitalWrite(FAN_PIN_B, HIGH);
+    analogWrite(FAN_PWM_PIN,255);
 }
 
 void processFanSpeed(float tempVal, float humidVal, char gasStatus[], uint32_t *fanSpeed)
 {
-    if (tempVal >= NORMAL_TEMPERTAURE || humidVal >= HIGHEST_HUMIDITY || gasStatus == "Danger")
+    if (tempVal >= NORMAL_TEMPERTAURE || humidVal >= HIGHEST_HUMIDITY || (strcmp("Danger",gasStatus) == 0))
     {
         *fanSpeed = 255;
         analogWrite(FAN_PWM_PIN, *fanSpeed);
     }
-    else if (tempVal < NORMAL_TEMPERTAURE && humidVal < NORMAL_HUMIDITY && (gasStatus == "Clear" || gasStatus == "Normal"))
+    else if (tempVal < NORMAL_TEMPERTAURE && humidVal < NORMAL_HUMIDITY && ((strcmp("Clear",gasStatus) == 0) || (strcmp("Normal",gasStatus) == 0)))
     {
         *fanSpeed = 128;
         analogWrite(FAN_PWM_PIN, *fanSpeed);
