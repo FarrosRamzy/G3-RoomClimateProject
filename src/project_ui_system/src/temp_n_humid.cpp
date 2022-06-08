@@ -5,7 +5,6 @@ DHT dht(DHT_PIN, DHT_TYPE);
 void setupHumidTempSensor()
 {
     dht.begin();
-    //Serial.println("DHT Setup Pass");
 }
 
 void readTempAndHumid(float *humidity, float *temperature)

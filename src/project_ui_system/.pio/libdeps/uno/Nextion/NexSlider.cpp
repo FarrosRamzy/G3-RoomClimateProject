@@ -209,3 +209,22 @@ bool NexSlider::setMinval(uint32_t number)
     sendCommand(cmd.c_str());
     return recvRetCommandFinished();
 }
+
+bool NexSlider::setVisibility(bool flag)
+{
+    const char *name = getObjName();
+    if (!name)
+    {
+        return false;
+    }
+    String cmd = String("vis ");
+    cmd += name;
+    cmd += ",";
+    if (flag) {
+        cmd += "1";
+    } else {
+        cmd += "0";
+    }
+    sendCommand(cmd.c_str());
+    return recvRetCommandFinished();
+}

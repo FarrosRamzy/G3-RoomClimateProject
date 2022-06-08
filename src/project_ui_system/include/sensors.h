@@ -26,7 +26,7 @@
 
 #define DHT_TYPE DHT11
 
-#define MAX_PROCESS_TIMER 2000
+#define MAX_PROCESS_TIMER 500
 
 #define WIFI_ID "MSI_YZMAR"
 #define WIFI_PASSWORD "Yzmar252887"
@@ -65,10 +65,11 @@ void readOrganicCompounds(float *, int *);
 
 void readTouchInput();
 void processGasSensors(float, float, float, int, char[]);
-void processFanSpeed(float, float, char[], uint32_t *);
-void setManualSpeed(uint32_t);
+// void processFanSpeed(float, float, char[], uint32_t *);
+void setManualSpeed(uint32_t *, uint32_t *, char[], bool *); //, unsigned long *);
+void adjustFanSpeed(uint32_t, uint32_t *, float, float, char[]); //, bool *);
 
-void readAutoManualState(bool *, bool *, uint32_t *, uint32_t *);
+void readAutoManualState(bool *, /*bool *,*/ uint32_t *, uint32_t *);
 void setTempBtnChange(void *);
 
 void setFanDirection();

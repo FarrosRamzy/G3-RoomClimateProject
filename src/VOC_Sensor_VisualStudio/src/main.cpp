@@ -50,7 +50,7 @@ void setup()
 
   Serial.println("CCS811 test");
 
-  if (!ccs.begin())
+  while (!ccs.begin())
   {
     Serial.println("Failed to start sensor! Please check your wiring.");
     //     while (1);

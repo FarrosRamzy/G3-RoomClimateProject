@@ -29,17 +29,18 @@ NexText aCOUnit = NexText(4, 11, "tuCO");
 
 // input:
 bool automaticFanSpeed = true;
-bool autoTemperature = true;
-uint32_t dsTempBtn = 0;
+// bool autoTemperature = true;
 uint32_t dsFanBtn = 0;
+// uint32_t dsTempBtn = 0;
 uint32_t sldTemp = 0;
 uint32_t sldFan = 0;
 
-NexDSButton setTempBtn = NexDSButton(2, 10, "btTempSet");
-NexSlider setTemp = NexSlider(2, 4, "hSetTmp");
+// NexDSButton setTempBtn = NexDSButton(2, 10, "btTempSet");
+NexSlider setTempSld = NexSlider(2, 4, "hSetTmp");
+NexObject tempSldVis = NexObject(2, 4, "hSetTmp");
 
 NexDSButton setFanSpeedBtn = NexDSButton(3, 5, "btFanSet");
-NexSlider setFanSpeed = NexSlider(3, 2, "hSetFanSpeed");
+NexSlider setFanSpeedSld = NexSlider(3, 2, "hSetFanspeed");
 
 /////////////////////////////////////////////////////////////
 
@@ -61,48 +62,96 @@ char COUnit[5];
 /////////////////////////////////////////////////////////////
 
 // Register the inputs:
-NexTouch *nextion_listen_list[] = {&setTempBtn, &setTemp, &setFanSpeedBtn, &setFanSpeed};
+NexTouch *nextion_listen_list[] = /*{&setTempBtn,*/ {&setTempSld, &setFanSpeedBtn, &setFanSpeedSld};
 
 void setupTouchsreen()
 {
   // Serial.println("Touchscreen Setup Pass");
   nexInit();
-  setTempBtn.attachPop(setTempBtnChange, &setTempBtn);
-  setFanSpeedBtn.attachPop(setFanBtnChange, &setFanSpeedBtn);
-  setTemp.attachPop(setTempSlide);
-  setFanSpeed.attachPop(setFanSlide);
+  // setTempBtn.attachPop(setTempBtnChange, &setTempBtn);
+  // setFanSpeedBtn.attachPop(setFanBtnChange, &setFanSpeedBtn);
+  // setTempSld.attachPop(setTempSlide);
+  // setFanSpeedSld.attachPop(setFanSlide);
 }
 
-void readAutoManualState(bool *fanIsAuto, bool *tempIsAuto, uint32_t *manualTempVal, uint32_t *manualFanSpeed)
+void readAutoManualState(bool *fanIsAuto, /*bool *tempIsAuto,*/ uint32_t *manualTempVal, uint32_t *manualFanSpeed)
 {
   *fanIsAuto = automaticFanSpeed;
-  *tempIsAuto = autoTemperature;
+  *manualTempVal = sldTemp;
+  // *tempIsAuto = autoTemperature;
   if (!automaticFanSpeed)
   {
     *manualFanSpeed = sldFan;
   }
 
-  if (!autoTemperature)
-  {
-    *manualTempVal = sldTemp;
-  }
+  // if (!autoTemperature)
+  // {
+  //   *manualTempVal = sldTemp;
+  // }
 }
 
-void setTempBtnChange(void *ptr)
-{
-  if (setTempBtn.getValue(&dsTempBtn) != 0)
-  {
-    autoTemperature = false;
-  }
-  else
-  {
-    autoTemperature = true;
-  }
-}
+// void setTempBtnChange(void *ptr)
+// {
+//   if (setTempBtn.getValue(&dsTempBtn) != 0)
+//   {
+//     autoTemperature = true;
+//   }
+//   else
+//   {
+//     autoTemperature = false;
+//   }
+// }
 
-void setFanBtnChange(void *ptr)
+// void setFanBtnChange(void *ptr)
+// {
+//   setFanSpeedBtn.getValue(&dsFanBtn);
+//   if (dsFanBtn != 0)
+//   {
+//     automaticFanSpeed = false;
+//   }
+//   else
+//   {
+//     automaticFanSpeed = true;
+//   }
+// }
+
+// void setTempSlide(void *ptr)
+// {
+//   if (!autoTemperature)
+//   {
+//     uint32_t temperature = sldTemp;
+//     if (setTempSld.getValue(&temperature))
+//     {
+//       sldTemp = temperature;
+//     }
+//     // sldTemp = temperature;
+//   }
+// }
+
+// void setFanSlide(void *ptr)
+// {
+//   setFanSpeedSld.getValue(&sldFan);
+//   // if (!automaticFanSpeed)
+//   // {
+//   //   uint32_t fanSpeedSetValue = 0;
+//   //   if (setFanSpeedSld.getValue(&fanSpeedSetValue))
+//   //   {
+//   //     sldFan = fanSpeedSetValue;
+//   //   }
+//   //   // sldFan = fanSpeed;
+//   // }
+// }
+
+void readTouchInput()
 {
-  if (setFanSpeedBtn.getValue(&dsFanBtn) != 0)
+  nexLoop(nextion_listen_list);
+
+  setFanSpeedBtn.getValue(&dsFanBtn);
+  // setTempBtn.getValue(&dsTempBtn);
+  setFanSpeedSld.getValue(&sldFan);
+  setTempSld.getValue(&sldTemp);
+
+  if (dsFanBtn != 0)
   {
     automaticFanSpeed = false;
   }
@@ -110,37 +159,15 @@ void setFanBtnChange(void *ptr)
   {
     automaticFanSpeed = true;
   }
-}
 
-void setTempSlide(void *ptr)
-{
-  if (!autoTemperature)
-  {
-    uint32_t temperature = sldTemp;
-    if (!setTemp.getValue(&temperature))
-    {
-      sldTemp = temperature;
-    }
-    sldTemp = temperature;
-  }
-}
-
-void setFanSlide(void *ptr)
-{
-  if (!automaticFanSpeed)
-  {
-    uint32_t fanSpeed = sldFan;
-    if (!setFanSpeed.getValue(&fanSpeed))
-    {
-      sldFan = fanSpeed;
-    }
-    sldFan = fanSpeed;
-  }
-}
-
-void readTouchInput()
-{
-  nexLoop(nextion_listen_list);
+  // if (dsTempBtn != 0)
+  // {
+  //   autoTemperature = false;
+  // }
+  // else
+  // {
+  //   autoTemperature = true;
+  // }
 }
 
 void sendTempAndHumidData(float humidity, float temperature)
@@ -187,6 +214,18 @@ void sendGasSensorData(float co, float co2, float voc, char gasStatus[])
   strcpy(COUnit, "ppm");
   strcpy(CO2Unit, "ppm");
 
+  if (strcmp("Danger", gasStatus) == 0)
+  {
+    setFanSpeedSld.setVisibility(false);
+    setTempSld.setVisibility(false);
+    
+    setFanSpeedBtn.setValue(0);
+    // setTempBtn.setValue(0);
+
+    setFanSpeedBtn.setText("Denied");
+    // setTempBtn.setText("Denied");
+  }
+
   aCO.setText(CO);
   aCO2.setText(CO2);
   aVOC.setText(VOC);
@@ -198,8 +237,8 @@ void sendGasSensorData(float co, float co2, float voc, char gasStatus[])
   aAirQ.setText(gasStatus);
 }
 
-void sendFanSpeedValue(uint32_t autoFanSpeedValue)
+void sendFanSpeedValue(uint32_t fanSpeedValue)
 {
-  autoFanSpeedValue = (autoFanSpeedValue / 51) * 20;
-  fFanSpeed.setValue(autoFanSpeedValue);
+  fanSpeedValue = fanSpeedValue * 20;
+  fFanSpeed.setValue(fanSpeedValue);
 }

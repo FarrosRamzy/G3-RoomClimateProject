@@ -5,14 +5,14 @@
 NexText hTempVal = NexText(0, 4, "tbTmpval");
 NexText hHumVal = NexText(0, 5, "tbHmdval");
 
-NexText htempUnit = NexText(0, 11, "t3");
-NexText hhumUnit = NexText(0, 12, "t4");
+NexText htempUnit = NexText(0, 11, "tuTmp");
+NexText hhumUnit = NexText(0, 12, "tuHmd");
 
 // room_page
 NexText rTempVal = NexText(2, 5, "tbTmpval");
 NexText rHumVal = NexText(2, 6, "tbHmdval");
-NexText rtempUnit = NexText(2, 9, "t3");
-NexText rhumUnit = NexText(2, 8, "t4");
+NexText rtempUnit = NexText(2, 9, "tuTmp");
+NexText rhumUnit = NexText(2, 8, "tuHmd");
 
 // fan_page
 NexNumber fFanSpeed = NexNumber(3, 4, "tbFanSpeed");
@@ -107,7 +107,7 @@ void setTempManualSlider(void *ptr)
         {
             sldTemp = temperature;
         }
-        sldTemp = temperature;
+        // sldTemp = temperature;
     }
 }
 
@@ -115,25 +115,34 @@ void setFanManualSlider(void *ptr)
 {
     if (!automaticFanSpeed)
     {
-        uint32_t fanSpeed = sldFan;
-        if (!setFanSpeed.getValue(&fanSpeed))
+        uint32_t fanSpeed = 0;
+        if (setFanSpeed.getValue(&fanSpeed))
         {
             sldFan = fanSpeed;
         }
-        sldFan = fanSpeed;
+        // sldFan = fanSpeed;
     }
 }
 
 void readTouchInput()
 {
     nexLoop(nextion_listen_list);
+    // setFanSpeedBtn.getValue(&dsFanBtn);
+    // if (dsFanBtn != 0)
+    // {
+    //     automaticFanSpeed = false;
+    // }
+    // else
+    // {
+    //     automaticFanSpeed = true;
+    // }
 }
 
 void sendTemperatureAndHumidityData(float humidity, float temperature)
 {
     if (isnan(humidity))
     {
-        strcpy(Humid, "unavailable");
+        strcpy(Humid, "none");
         strcpy(HumUnit, "");
     }
     else
@@ -144,7 +153,7 @@ void sendTemperatureAndHumidityData(float humidity, float temperature)
 
     if (isnan(temperature))
     {
-        strcpy(Temp, "unavailable");
+        strcpy(Temp, "none");
         strcpy(TmpUnit, "");
     }
     else

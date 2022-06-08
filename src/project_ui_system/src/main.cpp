@@ -7,8 +7,7 @@ float co;
 float co2;
 float voc;
 
-uint32_t manualFanSpeed;
-uint32_t autoFanSpeed;
+uint32_t autoFanValue;
 int tvocDataReceived;
 int co2DataReceived;
 int coDataReceived;
@@ -16,11 +15,12 @@ int humidDataReceived;
 int tempDataReceived;
 
 bool autoFan;
-bool autoTemp;
+// bool autoTemp;
 bool currentProcessPassed;
 
 uint32_t setTempVal;
-uint32_t setFanVal;
+uint32_t setFanValue;
+uint32_t previousSetFanVal;
 
 char gasStatus[MAX_CHAR_ARRAY];
 char tvocSetupStatus[MAX_CHAR_ARRAY];
@@ -36,7 +36,7 @@ void setup()
   state = IDLE;
   humidity = 0;
   temperature = 0;
-  
+
   co = 0;
   co2 = 0;
   voc = 0;
@@ -47,15 +47,15 @@ void setup()
   humidDataReceived = 0;
   tempDataReceived = 0;
 
-  manualFanSpeed = 0;
-  autoFanSpeed = 0;
+  autoFanValue = 0;
 
   autoFan = true;
-  autoTemp = true;
+  // autoTemp = true;
   currentProcessPassed = false;
 
   setTempVal = 0;
-  setFanVal = 0;
+  setFanValue = 0;
+  previousSetFanVal = 0;
 
   Serial.begin(9600);
 
@@ -69,14 +69,13 @@ void setup()
   setupFanSystem();
 
   startTime = millis();
-  Serial.println("SETUP");
 }
 
 void loop()
 {
   // put your main code here, to run repeatedly:
   readTouchInput();
-  readAutoManualState(&autoFan, &autoTemp, &setTempVal, &setFanVal);
+  readAutoManualState(&autoFan, /*&autoTemp,*/ &setTempVal, &setFanValue);
   switch (state)
   {
   case IDLE:
@@ -103,22 +102,38 @@ void loop()
     break;
   case PROCESS:
     processGasSensors(co, co2, voc, tvocDataReceived, gasStatus);
-    if (autoFan)
+    // if (autoFan /*&& autoTemp*/)
+    // {
+    //   // processFanSpeed(temperature, humidity, gasStatus, &autoFanSpeed);
+    //   adjustFanSpeed(setTempVal, &setFanVal, temperature, humidity, gasStatus, &autoTemp);
+    // }
+    if (!autoFan)
     {
-      processFanSpeed(temperature, humidity, gasStatus, &autoFanSpeed);
+      setManualSpeed(&setFanValue, &previousSetFanVal, gasStatus, &autoFan); //, &startTime);
     }
-    else if (!autoFan)
+    else
     {
-      setManualSpeed(setFanVal);
+      adjustFanSpeed(setTempVal, &autoFanValue, temperature, humidity, gasStatus);//, &autoTemp);
     }
+    
+    // else if (!autoTemp)
+    // {
+    //   adjustFanSpeed(setTempVal, &setFanVal, temperature, humidity, gasStatus, &autoTemp);
+    // }
+    
     state = SEND;
     break;
   case SEND:
     sendTempAndHumidData(humidity, temperature);
     sendGasSensorData(co, co2, voc, gasStatus);
-    if (autoFan)
+    if (autoFan /*&& autoTemp*/)
     {
-      sendFanSpeedValue(autoFanSpeed);
+      // autoFanValue = autoFanValue / 51;
+      sendFanSpeedValue(autoFanValue);
+    }
+    else
+    {
+      sendFanSpeedValue(setFanValue);
     }
     currentProcessPassed = false;
     state = IDLE;
