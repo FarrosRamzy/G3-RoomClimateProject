@@ -10,7 +10,7 @@ namespace project_climate_control_app
 {
     class WeatherAPI
     {
-        private const string APIkey = "14b3ca2f1234053fc59c324b8fcb78a3";
+        private const string APIkey = "6f692e50f79c225a84c4e65ff6e4c47b";
         private string url;
         private XmlDocument xmlDocument;
 

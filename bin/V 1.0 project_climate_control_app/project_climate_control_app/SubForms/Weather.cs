@@ -44,9 +44,9 @@ namespace project_climate_control_app.SubForms
                 if (buttons.GetType() == typeof(Button))
                 {
                     Button button = (Button)buttons;
-                    button.BackColor = FormThemeColor.Primary;
+                    
                     button.ForeColor = Color.White;
-                    button.FlatAppearance.BorderColor = FormThemeColor.Secondary;
+                    
                 }
             }
             tbCityName.BackColor = Color.White;
