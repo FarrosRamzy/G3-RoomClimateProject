@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DA56E2E2-EB45-4489-AA8F-FBCF5E6418C1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Main_Panel_Controls</RootNamespace>
+    <AssemblyName>Main_Panel_Controls</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormThemeColor.cs" />
+    <Compile Include="MainPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainPanel.Designer.cs">
+      <DependentUpon>MainPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubForms\Graph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForms\Graph.designer.cs">
+      <DependentUpon>Graph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubForms\Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForms\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WeatherAPI.cs" />
+    <Compile Include="WeatherCity.cs" />
+    <Compile Include="WeatherData.cs" />
+    <EmbeddedResource Include="MainPanel.resx">
+      <DependentUpon>MainPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SubForms\Graph.resx">
+      <DependentUpon>Graph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForms\Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AiriosLogo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AiriosLogoIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bar-graph%28icon%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\caution-sign%28icon%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\double-chevron%28icon%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder%28icon%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home%28icon%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home%28icon%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home%28icon%292.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\humidity.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left-arrow%28icon%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sensor%28icon%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AiriosLogo_resized.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
