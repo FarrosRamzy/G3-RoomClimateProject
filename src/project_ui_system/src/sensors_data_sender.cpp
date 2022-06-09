@@ -7,12 +7,13 @@ NexText hHumVal = NexText(0, 5, "tbHmdval");
 
 NexText hAirQ = NexText(0, 6, "tbAirQ");
 
-NexText htempUnit = NexText(0, 11, "tuTmp");
+NexText htempUnit = NexText(0, 11, "htuTmp");
 NexText hhumUnit = NexText(0, 12, "tuHmd");
 
 NexText rTempVal = NexText(2, 5, "tbTmpval");
 NexText rHumVal = NexText(2, 6, "tbHmdval");
-NexText rtempUnit = NexText(2, 9, "tuTmp");
+NexText rtempUnit = NexText(2, 9, "rtuTmp");
+NexText rtempUnitSymb = NexText(2, 12, "tuTmpSym");
 NexText rhumUnit = NexText(2, 8, "tuHmd");
 
 NexNumber fFanSpeed = NexNumber(3, 4, "tbFanSpeed");
@@ -53,7 +54,9 @@ char VOC[15];
 
 char Time[10];
 
-char TmpUnit[5];
+char TmpUnit1[10];
+char TmpUnit2[5];
+char TmpUnitSymbol[5];
 char HumUnit[5];
 char VOCUnit[5];
 char CO2Unit[5];
@@ -175,12 +178,16 @@ void sendTempAndHumidData(float humidity, float temperature)
   if (isnan(temperature))
   {
     strcpy(Temp, "none");
-    strcpy(TmpUnit, "");
+    strcpy(TmpUnit1, "");
+    strcpy(TmpUnit2, "");
+    strcpy(TmpUnitSymbol, "");
   }
   else
   {
     dtostrf(temperature, 6, 1, Temp);
-    strcpy(TmpUnit, "C");
+    strcpy(TmpUnit1, "Celsius");
+    strcpy(TmpUnit2, "C");
+    strcpy(TmpUnitSymbol, "o");
   }
 
   if (isnan(humidity))
@@ -196,12 +203,13 @@ void sendTempAndHumidData(float humidity, float temperature)
 
   hTempVal.setText(Temp);
   hHumVal.setText(Humid);
-  htempUnit.setText(TmpUnit);
+  htempUnit.setText(TmpUnit1);
   hhumUnit.setText(HumUnit);
 
   rTempVal.setText(Temp);
   rHumVal.setText(Humid);
-  rtempUnit.setText(TmpUnit);
+  rtempUnitSymb.setText(TmpUnitSymbol);
+  rtempUnit.setText(TmpUnit2);
   rhumUnit.setText(HumUnit);
 }
 
