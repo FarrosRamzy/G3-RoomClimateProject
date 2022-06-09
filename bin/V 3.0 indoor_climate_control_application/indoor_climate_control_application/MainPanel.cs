@@ -22,7 +22,7 @@ namespace indoor_climate_control_application
             HomeForm = new subForms.Home();
             RoomsForm = new subForms.Rooms();
             WeatherForm = new subForms.Weather();
-            DatabaseForm = new subForms.Database();
+            DatabaseForm = new subForms.Statistics();
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -139,6 +139,7 @@ namespace indoor_climate_control_application
         private void DatabaseFormButton_Click(object sender, EventArgs e)
         {
             HandleSelectedMenu(DatabaseForm, sender);
+
         }
 
         private void ExitButton_Click(object sender, EventArgs e)

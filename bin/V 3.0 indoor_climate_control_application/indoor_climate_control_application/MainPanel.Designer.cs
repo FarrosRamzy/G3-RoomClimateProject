@@ -81,7 +81,7 @@ namespace indoor_climate_control_application
             this.DatabaseFormButton.Name = "DatabaseFormButton";
             this.DatabaseFormButton.Size = new System.Drawing.Size(156, 53);
             this.DatabaseFormButton.TabIndex = 3;
-            this.DatabaseFormButton.Text = "Database";
+            this.DatabaseFormButton.Text = "Statistics";
             this.DatabaseFormButton.UseVisualStyleBackColor = false;
             this.DatabaseFormButton.Click += new System.EventHandler(this.DatabaseFormButton_Click);
             // 

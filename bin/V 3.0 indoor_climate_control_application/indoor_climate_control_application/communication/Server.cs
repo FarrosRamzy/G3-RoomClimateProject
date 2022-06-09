@@ -9,7 +9,8 @@ namespace indoor_climate_control_application.communication
     enum ServerConditions
     {
         IDLE,
-        CONNECTED,
+        WELCOME,
+        DATA_INQURY,
         STOP
     };
 
