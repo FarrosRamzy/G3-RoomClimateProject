@@ -1,7 +1,11 @@
-#include <sensors.h>
+#include <Arduino.h>
+#include <SoftwareSerial.h>
+#include <ErriezMHZ19B.h>
 
-SoftwareSerial mhzSerial(CO2_RX_PIN,CO2_TX_PIN);
+SoftwareSerial mhzSerial(12,13);
 ErriezMHZ19B co2mhz19b(&mhzSerial);
+
+float co2;
 
 void setupCO2Sensor()
 {
@@ -14,7 +18,7 @@ void setupCO2Sensor()
     }
 }
 
-void readCarbonDioxide(float *co2, unsigned long startTimer)
+void readCarbonDioxide(float *co2)
 {
     float temporary = *co2;
     if (co2mhz19b.isReady())
@@ -28,4 +32,17 @@ void readCarbonDioxide(float *co2, unsigned long startTimer)
     {
         *co2 = temporary;
     }
+}
+
+void setup() {
+  Serial.begin(9600);
+  co2 = 400;
+  setupCO2Sensor();
+}
+ 
+void loop() {
+  readCarbonDioxide(&co2);
+  Serial.print("CO2:  ");
+  Serial.println(co2);
+  delay(3000);
 }

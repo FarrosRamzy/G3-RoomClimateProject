@@ -48,7 +48,7 @@ bool setUpWifi()
     ESPserial.begin(9600);
     Serial.print(STOP_ECHO "\r\n");
     ESPserial.print(STOP_ECHO "\r\n");
-    if (checkMessage("\r\nOK"))
+    if (checkATresponse("\r\nOK"))
     {
         Serial.println("OK");
         if (setConnectionMode())
@@ -113,7 +113,7 @@ bool setConnectionMode()
 {
     Serial.print(SET_WIFI_MODE "\r\n");
     ESPserial.print(SET_WIFI_MODE "\r\n");
-    bool modeChanged = checkMessage("\r\nOK");
+    bool modeChanged = checkATresponse("\r\nOK");
     if (modeChanged)
     {
         Serial.println("OK");
@@ -130,11 +130,11 @@ bool checkAccessPoint()
     Serial.print(CHECK_ACC_POINT "\r\n");
     ESPserial.print(CHECK_ACC_POINT "\r\n");
     bool apStatus = false;
-    bool noAP = checkMessage("No AP");
+    bool noAP = checkATresponse("No AP");
     if (noAP)
     {
         Serial.println("No AP");
-        if (checkMessage("\r\nOK"))
+        if (checkATresponse("\r\nOK"))
         {
             Serial.println("OK");
             apStatus = false;
@@ -148,7 +148,7 @@ bool checkAccessPoint()
     else if (!noAP)
     {
         Serial.println("AP Available");
-        if (checkMessage("\r\nOK"))
+        if (checkATresponse("\r\nOK"))
         {
             Serial.println("OK");
             apStatus = true;
@@ -166,13 +166,13 @@ bool joinAccessPoint()
 {
     Serial.print(JOIN_ACC_POINT "\"" SSID "\",\"" PASSWORD "\"\r\n");
     ESPserial.print(JOIN_ACC_POINT "\"" SSID "\",\"" PASSWORD "\"\r\n");
-    if (checkMessage("WIFI CONNECTED"))
+    if (checkATresponse("WIFI CONNECTED"))
     {
         Serial.println("WIFI CONNECTED");
-        if (checkMessage("WIFI GOT IP"))
+        if (checkATresponse("WIFI GOT IP"))
         {
             Serial.println("WIFI GOT IP");
-            if (checkMessage("\r\nOK"))
+            if (checkATresponse("\r\nOK"))
             {
                 Serial.println("OK");
                 joinAP = true;
@@ -202,11 +202,11 @@ bool checkConnectionStatus()
 {
     Serial.print(CHECK_STATUS "\r\n");
     ESPserial.print(CHECK_STATUS "\r\n");
-    bool correctStatus = checkMessage("STATUS:3");
+    bool correctStatus = checkATresponse("STATUS:3");
     if (correctStatus)
     {
         Serial.println("STATUS:3");
-        if (checkMessage("\r\nOK"))
+        if (checkATresponse("\r\nOK"))
         {
             Serial.println("OK");
             statusOK = true;
@@ -220,7 +220,7 @@ bool checkConnectionStatus()
     else if (!correctStatus)
     {
         Serial.println("STATUS:2");
-        if (checkMessage("\r\nOK"))
+        if (checkATresponse("\r\nOK"))
         {
             Serial.println("OK");
         }
@@ -237,10 +237,10 @@ bool startConnection()
 {
     Serial.print(START_COMMUNICATION "\"" TCP "\",\"" SERVER_IP "\"," SERVER_PORT "\r\n");
     ESPserial.print(START_COMMUNICATION "\"" TCP "\",\"" SERVER_IP "\"," SERVER_PORT "\r\n");
-    if (checkMessage("CONNECT"))
+    if (checkATresponse("CONNECT"))
     {
         Serial.println("CONNECT");
-        if (checkMessage("\r\nOK"))
+        if (checkATresponse("\r\nOK"))
         {
             Serial.println("OK");
             getDeviceID();
@@ -287,11 +287,11 @@ bool sendMessage()
 
     Serial.print(sendCommand + "\r\n");
     ESPserial.print(sendCommand + "\r\n");
-    if (!checkMessage("OK"))
+    if (!checkATresponse("OK"))
     {
         return false;
     }
-    else if (checkMessage(">"))
+    else if (checkATresponse(">"))
     {
         Serial.print(completeMessage + "\r\n");
         ESPserial.print(completeMessage + "\r\n");
@@ -310,7 +310,7 @@ void getDeviceID()
     Serial.print(GET_MAC_ADDRESS "\r\n");
     ESPserial.print(GET_MAC_ADDRESS "\r\n");
 
-    if (checkMessage("+CIPSTAMAC:"))
+    if (checkATresponse("+CIPSTAMAC:"))
     {
         while (!getMacAddress)
         {
@@ -324,7 +324,7 @@ void getDeviceID()
     Serial.println(deviceID);
 }
 
-bool checkMessage(String message)
+bool checkATresponse(String message)
 {
     unsigned long MessageStartTime = millis();
     int strlen = message.length() + 1;
@@ -351,3 +351,27 @@ bool checkMessage(String message)
         }
     }
 }
+
+void readInputMessage()
+{
+    static bool inputStartReceive = false;
+    static String inputLine;
+    if (ESPserial.available())
+    {
+        char inputChar = ESPserial.read();
+        if (inputChar == START_CHAR)
+        {
+            inputLine.remove(0);
+            inputStartReceive = true;
+        }
+        else if (inputChar == END_CHAR)
+        {
+            inputStartReceive = false;
+        }
+        else if (inputStartReceive)
+        {
+            inputLine += inputChar;
+        }
+    }
+}
+

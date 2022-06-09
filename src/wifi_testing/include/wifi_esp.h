@@ -4,8 +4,6 @@
 #include <Arduino.h>
 #include <AltSoftSerial.h>
 #include <string.h>
-#include <TimeLib.h>
-#include <NTPClient.h>
 
 #define SET_WIFI_MODE "AT+CWMODE=3"
 #define CHECK_ACC_POINT "AT+CWJAP?"
@@ -49,6 +47,9 @@ bool sendMessage();
 
 bool setUpWifi();
 
-bool checkMessage(String);
+bool checkATresponse(String);
+
+void readInputMessage();
+void splitInputLine(String);
 
 #endif
