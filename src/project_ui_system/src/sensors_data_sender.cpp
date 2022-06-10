@@ -259,6 +259,14 @@ void sendGasSensorData(int16_t coData, int16_t co2Data, int16_t vocData, float c
 
 void sendFanSpeedValue(uint32_t fanSpeedValue)
 {
+  if (automaticFanSpeed)
+  {
+    strcpy(payloadType, READ_DATA);
+    strcpy(deviceID, UI_DEVICE);
+    strcpy(deviceType, FAN_TYPE);
+    sprintf(payload, "&#37;u", fanSpeedValue);
+  }
+
   fanSpeedValue = fanSpeedValue * 20;
-  fFanSpeed.setValue(fanSpeedValue);
+  fFanSpeed.setValue(fanSpeedValue);  
 }

@@ -1,6 +1,6 @@
 #include <room_system.h>
 
-AltSoftSerial ESPserial(8,9);
+AltSoftSerial ESPserial(8, 9);
 
 bool connectionEstablished;
 bool connectionStarted;
@@ -227,5 +227,59 @@ bool checkATresponse(String message)
             MessageStartTime = millis();
             return false;
         }
+    }
+}
+
+void runWifi(char deviceID[], char deviceType[], char payloadType[], char payload[])
+{
+    String message = START_CHAR;
+    message += systemID;
+    message += SPLIT_CHAR;
+    message += deviceID;
+    message += SPLIT_CHAR;
+    message += deviceType;
+    message += PAYLOAD_START_CHAR;
+    message += payloadType;
+    message += PAYLOAD_SEPARATOR;
+    message += payload;
+    message += PAYLOAD_END_CHAR;
+    message += END_CHAR;
+
+    String completeMessage = message;
+
+    if (connectionEstablished)
+    {
+        if (!sendMessage(completeMessage))
+        {
+            // Assume that connection has lost, then reconnect it.
+            while (!startConnection())
+            {
+                // keep restart until it reconnected.
+            }
+        }
+    }
+}
+
+bool sendMessage(String messageLine)
+{
+    int nrOfChar = messageLine.length() + 2;
+    String Command = SEND_MESSAGE;
+    Command += nrOfChar;
+
+    String sendCommand = Command;
+
+    ESPserial.print(sendCommand + "\r\n");
+    if (!checkATresponse("OK"))
+    {
+        return false;
+    }
+    else if (checkATresponse(">"))
+    {
+        ESPserial.print(messageLine + "\r\n");
+        return true;
+    }
+    else
+    {
+        return false;
     }
 }

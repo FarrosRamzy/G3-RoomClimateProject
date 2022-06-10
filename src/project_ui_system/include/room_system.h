@@ -95,7 +95,7 @@ void setupFanSystem();
 bool setupEspWifi();
 
 void getSystemID();
-void runWifi(String);
+void runWifi(char[],char[],char[],char[]);
 
 bool checkATresponse(String);
 
@@ -104,7 +104,8 @@ bool checkAccessPoint();
 bool joinAccessPoint();
 bool checkConnectionStatus();
 bool startConnection();
-bool sendMessage();
+
+bool sendMessage(String);
 
 void readInputMessage();
 void splitInputLine(String);
