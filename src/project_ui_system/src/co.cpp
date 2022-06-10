@@ -5,7 +5,7 @@ float gasVal;
 float readVoltage;
 float ratio;
 
-void readCarbonMonoxide(float *coVal)
+void readCarbonMonoxide(float *coVal, int16_t *dataReceived)
 {
     readVal = analogRead(CO_PIN);
     readVoltage = ((float)readVal / TEN_BIT_ANALOG_VAL) * CO_V;
@@ -14,13 +14,11 @@ void readCarbonMonoxide(float *coVal)
 
     if (ratio < 2 || ratio >= 0.7)
     {
+        *dataReceived = 1;
         *coVal = gasVal;
     }
     else
     {
-        *coVal = 0;
+        *dataReceived = 0;
     }
-
-    // Serial.print("co: ");
-    // Serial.println(*coVal);
 }

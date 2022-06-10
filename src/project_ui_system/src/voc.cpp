@@ -2,22 +2,22 @@
 
 Adafruit_CCS811 ccs;
 
-void setupTVOCSensor(char sensorStatus[])
+void setupTVOCSensor(int16_t *dataStatus)
 {
     if (!ccs.begin())
     {
-        strcpy(sensorStatus, "Unavailable.");
+        *dataStatus = 0;
     }
     else
     {
         while (!ccs.available())
         {
-            strcpy(sensorStatus, "No Data.");
+            *dataStatus = 0;
         }
     }
 }
 
-void readOrganicCompounds(float *voc, int *dataReceived)
+void readOrganicCompounds(float *voc, int16_t *dataReceived)
 {
     if (ccs.available())
     {
@@ -32,9 +32,4 @@ void readOrganicCompounds(float *voc, int *dataReceived)
             *dataReceived = 0;
         }
     }
-
-    // Serial.print("voc: ");
-    // Serial.println(*voc);
-    // Serial.println("received: ");
-    // Serial.println(*dataReceived);
 }

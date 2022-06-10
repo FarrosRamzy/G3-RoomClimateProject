@@ -8,22 +8,19 @@ float co2;
 float voc;
 
 uint32_t autoFanValue;
-int tvocDataReceived;
-int co2DataReceived;
-int coDataReceived;
-int humidDataReceived;
-int tempDataReceived;
+int16_t tvocDataReceived;
+int16_t co2DataReceived;
+int16_t coDataReceived;
 
 bool autoFan;
-// bool autoTemp;
 bool currentProcessPassed;
 
 uint32_t setTempVal;
 uint32_t setFanValue;
 uint32_t previousSetFanVal;
+uint32_t previousSetTempVal;
 
 char gasStatus[MAX_CHAR_ARRAY];
-char tvocSetupStatus[MAX_CHAR_ARRAY];
 
 STATE state;
 
@@ -44,27 +41,24 @@ void setup()
   tvocDataReceived = 0;
   coDataReceived = 0;
   co2DataReceived = 0;
-  humidDataReceived = 0;
-  tempDataReceived = 0;
 
   autoFanValue = 0;
 
   autoFan = true;
-  // autoTemp = true;
   currentProcessPassed = false;
 
   setTempVal = 0;
   setFanValue = 0;
   previousSetFanVal = 0;
+  previousSetTempVal = setTempVal;
 
   Serial.begin(9600);
 
-  setupTouchsreen();
-  // setupEspWifi();
+  setupTouchsreen();  
 
   setupHumidTempSensor();
-  // setupCO2Sensor();
-  // setupTVOCSensor(tvocSetupStatus);
+  setupCO2Sensor();
+  setupTVOCSensor(&tvocDataReceived);
 
   setupFanSystem();
 
@@ -75,7 +69,7 @@ void loop()
 {
   // put your main code here, to run repeatedly:
   readTouchInput();
-  readAutoManualState(&autoFan, /*&autoTemp,*/ &setTempVal, &setFanValue);
+  readAutoManualState(&autoFan, &previousSetTempVal, &setTempVal, &setFanValue);
   switch (state)
   {
   case IDLE:
@@ -95,40 +89,29 @@ void loop()
     break;
   case READ:
     readTempAndHumid(&humidity, &temperature);
-    readCarbonMonoxide(&co);
-    // readCarbonDioxide(&co2, startTime);
-    // readOrganicCompounds(&voc, &tvocDataReceived);
+    readCarbonMonoxide(&co, &coDataReceived);
+    readCarbonDioxide(&co2, &co2DataReceived);
+    readOrganicCompounds(&voc, &tvocDataReceived);
+
     state = PROCESS;
     break;
   case PROCESS:
-    processGasSensors(co, co2, voc, tvocDataReceived, gasStatus);
-    // if (autoFan /*&& autoTemp*/)
-    // {
-    //   // processFanSpeed(temperature, humidity, gasStatus, &autoFanSpeed);
-    //   adjustFanSpeed(setTempVal, &setFanVal, temperature, humidity, gasStatus, &autoTemp);
-    // }
+    processGasSensors(co, co2, voc, coDataReceived, co2DataReceived, tvocDataReceived, gasStatus);
     if (!autoFan)
     {
-      setManualSpeed(&setFanValue, &previousSetFanVal, gasStatus, &autoFan); //, &startTime);
+      setManualSpeed(&setFanValue, &previousSetFanVal, gasStatus, &autoFan);
     }
     else
     {
-      adjustFanSpeed(setTempVal, &autoFanValue, temperature, humidity, gasStatus);//, &autoTemp);
-    }
-    
-    // else if (!autoTemp)
-    // {
-    //   adjustFanSpeed(setTempVal, &setFanVal, temperature, humidity, gasStatus, &autoTemp);
-    // }
-    
+      adjustFanSpeed(setTempVal, &autoFanValue, temperature, humidity, gasStatus);
+    }    
     state = SEND;
     break;
   case SEND:
     sendTempAndHumidData(humidity, temperature);
-    sendGasSensorData(co, co2, voc, gasStatus);
-    if (autoFan /*&& autoTemp*/)
+    sendGasSensorData(coDataReceived, co2DataReceived, tvocDataReceived, co, co2, voc, gasStatus);
+    if (autoFan)
     {
-      // autoFanValue = autoFanValue / 51;
       sendFanSpeedValue(autoFanValue);
     }
     else

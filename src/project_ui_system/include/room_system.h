@@ -28,9 +28,6 @@
 
 #define MAX_PROCESS_TIMER 500
 
-#define WIFI_ID "MSI_YZMAR"
-#define WIFI_PASSWORD "Yzmar252887"
-
 #define MAX_CHAR_ARRAY 255
 
 #define CO_GAS_RATIO 0.99
@@ -43,6 +40,44 @@
 
 #define TEN_BIT_ANALOG_VAL 1024
 
+#define WIFI_ID "MSI_YZMAR"
+#define WIFI_PASSWORD "Yzmar252887"
+
+#define SERVER_IP "192.168.137.1"
+#define SERVER_PORT "8888"
+
+#define SET_WIFI_MODE "AT+CWMODE=3"
+#define CHECK_ACC_POINT "AT+CWJAP?"
+#define GET_MAC_ADDRESS "AT+CIPSTAMAC?"
+#define JOIN_ACC_POINT "AT+CWJAP="
+#define CHECK_STATUS "AT+CIPSTATUS"
+#define START_COMMUNICATION "AT+CIPSTART="
+#define SEND_MESSAGE "AT+CIPSEND="
+#define STOP_ECHO "ATE0"
+
+#define TCP "TCP"
+
+#define START_CHAR "#"
+#define SPLIT_CHAR "&"
+#define PAYLOAD_START_CHAR "{"
+#define PAYLOAD_SEPARATOR "|"
+#define PAYLOAD_END_CHAR "}"
+#define END_CHAR ";"
+
+#define SENSOR_DEVICE "SENSOR"
+#define UI_DEVICE "UI"
+#define APP_DEVICE "APP"
+
+#define TEMPERATURE_TYPE "TMP"
+#define HUMIDITY_TYPE "HUM"
+#define CARBON_MONOXYDE_TYPE "CO"
+#define CARBON_DIOXYDE_TYPE "CO2"
+#define ORGANIC_TYPE "VOC"
+#define FAN_TYPE "FAN"
+
+#define READ_DATA "READ"
+#define WRITE_DATA "WRITE"
+
 enum STATE
 {
     IDLE,
@@ -52,24 +87,39 @@ enum STATE
 };
 
 void setupTouchsreen();
-void setupTVOCSensor(char[]);
+void setupTVOCSensor(int16_t *);
 void setupCO2Sensor();
 void setupHumidTempSensor();
 void setupFanSystem();
-void setupEspWifi();
+
+bool setupEspWifi();
+
+void getSystemID();
+void runWifi(String);
+
+bool checkATresponse(String);
+
+bool setConnectionMode();
+bool checkAccessPoint();
+bool joinAccessPoint();
+bool checkConnectionStatus();
+bool startConnection();
+bool sendMessage();
+
+void readInputMessage();
+void splitInputLine(String);
 
 void readTempAndHumid(float *, float *);
-void readCarbonMonoxide(float *);
-void readCarbonDioxide(float *, unsigned long);
-void readOrganicCompounds(float *, int *);
+void readCarbonMonoxide(float *, int16_t *);
+void readCarbonDioxide(float *, int16_t *);
+void readOrganicCompounds(float *, int16_t *);
 
 void readTouchInput();
-void processGasSensors(float, float, float, int, char[]);
-// void processFanSpeed(float, float, char[], uint32_t *);
-void setManualSpeed(uint32_t *, uint32_t *, char[], bool *); //, unsigned long *);
-void adjustFanSpeed(uint32_t, uint32_t *, float, float, char[]); //, bool *);
+void processGasSensors(float, float, float, int16_t, int16_t, int16_t, char[]);
+void setManualSpeed(uint32_t *, uint32_t *, char[], bool *);
+void adjustFanSpeed(uint32_t, uint32_t *, float, float, char[]);
 
-void readAutoManualState(bool *, /*bool *,*/ uint32_t *, uint32_t *);
+void readAutoManualState(bool *, uint32_t *, uint32_t *, uint32_t *);
 void setTempBtnChange(void *);
 
 void setFanDirection();
@@ -79,5 +129,5 @@ void setFanSlide(void *);
 
 void sendTempAndHumidData(float, float);
 void sendFanSpeedValue(uint32_t);
-void sendGasSensorData(float, float, float, char[]);
+void sendGasSensorData(int16_t, int16_t, int16_t, float, float, float, char[]);
 #endif

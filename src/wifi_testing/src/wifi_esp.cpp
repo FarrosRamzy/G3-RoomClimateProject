@@ -366,6 +366,7 @@ void readInputMessage()
         }
         else if (inputChar == END_CHAR)
         {
+            splitInputLine(inputLine);
             inputStartReceive = false;
         }
         else if (inputStartReceive)
@@ -375,3 +376,7 @@ void readInputMessage()
     }
 }
 
+void splitInputLine(String input)
+{
+    ;
+}

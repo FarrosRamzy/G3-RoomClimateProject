@@ -30,13 +30,10 @@ NexText aCOUnit = NexText(4, 11, "tuCO");
 
 // input:
 bool automaticFanSpeed = true;
-// bool autoTemperature = true;
 uint32_t dsFanBtn = 0;
-// uint32_t dsTempBtn = 0;
 uint32_t sldTemp = 0;
 uint32_t sldFan = 0;
 
-// NexDSButton setTempBtn = NexDSButton(2, 10, "btTempSet");
 NexSlider setTempSld = NexSlider(2, 4, "hSetTmp");
 NexObject tempSldVis = NexObject(2, 4, "hSetTmp");
 
@@ -62,95 +59,51 @@ char VOCUnit[5];
 char CO2Unit[5];
 char COUnit[5];
 
+char deviceID[5];
+char deviceType[5];
+char payloadType[10];
+char payload[15];
+
 /////////////////////////////////////////////////////////////
 
 // Register the inputs:
-NexTouch *nextion_listen_list[] = /*{&setTempBtn,*/ {&setTempSld, &setFanSpeedBtn, &setFanSpeedSld};
+NexTouch *nextion_listen_list[] = {&setTempSld, &setFanSpeedBtn, &setFanSpeedSld};
 
 void setupTouchsreen()
 {
-  // Serial.println("Touchscreen Setup Pass");
   nexInit();
-  // setTempBtn.attachPop(setTempBtnChange, &setTempBtn);
-  // setFanSpeedBtn.attachPop(setFanBtnChange, &setFanSpeedBtn);
-  // setTempSld.attachPop(setTempSlide);
-  // setFanSpeedSld.attachPop(setFanSlide);
 }
 
-void readAutoManualState(bool *fanIsAuto, /*bool *tempIsAuto,*/ uint32_t *manualTempVal, uint32_t *manualFanSpeed)
+void readAutoManualState(bool *fanIsAuto, uint32_t *previousManualTempVal, uint32_t *manualTempVal, uint32_t *manualFanSpeed)
 {
   *fanIsAuto = automaticFanSpeed;
   *manualTempVal = sldTemp;
-  // *tempIsAuto = autoTemperature;
   if (!automaticFanSpeed)
   {
+    strcpy(payloadType, WRITE_DATA);
+    strcpy(deviceID, UI_DEVICE);
+    strcpy(deviceType, FAN_TYPE);
+    sprintf(payload, "&#37;u", sldFan);
+
     *manualFanSpeed = sldFan;
   }
 
-  // if (!autoTemperature)
-  // {
-  //   *manualTempVal = sldTemp;
-  // }
+  if (*previousManualTempVal != *manualTempVal)
+  {
+    strcpy(payloadType, WRITE_DATA);
+    strcpy(deviceID, UI_DEVICE);
+    strcpy(deviceType, TEMPERATURE_TYPE);
+    sprintf(payload, "&#37;u", *manualTempVal);
+    
+    *previousManualTempVal = *manualTempVal;
+  }
 }
-
-// void setTempBtnChange(void *ptr)
-// {
-//   if (setTempBtn.getValue(&dsTempBtn) != 0)
-//   {
-//     autoTemperature = true;
-//   }
-//   else
-//   {
-//     autoTemperature = false;
-//   }
-// }
-
-// void setFanBtnChange(void *ptr)
-// {
-//   setFanSpeedBtn.getValue(&dsFanBtn);
-//   if (dsFanBtn != 0)
-//   {
-//     automaticFanSpeed = false;
-//   }
-//   else
-//   {
-//     automaticFanSpeed = true;
-//   }
-// }
-
-// void setTempSlide(void *ptr)
-// {
-//   if (!autoTemperature)
-//   {
-//     uint32_t temperature = sldTemp;
-//     if (setTempSld.getValue(&temperature))
-//     {
-//       sldTemp = temperature;
-//     }
-//     // sldTemp = temperature;
-//   }
-// }
-
-// void setFanSlide(void *ptr)
-// {
-//   setFanSpeedSld.getValue(&sldFan);
-//   // if (!automaticFanSpeed)
-//   // {
-//   //   uint32_t fanSpeedSetValue = 0;
-//   //   if (setFanSpeedSld.getValue(&fanSpeedSetValue))
-//   //   {
-//   //     sldFan = fanSpeedSetValue;
-//   //   }
-//   //   // sldFan = fanSpeed;
-//   // }
-// }
 
 void readTouchInput()
 {
   nexLoop(nextion_listen_list);
 
   setFanSpeedBtn.getValue(&dsFanBtn);
-  // setTempBtn.getValue(&dsTempBtn);
   setFanSpeedSld.getValue(&sldFan);
   setTempSld.getValue(&sldTemp);
 
@@ -162,25 +115,22 @@ void readTouchInput()
   {
     automaticFanSpeed = true;
   }
-
-  // if (dsTempBtn != 0)
-  // {
-  //   autoTemperature = false;
-  // }
-  // else
-  // {
-  //   autoTemperature = true;
-  // }
 }
 
 void sendTempAndHumidData(float humidity, float temperature)
 {
+  strcpy(payloadType, READ_DATA);
+
   if (isnan(temperature))
   {
     strcpy(Temp, "none");
     strcpy(TmpUnit1, "");
     strcpy(TmpUnit2, "");
     strcpy(TmpUnitSymbol, "");
+
+    strcpy(deviceID, SENSOR_DEVICE);
+    strcpy(deviceType, TEMPERATURE_TYPE);
+    strcpy(payload, Temp);
   }
   else
   {
@@ -188,17 +138,29 @@ void sendTempAndHumidData(float humidity, float temperature)
     strcpy(TmpUnit1, "Celsius");
     strcpy(TmpUnit2, "C");
     strcpy(TmpUnitSymbol, "o");
+
+    strcpy(deviceID, SENSOR_DEVICE);
+    strcpy(deviceType, TEMPERATURE_TYPE);
+    strcpy(payload, Temp);
   }
 
   if (isnan(humidity))
   {
     strcpy(Humid, "none");
     strcpy(HumUnit, "");
+
+    strcpy(deviceID, SENSOR_DEVICE);
+    strcpy(deviceType, HUMIDITY_TYPE);
+    strcpy(payload, Humid);
   }
   else
   {
     dtostrf(humidity, 6, 1, Humid);
     strcpy(HumUnit, "%");
+
+    strcpy(deviceID, SENSOR_DEVICE);
+    strcpy(deviceType, HUMIDITY_TYPE);
+    strcpy(payload, Humid);
   }
 
   hTempVal.setText(Temp);
@@ -213,25 +175,75 @@ void sendTempAndHumidData(float humidity, float temperature)
   rhumUnit.setText(HumUnit);
 }
 
-void sendGasSensorData(float co, float co2, float voc, char gasStatus[])
+void sendGasSensorData(int16_t coData, int16_t co2Data, int16_t vocData, float co, float co2, float voc, char gasStatus[])
 {
-  dtostrf(co, 6, 2, CO);
-  dtostrf(co2, 6, 2, CO2);
-  dtostrf(voc, 6, 2, VOC);
-  strcpy(VOCUnit, "ppm");
-  strcpy(COUnit, "ppm");
-  strcpy(CO2Unit, "ppm");
+  strcpy(payloadType, READ_DATA);
+
+  if (coData == 0)
+  {
+    strcpy(CO, "none");
+    strcpy(COUnit, "");
+
+    strcpy(deviceID, SENSOR_DEVICE);
+    strcpy(deviceType, CARBON_MONOXYDE_TYPE);
+    strcpy(payload, CO);
+  }
+  else
+  {
+    dtostrf(co, 6, 2, CO);
+    strcpy(COUnit, "ppm");
+
+    strcpy(deviceID, SENSOR_DEVICE);
+    strcpy(deviceType, CARBON_MONOXYDE_TYPE);
+    strcpy(payload, CO);
+  }
+
+  if (co2Data == 0)
+  {
+    strcpy(CO2, "none");
+    strcpy(CO2Unit, "");
+
+    strcpy(deviceID, SENSOR_DEVICE);
+    strcpy(deviceType, CARBON_DIOXYDE_TYPE);
+    strcpy(payload, CO2);
+  }
+  else
+  {
+    dtostrf(co2, 6, 2, CO2);
+    strcpy(CO2Unit, "ppm");
+
+    strcpy(deviceID, SENSOR_DEVICE);
+    strcpy(deviceType, CARBON_DIOXYDE_TYPE);
+    strcpy(payload, CO2);
+  }
+
+  if (vocData == 0)
+  {
+    strcpy(VOC, "none");
+    strcpy(VOCUnit, "");
+
+    strcpy(deviceID, SENSOR_DEVICE);
+    strcpy(deviceType, ORGANIC_TYPE);
+    strcpy(payload, VOC);
+  }
+  else
+  {
+    dtostrf(voc, 6, 2, VOC);
+    strcpy(VOCUnit, "ppm");
+
+    strcpy(deviceID, SENSOR_DEVICE);
+    strcpy(deviceType, ORGANIC_TYPE);
+    strcpy(payload, VOC);
+  }
 
   if (strcmp("Danger", gasStatus) == 0)
   {
     setFanSpeedSld.setVisibility(false);
     setTempSld.setVisibility(false);
-    
+
     setFanSpeedBtn.setValue(0);
-    // setTempBtn.setValue(0);
 
     setFanSpeedBtn.setText("Denied");
-    // setTempBtn.setText("Denied");
   }
 
   aCO.setText(CO);
