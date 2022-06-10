@@ -1,4 +1,4 @@
-#include <sensors.h>
+#include <room_system.h>
 
 SoftwareSerial mhzSerial(CO2_RX_PIN,CO2_TX_PIN);
 ErriezMHZ19B co2mhz19b(&mhzSerial);

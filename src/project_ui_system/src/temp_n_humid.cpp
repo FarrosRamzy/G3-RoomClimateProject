@@ -1,4 +1,4 @@
-#include <sensors.h>
+#include <room_system.h>
 
 DHT dht(DHT_PIN, DHT_TYPE);
 

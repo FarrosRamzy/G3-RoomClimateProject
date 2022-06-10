@@ -1,5 +1,5 @@
-#ifndef SENSORS_H
-#define SENSORS_H
+#ifndef ROOM_SYSTEM_H
+#define ROOM_SYSTEM_H
 
 #include <DHT.h>
 #include <SPI.h>

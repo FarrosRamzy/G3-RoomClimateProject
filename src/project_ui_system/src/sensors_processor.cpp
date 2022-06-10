@@ -1,10 +1,10 @@
-#include <sensors.h>
+#include <room_system.h>
 
 float highTVOC = 400;
 float highCO2 = 2000;
 
 float lowTVOC = 100;
-float lowCO2 = 500;
+float lowCO2 = 600;
 
 void processGasSensors(float coVal, float co2Val, float vocVal, int vocData, char gasStatus[])
 {
