@@ -9,22 +9,34 @@
 #include <Nextion.h>
 #include <SoftwareSerial.h>
 #include <AltSoftSerial.h>
-#include <ErriezMHZ19B.h>
-#include <TimeLib.h>
 #include <string.h>
+#include <stdbool.h>
+#include <stddef.h>
 
 #define DHT_PIN 2
 
 #define CO_PIN A0
 
-#define CO2_TX_PIN 4
-#define CO2_RX_PIN 5
+#define CO2_TX_PIN 5
+#define CO2_RX_PIN 4
+
+#define CJMCU_ADDRESS 0x5A
+
+#define CJMCU_STATUS 0x00
+#define CJMCU_MEAS_MODE 0x01
+#define CJMCU_MEAS_THRESHOLD 0x10
+#define CJMCU_ALG_RESULT_DATA 0x02
+#define CJMCU_APP_START 0xF4
+
+#define CJMCU_MEAS_IS_READY 0x98
+#define CJMCU_FIRM_IS_NOT_LOADED 0x11
+#define CJMCU_FIRM_IS_BOOTING 0x10
+
+#define DHT_TYPE DHT11
 
 #define FAN_PIN_A 12
 #define FAN_PIN_B 13
 #define FAN_PWM_PIN 11
-
-#define DHT_TYPE DHT11
 
 #define MAX_PROCESS_TIMER 500
 
@@ -39,6 +51,8 @@
 #define NORMAL_HUMIDITY 50
 
 #define TEN_BIT_ANALOG_VAL 1024
+
+#define INPUT_SEGMENT_LIMIT 20
 
 #define WIFI_ID "MSI_YZMAR"
 #define WIFI_PASSWORD "Yzmar252887"
@@ -57,12 +71,12 @@
 
 #define TCP "TCP"
 
-#define START_CHAR "#"
-#define SPLIT_CHAR "&"
-#define PAYLOAD_START_CHAR "{"
-#define PAYLOAD_SEPARATOR "|"
-#define PAYLOAD_END_CHAR "}"
-#define END_CHAR ";"
+#define START_CHAR '#'
+#define SPLIT_CHAR '&'
+#define PAYLOAD_START_CHAR '{'
+#define PAYLOAD_SEPARATOR '|'
+#define PAYLOAD_END_CHAR '}'
+#define END_CHAR ';'
 
 #define SENSOR_DEVICE "SENSOR"
 #define UI_DEVICE "UI"
@@ -81,15 +95,20 @@
 enum STATE
 {
     IDLE,
-    READ,
+    READ_AIR_Q,
+    READ_TMP,
     PROCESS,
     SEND
 };
 
 void setupTouchsreen();
-void setupTVOCSensor(int16_t *);
+
+void setupCJMCUMeasure();
+void startAppCJMCU();
+uint8_t getCJMCUStatus();
 void setupCO2Sensor();
 void setupHumidTempSensor();
+
 void setupFanSystem();
 
 bool setupEspWifi();
@@ -107,20 +126,29 @@ bool startConnection();
 
 bool sendMessage(String);
 
-void readInputMessage();
-void splitInputLine(String);
+bool readInputMessage(String *, String *, uint32_t *);
+bool splitInputLine(String, String *, String *, uint32_t *);
+bool identifyInputID(String[], String *, String *, uint32_t *);
+bool identifyDevice(String[], String *, String *, uint32_t *);
+bool identifyPayload(String[], String *, String *, uint32_t *);
+bool identifyPayloadType(String *, String *, String, uint32_t *);
+
+bool identifyTemperaturePayload(String *, String, uint32_t *);
+bool identifyFanPayload(String *, String, uint32_t *);
 
 void readTempAndHumid(float *, float *);
 void readCarbonMonoxide(float *, int16_t *);
 void readCarbonDioxide(float *, int16_t *);
-void readOrganicCompounds(float *, int16_t *);
+bool checkCJMCUStatus(uint8_t);
+void getBothValue(float *, float *);
+void readCJMCUgas(float *, float *, int16_t *);
 
 void readTouchInput();
-void processGasSensors(float, float, float, int16_t, int16_t, int16_t, char[]);
+void processGasSensors(float, float, float, int16_t, char[]);
 void setManualSpeed(uint32_t *, uint32_t *, char[], bool *);
 void adjustFanSpeed(uint32_t, uint32_t *, float, float, char[]);
 
-void readAutoManualState(bool *, uint32_t *, uint32_t *, uint32_t *);
+void readAutoManualState(bool *, uint32_t *, uint32_t *, uint32_t *, String, String, uint32_t);
 void setTempBtnChange(void *);
 
 void setFanDirection();
@@ -128,7 +156,14 @@ void setFanBtnChange(void *);
 void setTempSlide(void *);
 void setFanSlide(void *);
 
-void sendTempAndHumidData(float, float);
+void sendTemperatureData(float);
+void sendHumidityData(float);
+void sendCOData(float, int16_t);
+void sendCO2Data(float, int16_t);
+void sendVOCData(float, int16_t);
+void sendGasStatus(char[]);
 void sendFanSpeedValue(uint32_t);
-void sendGasSensorData(int16_t, int16_t, int16_t, float, float, float, char[]);
+
+// void sendTempAndHumidData(float, float);
+// void sendGasSensorData(int16_t, int16_t, int16_t, float, float, float, char[]);
 #endif

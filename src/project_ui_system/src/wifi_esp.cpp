@@ -112,7 +112,6 @@ bool checkAccessPoint()
 
 bool joinAccessPoint()
 {
-    Serial.print(JOIN_ACC_POINT "\"" WIFI_ID "\",\"" WIFI_PASSWORD "\"\r\n");
     ESPserial.print(JOIN_ACC_POINT "\"" WIFI_ID "\",\"" WIFI_PASSWORD "\"\r\n");
     if (checkATresponse("WIFI CONNECTED"))
     {
@@ -230,16 +229,18 @@ bool checkATresponse(String message)
     }
 }
 
-void runWifi(char deviceID[], char deviceType[], char payloadType[], char payload[])
+void runWifi(char deviceID[], char payloadType[], char payloadState[], char payload[])
 {
-    String message = START_CHAR;
+    String message;
+    message += START_CHAR;
     message += systemID;
     message += SPLIT_CHAR;
     message += deviceID;
     message += SPLIT_CHAR;
-    message += deviceType;
-    message += PAYLOAD_START_CHAR;
     message += payloadType;
+    message += SPLIT_CHAR;
+    message += PAYLOAD_START_CHAR;
+    message += payloadState;
     message += PAYLOAD_SEPARATOR;
     message += payload;
     message += PAYLOAD_END_CHAR;
@@ -252,10 +253,18 @@ void runWifi(char deviceID[], char deviceType[], char payloadType[], char payloa
         if (!sendMessage(completeMessage))
         {
             // Assume that connection has lost, then reconnect it.
+            connectionEstablished = false;
             while (!startConnection())
             {
                 // keep restart until it reconnected.
             }
+        }
+    }
+    else
+    {
+        while (!setupEspWifi())
+        {
+            /* code */
         }
     }
 }
@@ -282,4 +291,134 @@ bool sendMessage(String messageLine)
     {
         return false;
     }
+}
+
+bool readInputMessage(String *payloadType, String *payloadState, uint32_t *payload)
+{
+    static bool inputStartReceive = false;
+    static String inputLine;
+
+    bool inputReceived = false;
+
+    if (ESPserial.available())
+    {
+        char inputChar = ESPserial.read();
+        if (inputChar == START_CHAR)
+        {
+            inputLine.remove(0);
+            inputStartReceive = true;
+        }
+        else if (inputChar == END_CHAR)
+        {
+            inputReceived = splitInputLine(inputLine, payloadType, payloadState, payload);
+            inputStartReceive = false;
+        }
+        else if (inputStartReceive)
+        {
+            inputLine += inputChar;
+        }
+    }
+
+    return inputReceived;
+}
+
+bool splitInputLine(String receivedInput, String *payloadType, String *payloadState, uint32_t *payload)
+{
+    String splittedInputLine[INPUT_SEGMENT_LIMIT];
+
+    int separated = 0;
+    int nextSeparation = 0;
+    nextSeparation = receivedInput.indexOf(SPLIT_CHAR, separated + 1);
+    splittedInputLine[0] = receivedInput.substring(separated, nextSeparation);
+    separated = nextSeparation;
+
+    for (uint8_t i = 0; i < INPUT_SEGMENT_LIMIT && separated != -1; i++)
+    {
+        nextSeparation = receivedInput.indexOf(SPLIT_CHAR, separated + 1);
+        splittedInputLine[i] = receivedInput.substring(separated, nextSeparation);
+        separated = nextSeparation;
+    }
+
+    return identifyInputID(splittedInputLine, payloadType, payloadState, payload);
+}
+
+bool identifyInputID(String inputLine[], String *payloadType, String *payloadState, uint32_t *payload)
+{
+    String inputID = inputLine[0];
+    if (inputID == systemID)
+    {
+        return identifyDevice(inputLine, payloadType, payloadState, payload);
+    }
+
+    return false;
+}
+
+bool identifyDevice(String inputLine[], String *payloadType, String *payloadState, uint32_t *payload)
+{
+    String deviceID = inputLine[1];
+    if (deviceID == APP_DEVICE)
+    {
+        return identifyPayload(inputLine, payloadType, payloadState, payload);
+    }
+
+    return false;
+}
+
+bool identifyPayload(String inputLine[], String *payloadType, String *payloadState, uint32_t *payload)
+{
+    *payloadType = inputLine[2];
+    String payloadData = inputLine[3];
+    int payloadParamStart = payloadData.indexOf(PAYLOAD_START_CHAR);
+    int payloadParamSeparator = payloadData.indexOf(PAYLOAD_SEPARATOR);
+    int payloadParamEnd = payloadData.indexOf(PAYLOAD_END_CHAR);
+
+    if ((payloadParamStart > -1) && (payloadParamSeparator > -1) && (payloadParamEnd > -1))
+    {
+        String readPayloadState = readPayloadState.substring(payloadParamStart, payloadParamSeparator);
+        String readPayloadVal = readPayloadVal.substring(payloadParamSeparator, payloadParamEnd);
+
+        *payloadState = readPayloadState;
+
+        return identifyPayloadType(payloadType, payloadState, readPayloadVal, payload);
+    }
+
+    return false;
+}
+
+bool identifyPayloadType(String *inputType, String *inputState, String inputValue, uint32_t *value)
+{
+    if (*inputType == TEMPERATURE_TYPE)
+    {
+        return identifyTemperaturePayload(inputState, inputValue, value);
+    }
+    else if (*inputType == FAN_TYPE)
+    {
+        return identifyFanPayload(inputState, inputValue, value);
+    }
+
+    return false;
+}
+
+bool identifyTemperaturePayload(String *inputState, String inputValue, uint32_t *value)
+{
+    if (*inputState == WRITE_DATA)
+    {
+        uint32_t retrievedValue = inputValue.toInt();
+        *value = retrievedValue;
+        return true;
+    }
+
+    return false;
+}
+
+bool identifyFanPayload(String *inputState, String inputValue, uint32_t *value)
+{
+    if (*inputState == WRITE_DATA)
+    {
+        uint32_t retrievedValue = inputValue.toInt();
+        *value = retrievedValue;
+        return true;
+    }
+
+    return false;
 }

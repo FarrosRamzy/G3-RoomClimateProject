@@ -49,7 +49,7 @@ bool setUpWifi();
 
 bool checkATresponse(String);
 
-void readInputMessage();
-void splitInputLine(String);
+// void readInputMessage();
+// void splitInputLine(String);
 
 #endif

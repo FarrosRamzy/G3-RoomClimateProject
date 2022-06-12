@@ -19,10 +19,6 @@ void readTempAndHumid(float *humidity, float *temperature)
     else
     {
         *humidity = humidityRead;
-        Serial.print("Humidity:\t");
-        Serial.print(humidityRead);
         *temperature = temperatureRead;
-        Serial.print("Temperature:\t");
-        Serial.print(temperatureRead);
     }
 }

@@ -264,12 +264,14 @@ bool startConnection()
 
 bool sendMessage()
 {
-    String message = START_CHAR;
+    String message;
+    message += START_CHAR;
     message += deviceID;
     message += SPLIT_CHAR;
     message += SENSOR;
     message += SPLIT_CHAR;
     message += TYPE_TO_TRY;
+    message += SPLIT_CHAR;
     message += PAYLOAD_START_CHAR;
     message += "READ";
     message += PAYLOAD_SEPARATOR;
@@ -352,31 +354,31 @@ bool checkATresponse(String message)
     }
 }
 
-void readInputMessage()
-{
-    static bool inputStartReceive = false;
-    static String inputLine;
-    if (ESPserial.available())
-    {
-        char inputChar = ESPserial.read();
-        if (inputChar == START_CHAR)
-        {
-            inputLine.remove(0);
-            inputStartReceive = true;
-        }
-        else if (inputChar == END_CHAR)
-        {
-            splitInputLine(inputLine);
-            inputStartReceive = false;
-        }
-        else if (inputStartReceive)
-        {
-            inputLine += inputChar;
-        }
-    }
-}
+// void readInputMessage()
+// {
+//     static bool inputStartReceive = false;
+//     static String inputLine;
+//     if (ESPserial.available())
+//     {
+//         char inputChar = ESPserial.read();
+//         if (inputChar == START_CHAR)
+//         {
+//             inputLine.remove(0);
+//             inputStartReceive = true;
+//         }
+//         else if (inputChar == END_CHAR)
+//         {
+//             splitInputLine(inputLine);
+//             inputStartReceive = false;
+//         }
+//         else if (inputStartReceive)
+//         {
+//             inputLine += inputChar;
+//         }
+//     }
+// }
 
-void splitInputLine(String input)
-{
-    ;
-}
+// void splitInputLine(String input)
+// {
+//     ;
+// }

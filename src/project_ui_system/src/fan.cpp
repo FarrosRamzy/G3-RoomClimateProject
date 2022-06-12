@@ -76,12 +76,12 @@ void adjustFanSpeed(uint32_t setTempVal, uint32_t *fanValue, float readTempVal, 
         }
         else if (humidVal < NORMAL_HUMIDITY)
         {
-            *fanValue = 2;
+            *fanValue = 3;
             analogWrite(FAN_PWM_PIN, map(*fanValue, 0, 5, 0, 255));
         }
         else
         {
-            *fanValue = 3;
+            *fanValue = 4;
             analogWrite(FAN_PWM_PIN, map(*fanValue, 0, 5, 0, 255));
         }
     }

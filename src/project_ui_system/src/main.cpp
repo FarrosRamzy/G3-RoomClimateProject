@@ -8,8 +8,8 @@ float co2;
 float voc;
 
 uint32_t autoFanValue;
-int16_t tvocDataReceived;
-int16_t co2DataReceived;
+
+int16_t tvocAndCO2DataReceived;
 int16_t coDataReceived;
 
 bool autoFan;
@@ -20,6 +20,10 @@ uint32_t setFanValue;
 uint32_t previousSetFanVal;
 uint32_t previousSetTempVal;
 
+String payloadType;
+String payloadState;
+uint32_t payload;
+
 char gasStatus[MAX_CHAR_ARRAY];
 
 STATE state;
@@ -29,7 +33,7 @@ static unsigned long startTime;
 void setup()
 {
   // put your setup code here, to run once:
-  Serial.begin(9600);
+
   state = IDLE;
   humidity = 0;
   temperature = 0;
@@ -38,9 +42,9 @@ void setup()
   co2 = 0;
   voc = 0;
 
-  tvocDataReceived = 0;
   coDataReceived = 0;
-  co2DataReceived = 0;
+  // co2DataReceived = 0;
+  tvocAndCO2DataReceived = 0;
 
   autoFanValue = 0;
 
@@ -50,15 +54,25 @@ void setup()
   setTempVal = 0;
   setFanValue = 0;
   previousSetFanVal = 0;
+
   previousSetTempVal = setTempVal;
 
-  Serial.begin(9600);
+  payloadType = HUMIDITY_TYPE;
+  payloadState = READ_DATA;
+  payload = 0;
 
-  setupTouchsreen();  
+  Serial.begin(9600);
+  Wire.begin();
+
+  while (!setupEspWifi())
+  {
+    /* code */
+  }
+
+  setupTouchsreen();
 
   setupHumidTempSensor();
-  setupCO2Sensor();
-  setupTVOCSensor(&tvocDataReceived);
+  setupCJMCUMeasure();
 
   setupFanSystem();
 
@@ -69,7 +83,7 @@ void loop()
 {
   // put your main code here, to run repeatedly:
   readTouchInput();
-  readAutoManualState(&autoFan, &previousSetTempVal, &setTempVal, &setFanValue);
+  readAutoManualState(&autoFan, &previousSetTempVal, &setTempVal, &setFanValue, payloadType, payloadState, payload);
   switch (state)
   {
   case IDLE:
@@ -79,24 +93,29 @@ void loop()
       {
         currentProcessPassed = true;
         startTime = millis();
-        Serial.println("IDLE");
       }
     }
     else
     {
-      state = READ;
+      state = READ_AIR_Q;
     }
     break;
-  case READ:
-    readTempAndHumid(&humidity, &temperature);
+  case READ_AIR_Q:
     readCarbonMonoxide(&co, &coDataReceived);
-    readCarbonDioxide(&co2, &co2DataReceived);
-    readOrganicCompounds(&voc, &tvocDataReceived);
+    readCJMCUgas(&voc, &co2, &tvocAndCO2DataReceived);
 
+    state = READ_TMP;
+    break;
+  case READ_TMP:
+    readTempAndHumid(&humidity, &temperature);
+    // if (readInputMessage(&payloadType, &payloadState, &payload))
+    // {
+    //   readAutoManualState(&autoFan, &previousSetTempVal, &setTempVal, &setFanValue, payloadType, payloadState, payload);
+    // }
     state = PROCESS;
     break;
   case PROCESS:
-    processGasSensors(co, co2, voc, coDataReceived, co2DataReceived, tvocDataReceived, gasStatus);
+    processGasSensors(co, co2, voc, tvocAndCO2DataReceived, gasStatus);
     if (!autoFan)
     {
       setManualSpeed(&setFanValue, &previousSetFanVal, gasStatus, &autoFan);
@@ -104,12 +123,17 @@ void loop()
     else
     {
       adjustFanSpeed(setTempVal, &autoFanValue, temperature, humidity, gasStatus);
-    }    
+    }
     state = SEND;
     break;
   case SEND:
-    sendTempAndHumidData(humidity, temperature);
-    sendGasSensorData(coDataReceived, co2DataReceived, tvocDataReceived, co, co2, voc, gasStatus);
+    sendTemperatureData(temperature);
+    sendHumidityData(humidity);
+    sendCOData(co, coDataReceived);
+    sendCO2Data(co2, tvocAndCO2DataReceived);
+    sendVOCData(voc, tvocAndCO2DataReceived);
+    sendGasStatus(gasStatus);
+
     if (autoFan)
     {
       sendFanSpeedValue(autoFanValue);
