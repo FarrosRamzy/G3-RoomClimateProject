@@ -150,8 +150,6 @@ namespace indoor_climate_control_application.communication
             return result;
         }
 
-
-
         public static bool checkMessage_Room(string text)
         {
             if (text == KITCHEN)
