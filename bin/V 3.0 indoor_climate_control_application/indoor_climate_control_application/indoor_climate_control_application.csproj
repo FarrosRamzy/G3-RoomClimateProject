@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="cloud_statistics\CouldConnection.cs" />
+    <Compile Include="communication\Client.cs" />
+    <Compile Include="communication\decoder.cs" />
     <Compile Include="communication\ProtocolDependencies.cs" />
     <Compile Include="communication\Server.cs" />
     <Compile Include="MainPanel.cs">

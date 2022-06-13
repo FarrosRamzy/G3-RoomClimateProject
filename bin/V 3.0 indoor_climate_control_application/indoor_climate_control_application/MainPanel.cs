@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using indoor_climate_control_application.communication;
 
 namespace indoor_climate_control_application
 {
@@ -15,11 +16,16 @@ namespace indoor_climate_control_application
         private Form WeatherForm;
         private Form DatabaseForm;
 
+        private const string IP = "192.168.137.1";
+        private const int PORT = 8520;
+
+        Server CommunicationWay = new Server(IP, PORT);
+
         public MainPanel()
         {
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
-            HomeForm = new subForms.Home();
+            HomeForm = new subForms.Home(CommunicationWay);
             RoomsForm = new subForms.Rooms();
             WeatherForm = new subForms.Weather();
             DatabaseForm = new subForms.Statistics();
