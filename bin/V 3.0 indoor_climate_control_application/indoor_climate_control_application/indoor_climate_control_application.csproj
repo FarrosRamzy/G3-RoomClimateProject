@@ -96,6 +96,9 @@
     <EmbeddedResource Include="sub_forms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="sub_forms\Rooms.resx">
+      <DependentUpon>Rooms.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -167,6 +170,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\3D_Room_Overview_V2.0.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\room_11.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

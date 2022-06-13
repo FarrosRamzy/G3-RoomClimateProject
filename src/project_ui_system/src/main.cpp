@@ -64,10 +64,10 @@ void setup()
   Serial.begin(9600);
   Wire.begin();
 
-  while (!setupEspWifi())
-  {
-    /* code */
-  }
+  // while (!setupEspWifi())
+  // {
+  //   /* code */
+  // }
 
   setupTouchsreen();
 

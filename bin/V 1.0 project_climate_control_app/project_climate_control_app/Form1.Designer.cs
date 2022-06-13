@@ -64,18 +64,18 @@ namespace project_climate_control_app
             this.pnMenu.Controls.Add(this.pnLogo);
             this.pnMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnMenu.Location = new System.Drawing.Point(0, 0);
-            this.pnMenu.Margin = new System.Windows.Forms.Padding(2);
+            this.pnMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnMenu.Name = "pnMenu";
-            this.pnMenu.Size = new System.Drawing.Size(165, 474);
+            this.pnMenu.Size = new System.Drawing.Size(220, 583);
             this.pnMenu.TabIndex = 0;
             // 
             // pbLogo
             // 
             this.pbLogo.Image = global::project_climate_control_app.Properties.Resources.AiriosLogoIcon;
-            this.pbLogo.Location = new System.Drawing.Point(27, 352);
-            this.pbLogo.Margin = new System.Windows.Forms.Padding(2);
+            this.pbLogo.Location = new System.Drawing.Point(36, 433);
+            this.pbLogo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(100, 100);
+            this.pbLogo.Size = new System.Drawing.Size(133, 123);
             this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbLogo.TabIndex = 0;
             this.pbLogo.TabStop = false;
@@ -88,11 +88,11 @@ namespace project_climate_control_app
             this.btnGraph.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGraph.Image = global::project_climate_control_app.Properties.Resources.bar_graph_icon_;
             this.btnGraph.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGraph.Location = new System.Drawing.Point(0, 277);
-            this.btnGraph.Margin = new System.Windows.Forms.Padding(2);
+            this.btnGraph.Location = new System.Drawing.Point(0, 340);
+            this.btnGraph.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGraph.Name = "btnGraph";
-            this.btnGraph.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
-            this.btnGraph.Size = new System.Drawing.Size(165, 49);
+            this.btnGraph.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnGraph.Size = new System.Drawing.Size(220, 60);
             this.btnGraph.TabIndex = 5;
             this.btnGraph.Text = "       Graph";
             this.btnGraph.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -109,11 +109,11 @@ namespace project_climate_control_app
             this.btnDatabase.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDatabase.Image = global::project_climate_control_app.Properties.Resources.folder_icon_;
             this.btnDatabase.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDatabase.Location = new System.Drawing.Point(0, 228);
-            this.btnDatabase.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDatabase.Location = new System.Drawing.Point(0, 280);
+            this.btnDatabase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDatabase.Name = "btnDatabase";
-            this.btnDatabase.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
-            this.btnDatabase.Size = new System.Drawing.Size(165, 49);
+            this.btnDatabase.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnDatabase.Size = new System.Drawing.Size(220, 60);
             this.btnDatabase.TabIndex = 4;
             this.btnDatabase.Text = "       Database";
             this.btnDatabase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -129,11 +129,11 @@ namespace project_climate_control_app
             this.btnWeather.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnWeather.Image = global::project_climate_control_app.Properties.Resources.caution_sign_icon_;
             this.btnWeather.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnWeather.Location = new System.Drawing.Point(0, 179);
-            this.btnWeather.Margin = new System.Windows.Forms.Padding(2);
+            this.btnWeather.Location = new System.Drawing.Point(0, 220);
+            this.btnWeather.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnWeather.Name = "btnWeather";
-            this.btnWeather.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
-            this.btnWeather.Size = new System.Drawing.Size(165, 49);
+            this.btnWeather.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnWeather.Size = new System.Drawing.Size(220, 60);
             this.btnWeather.TabIndex = 3;
             this.btnWeather.Text = "       Weather";
             this.btnWeather.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -149,11 +149,11 @@ namespace project_climate_control_app
             this.btnRooms.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRooms.Image = global::project_climate_control_app.Properties.Resources.sensor_icon_;
             this.btnRooms.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRooms.Location = new System.Drawing.Point(0, 130);
-            this.btnRooms.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRooms.Location = new System.Drawing.Point(0, 160);
+            this.btnRooms.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRooms.Name = "btnRooms";
-            this.btnRooms.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
-            this.btnRooms.Size = new System.Drawing.Size(165, 49);
+            this.btnRooms.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnRooms.Size = new System.Drawing.Size(220, 60);
             this.btnRooms.TabIndex = 2;
             this.btnRooms.Text = "       Rooms";
             this.btnRooms.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -170,11 +170,11 @@ namespace project_climate_control_app
             this.btnHome.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHome.Image = global::project_climate_control_app.Properties.Resources.home_icon_;
             this.btnHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHome.Location = new System.Drawing.Point(0, 81);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(2);
+            this.btnHome.Location = new System.Drawing.Point(0, 100);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
-            this.btnHome.Size = new System.Drawing.Size(165, 49);
+            this.btnHome.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnHome.Size = new System.Drawing.Size(220, 60);
             this.btnHome.TabIndex = 1;
             this.btnHome.Text = "       Home";
             this.btnHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -187,9 +187,9 @@ namespace project_climate_control_app
             this.pnLogo.Controls.Add(this.lblGroup);
             this.pnLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnLogo.Location = new System.Drawing.Point(0, 0);
-            this.pnLogo.Margin = new System.Windows.Forms.Padding(2);
+            this.pnLogo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnLogo.Name = "pnLogo";
-            this.pnLogo.Size = new System.Drawing.Size(165, 81);
+            this.pnLogo.Size = new System.Drawing.Size(220, 100);
             this.pnLogo.TabIndex = 0;
             // 
             // lblGroup
@@ -198,10 +198,9 @@ namespace project_climate_control_app
             this.lblGroup.BackColor = System.Drawing.Color.Transparent;
             this.lblGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 33F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGroup.ForeColor = System.Drawing.Color.Black;
-            this.lblGroup.Location = new System.Drawing.Point(8, 12);
-            this.lblGroup.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblGroup.Location = new System.Drawing.Point(11, 15);
             this.lblGroup.Name = "lblGroup";
-            this.lblGroup.Size = new System.Drawing.Size(150, 59);
+            this.lblGroup.Size = new System.Drawing.Size(200, 73);
             this.lblGroup.TabIndex = 6;
             this.lblGroup.Text = "S.E.A.";
             this.lblGroup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -216,10 +215,10 @@ namespace project_climate_control_app
             this.pnTitle.Controls.Add(this.btnBackToHome);
             this.pnTitle.Controls.Add(this.lblTitle);
             this.pnTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnTitle.Location = new System.Drawing.Point(165, 0);
-            this.pnTitle.Margin = new System.Windows.Forms.Padding(2);
+            this.pnTitle.Location = new System.Drawing.Point(220, 0);
+            this.pnTitle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnTitle.Name = "pnTitle";
-            this.pnTitle.Size = new System.Drawing.Size(680, 81);
+            this.pnTitle.Size = new System.Drawing.Size(907, 100);
             this.pnTitle.TabIndex = 1;
             this.pnTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnTitle_MouseDown);
             // 
@@ -227,9 +226,10 @@ namespace project_climate_control_app
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Comic Sans MS", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(132, 21);
+            this.label1.Location = new System.Drawing.Point(176, 26);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(405, 45);
+            this.label1.Size = new System.Drawing.Size(499, 56);
             this.label1.TabIndex = 0;
             this.label1.Text = "This is a Demo/simulation";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -240,10 +240,10 @@ namespace project_climate_control_app
             this.btnMaximize.FlatAppearance.BorderSize = 0;
             this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMaximize.Location = new System.Drawing.Point(614, 2);
-            this.btnMaximize.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMaximize.Location = new System.Drawing.Point(819, 2);
+            this.btnMaximize.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMaximize.Name = "btnMaximize";
-            this.btnMaximize.Size = new System.Drawing.Size(30, 28);
+            this.btnMaximize.Size = new System.Drawing.Size(40, 34);
             this.btnMaximize.TabIndex = 5;
             this.btnMaximize.Text = "0";
             this.btnMaximize.UseVisualStyleBackColor = true;
@@ -255,10 +255,10 @@ namespace project_climate_control_app
             this.btnMinimize.FlatAppearance.BorderSize = 0;
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMinimize.Location = new System.Drawing.Point(581, 2);
-            this.btnMinimize.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMinimize.Location = new System.Drawing.Point(775, 2);
+            this.btnMinimize.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(29, 28);
+            this.btnMinimize.Size = new System.Drawing.Size(39, 34);
             this.btnMinimize.TabIndex = 4;
             this.btnMinimize.Text = "—";
             this.btnMinimize.UseVisualStyleBackColor = true;
@@ -270,10 +270,10 @@ namespace project_climate_control_app
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(648, 2);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
+            this.btnClose.Location = new System.Drawing.Point(864, 2);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(30, 28);
+            this.btnClose.Size = new System.Drawing.Size(40, 34);
             this.btnClose.TabIndex = 3;
             this.btnClose.Text = "X";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -287,9 +287,9 @@ namespace project_climate_control_app
             this.btnBackToHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBackToHome.Image = global::project_climate_control_app.Properties.Resources.double_chevron_icon_;
             this.btnBackToHome.Location = new System.Drawing.Point(0, 0);
-            this.btnBackToHome.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBackToHome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBackToHome.Name = "btnBackToHome";
-            this.btnBackToHome.Size = new System.Drawing.Size(81, 81);
+            this.btnBackToHome.Size = new System.Drawing.Size(108, 100);
             this.btnBackToHome.TabIndex = 2;
             this.btnBackToHome.UseVisualStyleBackColor = false;
             this.btnBackToHome.Click += new System.EventHandler(this.btnBackToHome_Click);
@@ -300,10 +300,9 @@ namespace project_climate_control_app
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblTitle.Location = new System.Drawing.Point(296, 29);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTitle.Location = new System.Drawing.Point(395, 36);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(56, 20);
+            this.lblTitle.Size = new System.Drawing.Size(68, 25);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "Home";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -311,23 +310,23 @@ namespace project_climate_control_app
             // pnDesktop
             // 
             this.pnDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnDesktop.Location = new System.Drawing.Point(165, 81);
-            this.pnDesktop.Margin = new System.Windows.Forms.Padding(2);
-            this.pnDesktop.MinimumSize = new System.Drawing.Size(680, 393);
+            this.pnDesktop.Location = new System.Drawing.Point(220, 100);
+            this.pnDesktop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnDesktop.MinimumSize = new System.Drawing.Size(907, 484);
             this.pnDesktop.Name = "pnDesktop";
-            this.pnDesktop.Size = new System.Drawing.Size(680, 393);
+            this.pnDesktop.Size = new System.Drawing.Size(907, 484);
             this.pnDesktop.TabIndex = 1;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(845, 474);
+            this.ClientSize = new System.Drawing.Size(1127, 583);
             this.Controls.Add(this.pnDesktop);
             this.Controls.Add(this.pnTitle);
             this.Controls.Add(this.pnMenu);
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimumSize = new System.Drawing.Size(860, 510);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MinimumSize = new System.Drawing.Size(1141, 617);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

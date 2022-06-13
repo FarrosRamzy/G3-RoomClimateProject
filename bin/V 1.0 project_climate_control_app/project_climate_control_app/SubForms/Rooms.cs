@@ -24,6 +24,7 @@ namespace project_climate_control_app.SubForms
 
         private bool roomNameChanged;
         private bool serverConnected;
+        private bool autoMode;
         
         public static RoomClimateData DataCloud;
 
@@ -40,10 +41,12 @@ namespace project_climate_control_app.SubForms
         private void Rooms_Load(object sender, EventArgs e)
         {
             changeTheme();
-            this.roomNameChanged = false;
-            this.serverConnected = false;
+            roomNameChanged = false;
+            serverConnected = false;
+            autoMode = true;
             tbRoomName.Visible = false;
             cbSelectRoom.SelectedIndex = 0;
+            trbFanManual.Visible = false;
 
             room_timer.Start();
             data_timer.Start();
@@ -78,8 +81,6 @@ namespace project_climate_control_app.SubForms
 
         private void trbFanManual_Scroll(object sender, EventArgs e)
         {
-            lblManual.Show();
-            lblAuto.Hide();
             int fanSpeed = trbFanManual.Value;
             if (fanSpeed > 85)
             {
@@ -240,8 +241,6 @@ namespace project_climate_control_app.SubForms
 
         private void UpdateLabelValues()
         {
-            lblAuto.Show();
-            lblManual.Hide();
             Room room = DataCloud.listOfRooms[cbSelectRoom.SelectedIndex];
             UpdateLabelTemperature(room);
             UpdateLabelHumidity(room);
@@ -282,6 +281,22 @@ namespace project_climate_control_app.SubForms
             {
                 lblFanSpeed.Text = $"{Convert.ToString(ventilationBox.SetManualFanSpeed(room, room.manualOverrideFanSpeed))} %";
                 trbFanManual.Value = room.manualOverrideFanSpeed;
+            }
+        }
+
+        private void btnSetFanSpeed_Click(object sender, EventArgs e)
+        {
+            if (autoMode)
+            {
+                trbFanManual.Visible = false;
+                btnSetFanSpeed.Text = $"Change";
+                autoMode = false;
+            }
+            else
+            {
+                trbFanManual.Visible = true;
+                btnSetFanSpeed.Text = $"Auto";
+                autoMode = true;
             }
         }
     }

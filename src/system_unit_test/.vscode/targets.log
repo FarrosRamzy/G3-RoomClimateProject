@@ -5,8 +5,9 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Fri Jun 10 15:45:22 2022
+# Make data base, printed on Mon Jun 13 10:55:49 2022
 
 # Variables
 
@@ -23,13 +24,13 @@ USERPROFILE = C:\Users\farro
 # environment
 LOCALAPPDATA = C:\Users\farro\AppData\Local
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-b86ed5b3-1cbc-438d-b95b-da1250e74716-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-58bdff38-c164-4b85-a7a0-c48ad7a4d995-sock
 # environment
-VSCODE_CWD = C:\Windows\System32
+VSCODE_CWD = C:\Users\farro\OneDriveStudent365\OneDrive - Office 365 Fontys\Project\New folder\G3-RoomClimateProject\src
 # environment
 SYSTEMROOT = C:\Windows
 # makefile (from 'Makefile', line 26)
-TESTOBJECTS := 
+TESTOBJECTS := src/main_test.o src/task_to_test.o
 # environment
 PROCESSOR_LEVEL = 6
 # environment
@@ -41,7 +42,7 @@ CLIBS := -Llib
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_3404_XRLBQPVVRDCNNCSL
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_42448_OGDXALPQEHFAXDVY
 # environment
 ONEDRIVECOMMERCIAL = C:\Users\farro\OneDriveStudent365\OneDrive - Office 365 Fontys
 # environment
@@ -59,7 +60,7 @@ VSCODE_LOG_STACK = false
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = C:\Users\farro\AppData\Roaming\Code\CachedData\c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
+VSCODE_CODE_CACHE_PATH = C:\Users\farro\AppData\Roaming\Code\CachedData\4af164ea3a06f701fe3e89a2bcbb421d2026b68f
 # environment
 LANG = C
 # default
@@ -105,7 +106,8 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 3404
+ 
+VSCODE_PID = 42448
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -235,7 +237,7 @@ ELECTRON_RUN_AS_NODE = 1
 # environment
 TEMP = /c/Users/farro/AppData/Local/Temp
 # environment
-VSCODE_IPC_HOOK = \\.\pipe\38137e07ad33c67147f4a0060b844120-1.67.2-main-sock
+VSCODE_IPC_HOOK = \\.\pipe\38137e07ad33c67147f4a0060b844120-1.68.0-main-sock
 # environment
 TERM = xterm-256color
 # default
@@ -243,7 +245,7 @@ TERM = xterm-256color
 # automatic
 <F = $(notdir $<)
 # makefile (from 'Makefile', line 25)
-ALLOBJECTS := src/main.o
+ALLOBJECTS := src/main.o src/main_test.o src/task_to_test.o
 # default
 SUFFIXES := 
 # environment
@@ -251,7 +253,7 @@ ALLUSERSPROFILE = C:\ProgramData
 # environment
 SESSIONNAME = Console
 # makefile (from 'Makefile', line 27)
-RELEASEOBJECTS := src/main.o
+RELEASEOBJECTS := src/main.o src/task_to_test.o
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
 # environment
@@ -259,7 +261,7 @@ PROCESSOR_REVISION = 8d01
 # makefile (from 'Makefile', line 1)
 CC := gcc
 # makefile (from 'Makefile', line 24)
-SOURCES := src/main.c
+SOURCES := src/main.c src/main_test.c src/task_to_test.c
 # environment
 PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 141 Stepping 1, GenuineIntel
 # variable set hash-table stats:
@@ -271,21 +273,22 @@ PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 141 Stepping 1, GenuineIntel
 
 # Directories
 
-# src (device 3061464937, inode 1407374884475114): 3 files, no impossibilities.
+# src (device 3061464937, inode 1407374884475114): 5 files, no impossibilities.
 # . (device 3061464937, inode 3096224744735598): 8 files, no impossibilities.
 
-# 11 files, no impossibilities in 2 directories.
+# 13 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
 src/%.o: src/%.c
+ 
 #  recipe to execute (from 'Makefile', line 46):
 	$(CC) $(CFLAGS) $(CINCLUDES) $(INCLUDETEST) -c $^ -o $@ $(LIBRARIES)
 
 # 1 implicit rules, 0 (0.0%) terminal.
 # Files
 
-output/main.exe: src/main.o
+output/main.exe: src/main.o src/task_to_test.o
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
@@ -314,9 +317,15 @@ clean:
 # Not a target:
 src/main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 15:45:17.9425214
+#  Last modified 2022-06-13 10:44:28.6562895
 #  File has been updated.
 #  Successfully updated.
+
+# Not a target:
+src/task_to_test.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 src/main.o: src/main.c
 #  Implicit rule search has been done.
@@ -345,7 +354,7 @@ src/main.o: src/main.c
 #  recipe to execute (from 'Makefile', line 46):
 	$(CC) $(CFLAGS) $(CINCLUDES) $(INCLUDETEST) -c $^ -o $@ $(LIBRARIES)
 
-output/main_test:
+output/main_test: src/main_test.o src/task_to_test.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -379,20 +388,26 @@ run: all
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+src/main_test.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 # files hash-table stats:
-# Load=11/1024=1%, Rehash=0, Collisions=0/33=0%
+# Load=13/1024=1%, Rehash=0, Collisions=0/38=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 23 / storage = 181 B / avg = 7 B
-# current buf: size = 8162 B / used = 181 B / count = 23 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 27 / storage = 243 B / avg = 9 B
+# current buf: size = 8162 B / used = 243 B / count = 27 / avg = 9 B
 
-# strcache performance: lookups = 42 / hit rate = 45%
+# strcache performance: lookups = 47 / hit rate = 42%
 # hash-table stats:
-# Load=23/8192=0%, Rehash=0, Collisions=0/42=0%
-# Finished Make data base on Fri Jun 10 15:45:22 2022
+# Load=27/8192=0%, Rehash=0, Collisions=0/47=0%
+# Finished Make data base on Mon Jun 13 10:55:49 2022
 
  

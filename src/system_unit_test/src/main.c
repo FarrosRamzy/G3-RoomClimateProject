@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <testing_program.h>
 
 int main()
 {
