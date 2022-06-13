@@ -48,18 +48,18 @@ namespace project_climate_control_app.SubForms
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Font = new System.Drawing.Font("Roboto Slab", 33F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 33F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTime.Location = new System.Drawing.Point(22, 23);
             this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(216, 59);
+            this.lblTime.Size = new System.Drawing.Size(209, 52);
             this.lblTime.TabIndex = 0;
             this.lblTime.Text = "00:00 PM";
             this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblDate
             // 
-            this.lblDate.Font = new System.Drawing.Font("Roboto Slab", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate.Location = new System.Drawing.Point(22, 75);
             this.lblDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDate.Name = "lblDate";
@@ -73,8 +73,8 @@ namespace project_climate_control_app.SubForms
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Font = new System.Drawing.Font("Roboto Slab", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(513, 88);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(510, 104);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 30);
@@ -87,8 +87,8 @@ namespace project_climate_control_app.SubForms
             this.lblTemp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTemp.BackColor = System.Drawing.Color.Transparent;
             this.lblTemp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblTemp.Font = new System.Drawing.Font("Roboto Slab", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTemp.Location = new System.Drawing.Point(442, 98);
+            this.lblTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTemp.Location = new System.Drawing.Point(430, 98);
             this.lblTemp.Margin = new System.Windows.Forms.Padding(0);
             this.lblTemp.Name = "lblTemp";
             this.lblTemp.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -102,7 +102,7 @@ namespace project_climate_control_app.SubForms
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label2.Font = new System.Drawing.Font("Roboto Slab", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(613, 88);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
@@ -116,7 +116,7 @@ namespace project_climate_control_app.SubForms
             this.lblHumid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblHumid.BackColor = System.Drawing.Color.Transparent;
             this.lblHumid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblHumid.Font = new System.Drawing.Font("Roboto Slab", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHumid.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHumid.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblHumid.Location = new System.Drawing.Point(541, 98);
             this.lblHumid.Margin = new System.Windows.Forms.Padding(0);
@@ -132,7 +132,7 @@ namespace project_climate_control_app.SubForms
             this.lblCloud.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCloud.BackColor = System.Drawing.Color.Transparent;
             this.lblCloud.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCloud.Font = new System.Drawing.Font("Roboto Slab", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCloud.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCloud.Location = new System.Drawing.Point(446, 57);
             this.lblCloud.Margin = new System.Windows.Forms.Padding(0);
             this.lblCloud.Name = "lblCloud";
@@ -151,7 +151,7 @@ namespace project_climate_control_app.SubForms
             this.lblCityName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCityName.BackColor = System.Drawing.Color.Transparent;
             this.lblCityName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblCityName.Font = new System.Drawing.Font("Roboto Slab", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCityName.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCityName.Location = new System.Drawing.Point(361, 12);
             this.lblCityName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCityName.Name = "lblCityName";
@@ -175,13 +175,14 @@ namespace project_climate_control_app.SubForms
             // 
             this.pbCloud.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbCloud.BackColor = System.Drawing.SystemColors.Control;
-            this.pbCloud.Location = new System.Drawing.Point(359, 57);
+            this.pbCloud.Location = new System.Drawing.Point(347, 57);
             this.pbCloud.Margin = new System.Windows.Forms.Padding(2);
             this.pbCloud.Name = "pbCloud";
             this.pbCloud.Size = new System.Drawing.Size(81, 81);
             this.pbCloud.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbCloud.TabIndex = 2;
             this.pbCloud.TabStop = false;
+            this.pbCloud.Click += new System.EventHandler(this.pbCloud_Click);
             // 
             // Home
             // 

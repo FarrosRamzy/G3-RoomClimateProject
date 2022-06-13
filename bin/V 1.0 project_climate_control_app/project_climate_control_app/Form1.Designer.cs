@@ -39,7 +39,6 @@ namespace project_climate_control_app
             this.pnLogo = new System.Windows.Forms.Panel();
             this.lblGroup = new System.Windows.Forms.Label();
             this.pnTitle = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -55,7 +54,6 @@ namespace project_climate_control_app
             // pnMenu
             // 
             this.pnMenu.BackColor = System.Drawing.Color.White;
-            this.pnMenu.Controls.Add(this.pbLogo);
             this.pnMenu.Controls.Add(this.btnGraph);
             this.pnMenu.Controls.Add(this.btnDatabase);
             this.pnMenu.Controls.Add(this.btnWeather);
@@ -72,7 +70,7 @@ namespace project_climate_control_app
             // pbLogo
             // 
             this.pbLogo.Image = global::project_climate_control_app.Properties.Resources.AiriosLogoIcon;
-            this.pbLogo.Location = new System.Drawing.Point(27, 352);
+            this.pbLogo.Location = new System.Drawing.Point(33, 11);
             this.pbLogo.Margin = new System.Windows.Forms.Padding(2);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(100, 100);
@@ -88,7 +86,7 @@ namespace project_climate_control_app
             this.btnGraph.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGraph.Image = global::project_climate_control_app.Properties.Resources.bar_graph_icon_;
             this.btnGraph.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGraph.Location = new System.Drawing.Point(0, 277);
+            this.btnGraph.Location = new System.Drawing.Point(0, 375);
             this.btnGraph.Margin = new System.Windows.Forms.Padding(2);
             this.btnGraph.Name = "btnGraph";
             this.btnGraph.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
@@ -109,7 +107,7 @@ namespace project_climate_control_app
             this.btnDatabase.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDatabase.Image = global::project_climate_control_app.Properties.Resources.folder_icon_;
             this.btnDatabase.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDatabase.Location = new System.Drawing.Point(0, 228);
+            this.btnDatabase.Location = new System.Drawing.Point(0, 326);
             this.btnDatabase.Margin = new System.Windows.Forms.Padding(2);
             this.btnDatabase.Name = "btnDatabase";
             this.btnDatabase.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
@@ -129,7 +127,7 @@ namespace project_climate_control_app
             this.btnWeather.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnWeather.Image = global::project_climate_control_app.Properties.Resources.caution_sign_icon_;
             this.btnWeather.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnWeather.Location = new System.Drawing.Point(0, 179);
+            this.btnWeather.Location = new System.Drawing.Point(0, 277);
             this.btnWeather.Margin = new System.Windows.Forms.Padding(2);
             this.btnWeather.Name = "btnWeather";
             this.btnWeather.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
@@ -149,7 +147,7 @@ namespace project_climate_control_app
             this.btnRooms.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRooms.Image = global::project_climate_control_app.Properties.Resources.sensor_icon_;
             this.btnRooms.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRooms.Location = new System.Drawing.Point(0, 130);
+            this.btnRooms.Location = new System.Drawing.Point(0, 228);
             this.btnRooms.Margin = new System.Windows.Forms.Padding(2);
             this.btnRooms.Name = "btnRooms";
             this.btnRooms.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
@@ -170,7 +168,7 @@ namespace project_climate_control_app
             this.btnHome.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHome.Image = global::project_climate_control_app.Properties.Resources.home_icon_;
             this.btnHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHome.Location = new System.Drawing.Point(0, 81);
+            this.btnHome.Location = new System.Drawing.Point(0, 179);
             this.btnHome.Margin = new System.Windows.Forms.Padding(2);
             this.btnHome.Name = "btnHome";
             this.btnHome.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
@@ -184,32 +182,32 @@ namespace project_climate_control_app
             // 
             // pnLogo
             // 
+            this.pnLogo.Controls.Add(this.pbLogo);
             this.pnLogo.Controls.Add(this.lblGroup);
             this.pnLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnLogo.Location = new System.Drawing.Point(0, 0);
             this.pnLogo.Margin = new System.Windows.Forms.Padding(2);
             this.pnLogo.Name = "pnLogo";
-            this.pnLogo.Size = new System.Drawing.Size(165, 81);
+            this.pnLogo.Size = new System.Drawing.Size(165, 179);
             this.pnLogo.TabIndex = 0;
             // 
             // lblGroup
             // 
             this.lblGroup.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblGroup.BackColor = System.Drawing.Color.Transparent;
-            this.lblGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 33F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGroup.ForeColor = System.Drawing.Color.Black;
-            this.lblGroup.Location = new System.Drawing.Point(8, 12);
+            this.lblGroup.Location = new System.Drawing.Point(11, 113);
             this.lblGroup.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGroup.Name = "lblGroup";
             this.lblGroup.Size = new System.Drawing.Size(150, 59);
             this.lblGroup.TabIndex = 6;
-            this.lblGroup.Text = "S.E.A.";
+            this.lblGroup.Text = "Group \r\n#3";
             this.lblGroup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnTitle
             // 
             this.pnTitle.BackColor = System.Drawing.Color.White;
-            this.pnTitle.Controls.Add(this.label1);
             this.pnTitle.Controls.Add(this.btnMaximize);
             this.pnTitle.Controls.Add(this.btnMinimize);
             this.pnTitle.Controls.Add(this.btnClose);
@@ -222,17 +220,6 @@ namespace project_climate_control_app
             this.pnTitle.Size = new System.Drawing.Size(680, 81);
             this.pnTitle.TabIndex = 1;
             this.pnTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnTitle_MouseDown);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(132, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(405, 45);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "This is a Demo/simulation";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnMaximize
             // 
@@ -358,7 +345,6 @@ namespace project_climate_control_app
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.Label lblGroup;
-        private System.Windows.Forms.Label label1;
     }
 }
 
