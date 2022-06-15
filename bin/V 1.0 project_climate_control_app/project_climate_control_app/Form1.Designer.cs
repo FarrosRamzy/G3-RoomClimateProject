@@ -29,6 +29,7 @@ namespace project_climate_control_app
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pnMenu = new System.Windows.Forms.Panel();
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.btnGraph = new System.Windows.Forms.Button();
@@ -39,7 +40,6 @@ namespace project_climate_control_app
             this.pnLogo = new System.Windows.Forms.Panel();
             this.lblGroup = new System.Windows.Forms.Label();
             this.pnTitle = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -208,7 +208,6 @@ namespace project_climate_control_app
             // pnTitle
             // 
             this.pnTitle.BackColor = System.Drawing.Color.White;
-            this.pnTitle.Controls.Add(this.label1);
             this.pnTitle.Controls.Add(this.btnMaximize);
             this.pnTitle.Controls.Add(this.btnMinimize);
             this.pnTitle.Controls.Add(this.btnClose);
@@ -222,28 +221,16 @@ namespace project_climate_control_app
             this.pnTitle.TabIndex = 1;
             this.pnTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnTitle_MouseDown);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(176, 26);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(499, 56);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "This is a Demo/simulation";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
             // btnMaximize
             // 
             this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMaximize.FlatAppearance.BorderSize = 0;
             this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMaximize.Location = new System.Drawing.Point(819, 2);
+            this.btnMaximize.Location = new System.Drawing.Point(820, 2);
             this.btnMaximize.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMaximize.Name = "btnMaximize";
-            this.btnMaximize.Size = new System.Drawing.Size(40, 34);
+            this.btnMaximize.Size = new System.Drawing.Size(39, 34);
             this.btnMaximize.TabIndex = 5;
             this.btnMaximize.Text = "0";
             this.btnMaximize.UseVisualStyleBackColor = true;
@@ -325,6 +312,7 @@ namespace project_climate_control_app
             this.Controls.Add(this.pnDesktop);
             this.Controls.Add(this.pnTitle);
             this.Controls.Add(this.pnMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MinimumSize = new System.Drawing.Size(1141, 617);
             this.Name = "Form1";
@@ -357,7 +345,6 @@ namespace project_climate_control_app
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.Label lblGroup;
-        private System.Windows.Forms.Label label1;
     }
 }
 

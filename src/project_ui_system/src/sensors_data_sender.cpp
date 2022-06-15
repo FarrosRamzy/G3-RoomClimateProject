@@ -173,7 +173,7 @@ void sendTemperatureData(float temperature)
   strcpy(payloadDataState, READ_DATA);
   strcpy(payloadData, Temp);
 
-  // runWifi(payloadID, payloadDataType, payloadDataState, payloadData);
+  runWifi(payloadID, payloadDataType, payloadDataState, payloadData);
 }
 
 void sendHumidityData(float humidity)

@@ -7,11 +7,12 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # There is NO WARRANTY, to the extent permitted by law.
  
 
-# Make data base, printed on Mon Jun 13 10:55:49 2022
+# Make data base, printed on Mon Jun 13 13:34:48 2022
 
 # Variables
 
 # environment
+ 
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
 SYSTEMDRIVE = C:
@@ -24,9 +25,9 @@ USERPROFILE = C:\Users\farro
 # environment
 LOCALAPPDATA = C:\Users\farro\AppData\Local
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-58bdff38-c164-4b85-a7a0-c48ad7a4d995-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-6d263a9f-da94-49e1-815c-e6a3a5d72dcc-sock
 # environment
-VSCODE_CWD = C:\Users\farro\OneDriveStudent365\OneDrive - Office 365 Fontys\Project\New folder\G3-RoomClimateProject\src
+VSCODE_CWD = C:\Windows\System32
 # environment
 SYSTEMROOT = C:\Windows
 # makefile (from 'Makefile', line 26)
@@ -42,7 +43,7 @@ CLIBS := -Llib
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_42448_OGDXALPQEHFAXDVY
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_25208_ZEGOGHLQKCNMAPST
 # environment
 ONEDRIVECOMMERCIAL = C:\Users\farro\OneDriveStudent365\OneDrive - Office 365 Fontys
 # environment
@@ -106,8 +107,7 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
- 
-VSCODE_PID = 42448
+VSCODE_PID = 25208
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -207,6 +207,7 @@ USERDOMAIN_ROAMINGPROFILE = YZMARMSI
 # environment
 NUMBER_OF_PROCESSORS = 16
 # environment
+ 
 PUBLIC = C:\Users\Public
 # makefile (from 'Makefile', line 17)
 SOURCEDIRS := src
@@ -265,7 +266,7 @@ SOURCES := src/main.c src/main_test.c src/task_to_test.c
 # environment
 PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 141 Stepping 1, GenuineIntel
 # variable set hash-table stats:
-# Load=126/1024=12%, Rehash=0, Collisions=30/190=16%
+# Load=126/1024=12%, Rehash=0, Collisions=30/182=16%
 
 # Pattern-specific Variable Values
 
@@ -273,28 +274,32 @@ PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 141 Stepping 1, GenuineIntel
 
 # Directories
 
-# src (device 3061464937, inode 1407374884475114): 5 files, no impossibilities.
+# src (device 3061464937, inode 1407374884475114): 8 files, no impossibilities.
 # . (device 3061464937, inode 3096224744735598): 8 files, no impossibilities.
 
-# 13 files, no impossibilities in 2 directories.
+# 16 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
 src/%.o: src/%.c
- 
 #  recipe to execute (from 'Makefile', line 46):
 	$(CC) $(CFLAGS) $(CINCLUDES) $(INCLUDETEST) -c $^ -o $@ $(LIBRARIES)
 
 # 1 implicit rules, 0 (0.0%) terminal.
 # Files
 
+# Not a target:
+src/task_to_test.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-13 10:54:58.0001346
+#  File has been updated.
+#  Successfully updated.
+
 output/main.exe: src/main.o src/task_to_test.o
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Last modified 2022-06-13 11:04:27.3990731
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/8=0%
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 49):
 	$(CC) $(CFLAGS) $(CINCLUDES) $(CLIBS) $^ -o $@ $(LIBRARIES)
 
@@ -315,49 +320,43 @@ clean:
 	-$(RM) $(ALLOBJECTS)
 
 # Not a target:
-src/main.c:
+src/main_test.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-13 10:44:28.6562895
+#  Last modified 2022-06-13 11:04:18.2617067
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
-src/task_to_test.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/main.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-13 10:44:28.6562895
+#  File has been updated.
+ 
+#  Successfully updated.
+
+src/task_to_test.o: src/task_to_test.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'task_to_test'
+#  Last modified 2022-06-13 11:04:27.2794738
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 46):
+	$(CC) $(CFLAGS) $(CINCLUDES) $(INCLUDETEST) -c $^ -o $@ $(LIBRARIES)
 
 src/main.o: src/main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'main'
-#  File does not exist.
+#  Last modified 2022-06-13 11:04:27.1688435
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := src/main.o
-# automatic
-# * := main
-# automatic
-# < := src/main.c
-# automatic
-# + := src/main.c
-# automatic
-# % := 
-# automatic
-# ^ := src/main.c
-# automatic
-# ? := src/main.c
-# automatic
-# | := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=9/18=50%
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 46):
 	$(CC) $(CFLAGS) $(CINCLUDES) $(INCLUDETEST) -c $^ -o $@ $(LIBRARIES)
 
 output/main_test: src/main_test.o src/task_to_test.o
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-06-13 11:04:27.5984063
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 52):
 	$(CC) $(CFLAGS) $(CINCLUDES) $^ -o $@ $(LIBRARIES) $(LIBUNITY)
 
@@ -372,9 +371,7 @@ all: output/main.exe output/main_test
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/8=0%
+#  Successfully updated.
 
 run: all
 #  Implicit rule search has not been done.
@@ -388,26 +385,29 @@ run: all
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
-src/main_test.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/main_test.o: src/main_test.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'main_test'
+#  Last modified 2022-06-13 11:04:27.4907667
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 46):
+	$(CC) $(CFLAGS) $(CINCLUDES) $(INCLUDETEST) -c $^ -o $@ $(LIBRARIES)
 
 # files hash-table stats:
-# Load=13/1024=1%, Rehash=0, Collisions=0/38=0%
+# Load=15/1024=1%, Rehash=0, Collisions=0/46=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 27 / storage = 243 B / avg = 9 B
-# current buf: size = 8162 B / used = 243 B / count = 27 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 34 / storage = 335 B / avg = 9 B
+# current buf: size = 8162 B / used = 335 B / count = 34 / avg = 9 B
 
-# strcache performance: lookups = 47 / hit rate = 42%
+# strcache performance: lookups = 56 / hit rate = 39%
 # hash-table stats:
-# Load=27/8192=0%, Rehash=0, Collisions=0/47=0%
-# Finished Make data base on Mon Jun 13 10:55:49 2022
+# Load=34/8192=0%, Rehash=0, Collisions=0/56=0%
+# Finished Make data base on Mon Jun 13 13:34:48 2022
 
  
