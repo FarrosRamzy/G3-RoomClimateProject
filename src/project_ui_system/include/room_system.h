@@ -78,6 +78,8 @@
 #define PAYLOAD_END_CHAR '}'
 #define END_CHAR ';'
 
+#define MAIN_SYSTEM_SERVER_ID "VB"
+
 #define SENSOR_DEVICE "SENSOR"
 #define UI_DEVICE "UI"
 #define APP_DEVICE "APP"
@@ -111,20 +113,20 @@ void setupHumidTempSensor();
 
 void setupFanSystem();
 
-bool setupEspWifi();
+// bool setupEspWifi();
 
-void getSystemID();
+// void getSystemID();
 void runWifi(char[],char[],char[],char[]);
 
-bool checkATresponse(String);
+// bool checkATresponse(String);
 
-bool setConnectionMode();
-bool checkAccessPoint();
-bool joinAccessPoint();
-bool checkConnectionStatus();
-bool startConnection();
+// bool setConnectionMode();
+// bool checkAccessPoint();
+// bool joinAccessPoint();
+// bool checkConnectionStatus();
+// bool startConnection();
 
-bool sendMessage(String);
+void sendMessage(String);
 
 bool readInputMessage(String *, String *, uint32_t *);
 bool splitInputLine(String, String *, String *, uint32_t *);
