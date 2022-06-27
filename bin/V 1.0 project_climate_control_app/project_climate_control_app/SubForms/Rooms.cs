@@ -216,8 +216,8 @@ namespace project_climate_control_app.SubForms
         private void updateServer()
         {
             Thread server;
-            //ipAddress = "192.168.137.1";
-            ipAddress = "0.0.0.0";
+            ipAddress = "192.168.137.1";
+            //ipAddress = "0.0.0.0";
             portNr = 8888;
 
             local = new Server(ipAddress, portNr);

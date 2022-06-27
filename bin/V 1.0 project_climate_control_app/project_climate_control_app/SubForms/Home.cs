@@ -104,5 +104,10 @@ namespace project_climate_control_app.SubForms
                 }
             }
         }
+
+        private void pbCloud_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

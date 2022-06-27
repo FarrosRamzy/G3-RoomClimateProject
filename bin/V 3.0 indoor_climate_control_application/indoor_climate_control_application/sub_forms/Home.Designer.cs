@@ -30,6 +30,7 @@ namespace indoor_climate_control_application.subForms
         private void InitializeComponent()
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lbCommunicationStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,11 +45,21 @@ namespace indoor_climate_control_application.subForms
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
+            // lbCommunicationStatus
+            // 
+            this.lbCommunicationStatus.AutoSize = true;
+            this.lbCommunicationStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCommunicationStatus.Location = new System.Drawing.Point(72, 30);
+            this.lbCommunicationStatus.Name = "lbCommunicationStatus";
+            this.lbCommunicationStatus.Size = new System.Drawing.Size(0, 16);
+            this.lbCommunicationStatus.TabIndex = 3;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(626, 394);
+            this.Controls.Add(this.lbCommunicationStatus);
             this.Controls.Add(this.pictureBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Home";
@@ -56,11 +67,13 @@ namespace indoor_climate_control_application.subForms
             this.Load += new System.EventHandler(this.Home_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lbCommunicationStatus;
     }
 }
