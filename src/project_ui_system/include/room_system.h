@@ -113,18 +113,9 @@ void setupHumidTempSensor();
 
 void setupFanSystem();
 
-// bool setupEspWifi();
+void setupEspWifi();
 
-// void getSystemID();
-void runWifi(char[],char[],char[],char[]);
-
-// bool checkATresponse(String);
-
-// bool setConnectionMode();
-// bool checkAccessPoint();
-// bool joinAccessPoint();
-// bool checkConnectionStatus();
-// bool startConnection();
+void runWifi(String,String,String,char[]);
 
 void sendMessage(String);
 

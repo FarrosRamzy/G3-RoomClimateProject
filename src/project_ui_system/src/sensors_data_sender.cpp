@@ -47,12 +47,12 @@ uint32_t lastInputVal = 0;
 
 /////////////////////////////////////////////////////////////
 
-char Temp[15];
-char Humid[15];
+char Temp[16];
+char Humid[16];
 
-char CO[15];
-char CO2[15];
-char VOC[15];
+char CO[16];
+char CO2[16];
+char VOC[16];
 
 char TmpUnit1[10];
 char TmpUnit2[5];
@@ -62,6 +62,11 @@ char HumUnit[5];
 char VOCUnit[5];
 char CO2Unit[5];
 char COUnit[5];
+
+// char payloadDataState[20];
+// char payloadID[15];
+// char payloadDataType[15];
+// char payloadData[15];
 
 /////////////////////////////////////////////////////////////
 
@@ -143,11 +148,6 @@ void readTouchInput()
 
 void sendTemperatureData(float temperature)
 {
-  char payloadID[10];
-  char payloadDataType[10];
-  char payloadDataState[10];
-  char payloadData[15];
-
   if (isnan(temperature))
   {
     strcpy(Temp, "none");
@@ -163,26 +163,16 @@ void sendTemperatureData(float temperature)
     strcpy(TmpUnitSymbol, "o");
   }
 
+  runWifi(SENSOR_DEVICE, TEMPERATURE_TYPE, READ_DATA, Temp);
+
   hTempVal.setText(Temp);
   hHumVal.setText(Humid);
   htempUnit.setText(TmpUnit1);
   hhumUnit.setText(HumUnit);
-
-  strcpy(payloadID, SENSOR_DEVICE);
-  strcpy(payloadDataType, TEMPERATURE_TYPE);
-  strcpy(payloadDataState, READ_DATA);
-  strcpy(payloadData, Temp);
-
-  runWifi(payloadID, payloadDataType, payloadDataState, payloadData);
 }
 
 void sendHumidityData(float humidity)
 {
-  char payloadID[10];
-  char payloadDataType[10];
-  char payloadDataState[10];
-  char payloadData[15];
-
   if (isnan(humidity))
   {
     strcpy(Humid, "none");
@@ -194,27 +184,17 @@ void sendHumidityData(float humidity)
     strcpy(HumUnit, "%");
   }
 
+  runWifi(SENSOR_DEVICE, HUMIDITY_TYPE, READ_DATA, Humid);
+
   rTempVal.setText(Temp);
   rHumVal.setText(Humid);
   rtempUnitSymb.setText(TmpUnitSymbol);
   rtempUnit.setText(TmpUnit2);
   rhumUnit.setText(HumUnit);
-
-  strcpy(payloadID, SENSOR_DEVICE);
-  strcpy(payloadDataType, HUMIDITY_TYPE);
-  strcpy(payloadDataState, READ_DATA);
-  strcpy(payloadData, Humid);
-
-  // runWifi(payloadID, payloadDataType, payloadDataState, payloadData);
 }
 
 void sendCOData(float co, int16_t status)
 {
-  char payloadID[10];
-  char payloadDataType[10];
-  char payloadDataState[10];
-  char payloadData[15];
-
   if (status == 0)
   {
     strcpy(CO, "none");
@@ -226,23 +206,14 @@ void sendCOData(float co, int16_t status)
     strcpy(COUnit, "ppm");
   }
 
+  runWifi(SENSOR_DEVICE, CARBON_MONOXYDE_TYPE, READ_DATA, CO);
+
   aCO.setText(CO);
   aCOUnit.setText(COUnit);
-
-  strcpy(payloadID, SENSOR_DEVICE);
-  strcpy(payloadDataType, CARBON_MONOXYDE_TYPE);
-  strcpy(payloadDataState, READ_DATA);
-  strcpy(payloadData, CO);
-
-  // runWifi(payloadID, payloadDataType, payloadDataState, payloadData);
 }
 
 void sendCO2Data(float co2, int16_t status)
 {
-  char payloadID[10];
-  char payloadDataType[10];
-  char payloadDataState[10];
-  char payloadData[15];
 
   if (status == 0)
   {
@@ -255,24 +226,14 @@ void sendCO2Data(float co2, int16_t status)
     strcpy(CO2Unit, "ppm");
   }
 
+  runWifi(SENSOR_DEVICE, CARBON_DIOXYDE_TYPE, READ_DATA, CO2);
+
   aCO2.setText(CO2);
   aCO2Unit.setText(CO2Unit);
-
-  strcpy(payloadID, SENSOR_DEVICE);
-  strcpy(payloadDataType, CARBON_DIOXYDE_TYPE);
-  strcpy(payloadDataState, READ_DATA);
-  strcpy(payloadData, CO2);
-
-  // runWifi(payloadID, payloadDataType, payloadDataState, payloadData);
 }
 
 void sendVOCData(float voc, int16_t status)
-{
-  char payloadID[10];
-  char payloadDataType[10];
-  char payloadDataState[10];
-  char payloadData[15];
-  
+{  
   if (status == 0)
   {
     strcpy(VOC, "none");
@@ -284,15 +245,10 @@ void sendVOCData(float voc, int16_t status)
     strcpy(VOCUnit, "ppm");
   }
 
+  runWifi(SENSOR_DEVICE, ORGANIC_TYPE, READ_DATA, VOC);
+
   aVOC.setText(VOC);
   aVOCUnit.setText(VOCUnit);
-
-  strcpy(payloadID, SENSOR_DEVICE);
-  strcpy(payloadDataType, ORGANIC_TYPE);
-  strcpy(payloadDataState, READ_DATA);
-  strcpy(payloadData, VOC);
-
-  // runWifi(payloadID, payloadDataType, payloadDataState, payloadData);
 }
 
 void sendGasStatus(char gasStatus[])
@@ -313,6 +269,14 @@ void sendGasStatus(char gasStatus[])
 
 void sendFanSpeedValue(uint32_t fanSpeedValue)
 {
+  // char payloadID[10];
+  // char payloadDataType[10];
+  // char payloadDataState[10];
+  // char payloadData[15];
+
+  fanSpeedValue = fanSpeedValue * 20;
+  fFanSpeed.setValue(fanSpeedValue);
+
   // if (automaticFanSpeed)
   // {
   //   strcpy(payloadDataState, READ_DATA);
@@ -320,9 +284,6 @@ void sendFanSpeedValue(uint32_t fanSpeedValue)
   //   strcpy(payloadDataType, FAN_TYPE);
   //   sprintf(payloadData, "%lu", fanSpeedValue);
 
-  //   // runWifi(payloadID, payloadDataType, payloadDataState, payloadData);
+  //   runWifi(payloadID, payloadDataType, payloadDataState, payloadData);
   // }
-
-  fanSpeedValue = fanSpeedValue * 20;
-  fFanSpeed.setValue(fanSpeedValue);
 }
