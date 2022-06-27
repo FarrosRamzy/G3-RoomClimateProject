@@ -1,4 +1,3 @@
 temperature_sensor
 
-	Done by (mysterious person) I forgot who it was
-	Maybe Farros Ramzy
+	Done by Andy
