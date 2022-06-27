@@ -49,13 +49,12 @@ namespace project_climate_control_app.SubForms
             this.lblTempVal = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.room_timer = new System.Windows.Forms.Timer(this.components);
-            this.lblAuto = new System.Windows.Forms.Label();
-            this.lblManual = new System.Windows.Forms.Label();
             this.data_timer = new System.Windows.Forms.Timer(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnSetFanSpeed = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trbFanManual)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -114,7 +113,7 @@ namespace project_climate_control_app.SubForms
             this.lblFanSpeed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblFanSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 33F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFanSpeed.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblFanSpeed.Location = new System.Drawing.Point(68, 252);
+            this.lblFanSpeed.Location = new System.Drawing.Point(52, 174);
             this.lblFanSpeed.Margin = new System.Windows.Forms.Padding(0);
             this.lblFanSpeed.Name = "lblFanSpeed";
             this.lblFanSpeed.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -129,7 +128,7 @@ namespace project_climate_control_app.SubForms
             this.trbFanManual.AutoSize = false;
             this.trbFanManual.CausesValidation = false;
             this.trbFanManual.LargeChange = 25;
-            this.trbFanManual.Location = new System.Drawing.Point(17, 342);
+            this.trbFanManual.Location = new System.Drawing.Point(1, 264);
             this.trbFanManual.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.trbFanManual.Maximum = 100;
             this.trbFanManual.Name = "trbFanManual";
@@ -147,7 +146,7 @@ namespace project_climate_control_app.SubForms
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(628, 111);
+            this.label9.Location = new System.Drawing.Point(631, 73);
             this.label9.Margin = new System.Windows.Forms.Padding(0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(245, 37);
@@ -162,11 +161,11 @@ namespace project_climate_control_app.SubForms
             this.lblSetTemp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblSetTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 33F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSetTemp.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblSetTemp.Location = new System.Drawing.Point(609, 153);
+            this.lblSetTemp.Location = new System.Drawing.Point(673, 115);
             this.lblSetTemp.Margin = new System.Windows.Forms.Padding(0);
             this.lblSetTemp.Name = "lblSetTemp";
             this.lblSetTemp.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblSetTemp.Size = new System.Drawing.Size(188, 75);
+            this.lblSetTemp.Size = new System.Drawing.Size(127, 75);
             this.lblSetTemp.TabIndex = 53;
             this.lblSetTemp.Text = "16";
             this.lblSetTemp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -177,7 +176,7 @@ namespace project_climate_control_app.SubForms
             this.btnDecreaseTemp.FlatAppearance.BorderSize = 2;
             this.btnDecreaseTemp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDecreaseTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDecreaseTemp.Location = new System.Drawing.Point(815, 188);
+            this.btnDecreaseTemp.Location = new System.Drawing.Point(818, 150);
             this.btnDecreaseTemp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDecreaseTemp.Name = "btnDecreaseTemp";
             this.btnDecreaseTemp.Size = new System.Drawing.Size(59, 31);
@@ -192,7 +191,7 @@ namespace project_climate_control_app.SubForms
             this.btnIncreaseTemp.FlatAppearance.BorderSize = 2;
             this.btnIncreaseTemp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIncreaseTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIncreaseTemp.Location = new System.Drawing.Point(815, 156);
+            this.btnIncreaseTemp.Location = new System.Drawing.Point(818, 118);
             this.btnIncreaseTemp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnIncreaseTemp.Name = "btnIncreaseTemp";
             this.btnIncreaseTemp.Size = new System.Drawing.Size(59, 31);
@@ -207,7 +206,7 @@ namespace project_climate_control_app.SubForms
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(500, 247);
+            this.label2.Location = new System.Drawing.Point(526, 247);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 37);
@@ -221,11 +220,11 @@ namespace project_climate_control_app.SubForms
             this.lblTVOCval.BackColor = System.Drawing.Color.Transparent;
             this.lblTVOCval.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblTVOCval.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTVOCval.Location = new System.Drawing.Point(383, 241);
+            this.lblTVOCval.Location = new System.Drawing.Point(424, 241);
             this.lblTVOCval.Margin = new System.Windows.Forms.Padding(0);
             this.lblTVOCval.Name = "lblTVOCval";
             this.lblTVOCval.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblTVOCval.Size = new System.Drawing.Size(117, 49);
+            this.lblTVOCval.Size = new System.Drawing.Size(86, 49);
             this.lblTVOCval.TabIndex = 62;
             this.lblTVOCval.Text = "0.00";
             this.lblTVOCval.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -236,7 +235,7 @@ namespace project_climate_control_app.SubForms
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(500, 201);
+            this.label4.Location = new System.Drawing.Point(526, 201);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 37);
@@ -250,11 +249,11 @@ namespace project_climate_control_app.SubForms
             this.lblCO2val.BackColor = System.Drawing.Color.Transparent;
             this.lblCO2val.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblCO2val.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCO2val.Location = new System.Drawing.Point(383, 201);
+            this.lblCO2val.Location = new System.Drawing.Point(424, 201);
             this.lblCO2val.Margin = new System.Windows.Forms.Padding(0);
             this.lblCO2val.Name = "lblCO2val";
             this.lblCO2val.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblCO2val.Size = new System.Drawing.Size(117, 49);
+            this.lblCO2val.Size = new System.Drawing.Size(86, 49);
             this.lblCO2val.TabIndex = 60;
             this.lblCO2val.Text = "0.00";
             this.lblCO2val.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -265,7 +264,7 @@ namespace project_climate_control_app.SubForms
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(500, 164);
+            this.label5.Location = new System.Drawing.Point(526, 164);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 37);
@@ -279,11 +278,11 @@ namespace project_climate_control_app.SubForms
             this.lblHumidVal.BackColor = System.Drawing.Color.Transparent;
             this.lblHumidVal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblHumidVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHumidVal.Location = new System.Drawing.Point(383, 162);
+            this.lblHumidVal.Location = new System.Drawing.Point(424, 162);
             this.lblHumidVal.Margin = new System.Windows.Forms.Padding(0);
             this.lblHumidVal.Name = "lblHumidVal";
             this.lblHumidVal.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblHumidVal.Size = new System.Drawing.Size(117, 49);
+            this.lblHumidVal.Size = new System.Drawing.Size(86, 49);
             this.lblHumidVal.TabIndex = 58;
             this.lblHumidVal.Text = "0.00";
             this.lblHumidVal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -294,7 +293,7 @@ namespace project_climate_control_app.SubForms
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(500, 125);
+            this.label1.Location = new System.Drawing.Point(526, 125);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 37);
@@ -308,11 +307,11 @@ namespace project_climate_control_app.SubForms
             this.lblTempVal.BackColor = System.Drawing.Color.Transparent;
             this.lblTempVal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblTempVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTempVal.Location = new System.Drawing.Point(383, 122);
+            this.lblTempVal.Location = new System.Drawing.Point(424, 122);
             this.lblTempVal.Margin = new System.Windows.Forms.Padding(0);
             this.lblTempVal.Name = "lblTempVal";
             this.lblTempVal.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblTempVal.Size = new System.Drawing.Size(117, 49);
+            this.lblTempVal.Size = new System.Drawing.Size(86, 49);
             this.lblTempVal.TabIndex = 56;
             this.lblTempVal.Text = "0.00";
             this.lblTempVal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -321,7 +320,7 @@ namespace project_climate_control_app.SubForms
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBox1.Image = global::project_climate_control_app.Properties.Resources.fan;
-            this.pictureBox1.Location = new System.Drawing.Point(115, 144);
+            this.pictureBox1.Location = new System.Drawing.Point(99, 66);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(113, 105);
@@ -334,30 +333,6 @@ namespace project_climate_control_app.SubForms
             this.room_timer.Interval = 1000;
             this.room_timer.Tick += new System.EventHandler(this.room_timer_Tick);
             // 
-            // lblAuto
-            // 
-            this.lblAuto.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblAuto.BackColor = System.Drawing.Color.Transparent;
-            this.lblAuto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblAuto.Location = new System.Drawing.Point(23, 172);
-            this.lblAuto.Name = "lblAuto";
-            this.lblAuto.Size = new System.Drawing.Size(75, 23);
-            this.lblAuto.TabIndex = 70;
-            this.lblAuto.Text = "Auto";
-            this.lblAuto.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblManual
-            // 
-            this.lblManual.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblManual.BackColor = System.Drawing.Color.Transparent;
-            this.lblManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblManual.Location = new System.Drawing.Point(20, 205);
-            this.lblManual.Name = "lblManual";
-            this.lblManual.Size = new System.Drawing.Size(78, 23);
-            this.lblManual.TabIndex = 71;
-            this.lblManual.Text = "Manual";
-            this.lblManual.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // data_timer
             // 
             this.data_timer.Interval = 10000;
@@ -369,7 +344,7 @@ namespace project_climate_control_app.SubForms
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(329, 247);
+            this.label3.Location = new System.Drawing.Point(324, 247);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 37);
@@ -383,7 +358,7 @@ namespace project_climate_control_app.SubForms
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(329, 207);
+            this.label6.Location = new System.Drawing.Point(324, 207);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(90, 37);
@@ -397,7 +372,7 @@ namespace project_climate_control_app.SubForms
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(329, 168);
+            this.label7.Location = new System.Drawing.Point(324, 168);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(90, 37);
@@ -411,7 +386,7 @@ namespace project_climate_control_app.SubForms
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(329, 128);
+            this.label8.Location = new System.Drawing.Point(324, 128);
             this.label8.Margin = new System.Windows.Forms.Padding(0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(90, 37);
@@ -419,17 +394,31 @@ namespace project_climate_control_app.SubForms
             this.label8.Text = "TMP";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // btnSetFanSpeed
+            // 
+            this.btnSetFanSpeed.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnSetFanSpeed.FlatAppearance.BorderSize = 2;
+            this.btnSetFanSpeed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSetFanSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSetFanSpeed.Location = new System.Drawing.Point(99, 347);
+            this.btnSetFanSpeed.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSetFanSpeed.Name = "btnSetFanSpeed";
+            this.btnSetFanSpeed.Size = new System.Drawing.Size(113, 49);
+            this.btnSetFanSpeed.TabIndex = 76;
+            this.btnSetFanSpeed.Text = "Change";
+            this.btnSetFanSpeed.UseVisualStyleBackColor = true;
+            this.btnSetFanSpeed.Click += new System.EventHandler(this.btnSetFanSpeed_Click);
+            // 
             // Rooms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(885, 436);
+            this.Controls.Add(this.btnSetFanSpeed);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.lblManual);
-            this.Controls.Add(this.lblAuto);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lblSetTemp);
@@ -483,12 +472,11 @@ namespace project_climate_control_app.SubForms
         private System.Windows.Forms.Label lblTempVal;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer room_timer;
-        private System.Windows.Forms.Label lblAuto;
-        private System.Windows.Forms.Label lblManual;
         private System.Windows.Forms.Timer data_timer;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnSetFanSpeed;
     }
 }

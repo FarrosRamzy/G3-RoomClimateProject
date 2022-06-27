@@ -1,15 +1,19 @@
-#include <sensors.h>
+#include <room_system.h>
 
 float highTVOC = 400;
-float highCO2 = 2000;
+float highCO2 = 1500;
 
 float lowTVOC = 100;
-float lowCO2 = 500;
+float lowCO2 = 600;
 
-void processGasSensors(float coVal, float co2Val, float vocVal, int vocData, char gasStatus[])
+void processGasSensors(float coVal, float co2Val, float vocVal, int16_t cjmcuData, char gasStatus[])
 {
-    // if (vocData == 1)
-    // {
+    if (cjmcuData == 0)
+    {
+        strcpy(gasStatus, "Error");
+    }
+    else
+    {
         if (vocVal >= highTVOC)
         {
             highTVOC = vocVal;
@@ -19,11 +23,6 @@ void processGasSensors(float coVal, float co2Val, float vocVal, int vocData, cha
             highCO2 = co2Val;
         }
 
-        // if (coVal != 0)
-        // {
-        //     strcpy(gasStatus, "Normal");
-
-        // }
         if (coVal > 200)
         {
             strcpy(gasStatus, "Danger");
@@ -40,8 +39,8 @@ void processGasSensors(float coVal, float co2Val, float vocVal, int vocData, cha
             }
             else if (vocVal < lowTVOC && co2Val < lowCO2)
             {
-                highCO2 = 400;
-                highTVOC = 800;
+                highCO2 = 1500;
+                highTVOC = 400;
                 strcpy(gasStatus, "Clear");
             }
         }
@@ -49,9 +48,5 @@ void processGasSensors(float coVal, float co2Val, float vocVal, int vocData, cha
         {
             strcpy(gasStatus, "Clear");
         }
-    // }
-    // else
-    // {
-    //     strcpy(gasStatus, "Error");
-    // }
+    }
 }

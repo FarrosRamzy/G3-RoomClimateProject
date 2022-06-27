@@ -1,190 +1,289 @@
-#include <sensors.h>
+#include <room_system.h>
 
 // output:
-NexText hDateTime = NexText(0, 1, "tbTimer");
 NexText hTempVal = NexText(0, 4, "tbTmpval");
 NexText hHumVal = NexText(0, 5, "tbHmdval");
+
 NexText hAirQ = NexText(0, 6, "tbAirQ");
-NexText htempUnit = NexText(0, 11, "t3");
-NexText hhumUnit = NexText(0, 12, "t4");
+
+NexText htempUnit = NexText(0, 11, "htuTmp");
+NexText hhumUnit = NexText(0, 12, "tuHmd");
 
 NexText rTempVal = NexText(2, 5, "tbTmpval");
 NexText rHumVal = NexText(2, 6, "tbHmdval");
-NexText rtempUnit = NexText(2, 9, "t3");
-NexText rhumUnit = NexText(2, 8, "t4");
+NexText rtempUnit = NexText(2, 9, "rtuTmp");
+NexText rtempUnitSymb = NexText(2, 12, "tuTmpSym");
+NexText rhumUnit = NexText(2, 8, "tuHmd");
 
 NexNumber fFanSpeed = NexNumber(3, 4, "tbFanSpeed");
 
-NexText aVOC = NexText(4, 6, "tbVOC");
-NexText aCO2 = NexText(4, 7, "tbCO2");
-NexText aCO = NexText(4, 8, "tbCO");
-NexText aAirQ = NexText(4, 13, "tbAirQ");
-NexText aVOCUnit = NexText(4, 10, "t3");
-NexText aCO2Unit = NexText(4, 11, "t4");
-NexText aCOUnit = NexText(4, 12, "t3");
+NexText aVOC = NexText(4, 5, "tbVOC");
+NexText aCO2 = NexText(4, 6, "tbCO2");
+NexText aCO = NexText(4, 7, "tbCO");
+
+NexText aAirQ = NexText(4, 12, "tbAirQ");
+
+NexText aVOCUnit = NexText(4, 9, "tuVOC");
+NexText aCO2Unit = NexText(4, 10, "tuCO2");
+NexText aCOUnit = NexText(4, 11, "tuCO");
 
 // input:
-bool autoFanSpeed = true;
-bool autoTemperature = true;
-uint32_t dsTempBtn = 0;
+bool automaticFanSpeed = true;
 uint32_t dsFanBtn = 0;
 uint32_t sldTemp = 0;
 uint32_t sldFan = 0;
 
-NexDSButton setTempBtn = NexDSButton(2, 10, "btTempSet");
-NexSlider setTemp = NexSlider(2, 4, "hSetTmp");
+NexSlider setTempSld = NexSlider(2, 4, "hSetTmp");
+NexObject tempSldVis = NexObject(2, 4, "hSetTmp");
 
-NexDSButton setFanSpeedBtn = NexDSButton(3, 5, "hSetFanSpeed");
-NexSlider setFanSpeed = NexSlider(3, 2, "btFanSet");
+NexDSButton setFanSpeedBtn = NexDSButton(3, 5, "btFanSet");
+NexSlider setFanSpeedSld = NexSlider(3, 2, "hSetFanspeed");
 
 /////////////////////////////////////////////////////////////
 
-char Temp[15];
-char Humid[15];
-char CO[15];
-char CO2[15];
-char VOC[15];
-char Time[10];
-char TmpUnit[5];
+String lastInputType = HUMIDITY_TYPE;
+String lastInputState = READ_DATA;
+uint32_t lastInputVal = 0;
+
+/////////////////////////////////////////////////////////////
+
+char Temp[16];
+char Humid[16];
+
+char CO[16];
+char CO2[16];
+char VOC[16];
+
+char TmpUnit1[10];
+char TmpUnit2[5];
+char TmpUnitSymbol[5];
+
 char HumUnit[5];
 char VOCUnit[5];
 char CO2Unit[5];
 char COUnit[5];
 
+// char payloadDataState[20];
+// char payloadID[15];
+// char payloadDataType[15];
+// char payloadData[15];
+
 /////////////////////////////////////////////////////////////
 
 // Register the inputs:
-NexTouch *nextion_listen_list[] = {&setTempBtn, &setTemp, &setFanSpeedBtn, &setFanSpeed};
+NexTouch *nextion_listen_list[] = {&setTempSld, &setFanSpeedBtn, &setFanSpeedSld};
 
 void setupTouchsreen()
 {
-  if (nexInit())
-  {
-    Serial.println("Touchscreen Setup Pass");
-  }
-  else
-  {
-    Serial.println("Touchscreen Setup Fail");
-  }
-  
-  setTempBtn.attachPop(setTempBtnChange, &setTempBtn);
-  setFanSpeedBtn.attachPop(setFanBtnChange, &setFanSpeedBtn);
-  setTemp.attachPop(setTempSlide);
-  setFanSpeed.attachPop(setFanSlide);
+  nexInit();
 }
 
-void readAutoManualState(bool *fanIsAuto, bool *tempIsAuto, uint32_t *manualTempVal, uint32_t *manualFanSpeed)
+void readAutoManualState(bool *fanIsAuto, uint32_t *previousManualTempVal, uint32_t *manualTempVal, uint32_t *manualFanSpeed, String inputType, String inputState, uint32_t inputVal)
 {
-  *fanIsAuto = autoFanSpeed;
-  *tempIsAuto = autoTemperature;
-  if (autoFanSpeed)
+  *fanIsAuto = automaticFanSpeed;
+  *manualTempVal = sldTemp;
+  if (!automaticFanSpeed)
   {
+    // strcpy(payloadDataState, WRITE_DATA);
+    // strcpy(payloadID, UI_DEVICE);
+    // strcpy(payloadDataType, FAN_TYPE);
+    // sprintf(payloadData, "%lu", sldFan);
+
+    // runWifi(payloadID, payloadDataType, payloadDataState, payloadData);
+
     *manualFanSpeed = sldFan;
   }
 
-  if (autoTemperature)
-  {
-    *manualTempVal = sldTemp;
-  }
-}
+  *previousManualTempVal = *manualTempVal;
 
-void setTempBtnChange(void *ptr)
-{
-  setTempBtn.getValue(&dsTempBtn);
-  if (dsTempBtn == 0)
-  {
-    autoTemperature = true;
-  }
-  else if (dsTempBtn == 1)
-  {
-    autoTemperature = false;
-  }
-}
+  // if (*previousManualTempVal != *manualTempVal)
+  // {
+  //   strcpy(payloadDataState, WRITE_DATA);
+  //   strcpy(payloadID, UI_DEVICE);
+  //   strcpy(payloadDataType, TEMPERATURE_TYPE);
+  //   sprintf(payloadData, "%lu", *manualTempVal);
 
-void setFanBtnChange(void *ptr)
-{
-  setFanSpeedBtn.getValue(&dsFanBtn);
-  if (dsFanBtn == 0)
-  {
-    autoFanSpeed = true;
-  }
-  else if (dsFanBtn == 1)
-  {
-    autoFanSpeed = false;
-  }
-}
+  //   // runWifi(payloadID, payloadDataType, payloadDataState, payloadData);
+  // }
 
-void setTempSlide(void *ptr)
-{
-  if (!autoTemperature)
-  {
-    setTemp.getValue(&sldTemp);
-  }
-}
+  // if (((lastInputType != inputType) && (lastInputState != inputState)) || (lastInputVal != inputVal))
+  // {
+  //   lastInputType = inputType;
+  //   lastInputState = inputState;
+  //   lastInputVal = inputVal;
 
-void setFanSlide(void *ptr)
-{
-  if (!autoFanSpeed)
-  {
-    setFanSpeed.getValue(&sldFan);
-  }
+  //   if (inputState == WRITE_DATA)
+  //   {
+  //     if (inputType == FAN_TYPE)
+  //     {
+  //       setFanSpeedSld.setValue(inputVal);
+  //       *manualFanSpeed = inputVal;
+  //     }
+  //     else if (inputType == TEMPERATURE_TYPE)
+  //     {
+  //       setTempSld.setValue(inputVal);
+  //       *previousManualTempVal = inputVal;
+  //     }
+  //   }
+  // }
 }
 
 void readTouchInput()
 {
   nexLoop(nextion_listen_list);
-}
 
-void sendTempAndHumidData(float humid, float temp)
-{
-  if (isnan(temp))
+  setFanSpeedBtn.getValue(&dsFanBtn);
+  setFanSpeedSld.getValue(&sldFan);
+  setTempSld.getValue(&sldTemp);
+
+  if (dsFanBtn != 0)
   {
-    strcpy(Temp, "unavailable");
-    strcpy(TmpUnit, "");
+    automaticFanSpeed = false;
   }
   else
   {
-    dtostrf(temp, 6, 2, Temp);
-    strcpy(TmpUnit, "C");
+    automaticFanSpeed = true;
+  }
+}
+
+void sendTemperatureData(float temperature)
+{
+  if (isnan(temperature))
+  {
+    strcpy(Temp, "none");
+    strcpy(TmpUnit1, "");
+    strcpy(TmpUnit2, "");
+    strcpy(TmpUnitSymbol, "");
+  }
+  else
+  {
+    dtostrf(temperature, 6, 1, Temp);
+    strcpy(TmpUnit1, "Celsius");
+    strcpy(TmpUnit2, "C");
+    strcpy(TmpUnitSymbol, "o");
   }
 
-  if (isnan(humid))
+  runWifi(SENSOR_DEVICE, TEMPERATURE_TYPE, READ_DATA, Temp);
+
+  hTempVal.setText(Temp);
+  hHumVal.setText(Humid);
+  htempUnit.setText(TmpUnit1);
+  hhumUnit.setText(HumUnit);
+}
+
+void sendHumidityData(float humidity)
+{
+  if (isnan(humidity))
   {
-    strcpy(Humid, "unavailable");
+    strcpy(Humid, "none");
     strcpy(HumUnit, "");
   }
   else
   {
-    dtostrf(humid, 6, 2, Humid);
+    dtostrf(humidity, 6, 1, Humid);
     strcpy(HumUnit, "%");
   }
 
-  hTempVal.setText(Temp);
-  hHumVal.setText(Humid);
-  htempUnit.setText(TmpUnit);
-  hhumUnit.setText(HumUnit);
+  runWifi(SENSOR_DEVICE, HUMIDITY_TYPE, READ_DATA, Humid);
+
   rTempVal.setText(Temp);
   rHumVal.setText(Humid);
-  rtempUnit.setText(TmpUnit);
+  rtempUnitSymb.setText(TmpUnitSymbol);
+  rtempUnit.setText(TmpUnit2);
   rhumUnit.setText(HumUnit);
 }
 
-void sendGasSensorData(float co, float co2, float voc, char gasStatus[])
+void sendCOData(float co, int16_t status)
 {
-  dtostrf(co, 6, 2, CO);
-  dtostrf(co2, 6, 2, CO2);
-  dtostrf(voc, 6, 2, VOC);
-  strcpy(VOCUnit, "ppm");
-  strcpy(COUnit, "ppm");
-  strcpy(CO2Unit, "ppm");
+  if (status == 0)
+  {
+    strcpy(CO, "none");
+    strcpy(COUnit, "");
+  }
+  else
+  {
+    dtostrf(co, 6, 2, CO);
+    strcpy(COUnit, "ppm");
+  }
+
+  runWifi(SENSOR_DEVICE, CARBON_MONOXYDE_TYPE, READ_DATA, CO);
 
   aCO.setText(CO);
+  aCOUnit.setText(COUnit);
+}
+
+void sendCO2Data(float co2, int16_t status)
+{
+
+  if (status == 0)
+  {
+    strcpy(CO2, "none");
+    strcpy(CO2Unit, "");
+  }
+  else // if (co2Data == 1)
+  {
+    dtostrf(co2, 6, 2, CO2);
+    strcpy(CO2Unit, "ppm");
+  }
+
+  runWifi(SENSOR_DEVICE, CARBON_DIOXYDE_TYPE, READ_DATA, CO2);
+
   aCO2.setText(CO2);
+  aCO2Unit.setText(CO2Unit);
+}
+
+void sendVOCData(float voc, int16_t status)
+{  
+  if (status == 0)
+  {
+    strcpy(VOC, "none");
+    strcpy(VOCUnit, "");
+  }
+  else // if (vocData == 1)
+  {
+    dtostrf(voc, 6, 2, VOC);
+    strcpy(VOCUnit, "ppm");
+  }
+
+  runWifi(SENSOR_DEVICE, ORGANIC_TYPE, READ_DATA, VOC);
+
   aVOC.setText(VOC);
   aVOCUnit.setText(VOCUnit);
-  aCO2Unit.setText(CO2Unit);
-  aCOUnit.setText(COUnit);
+}
+
+void sendGasStatus(char gasStatus[])
+{
+  if (strcmp("Danger", gasStatus) == 0)
+  {
+    setFanSpeedSld.setVisibility(false);
+    setTempSld.setVisibility(false);
+
+    setFanSpeedBtn.setValue(0);
+
+    setFanSpeedBtn.setText("Denied");
+  }
 
   hAirQ.setText(gasStatus);
   aAirQ.setText(gasStatus);
+}
+
+void sendFanSpeedValue(uint32_t fanSpeedValue)
+{
+  // char payloadID[10];
+  // char payloadDataType[10];
+  // char payloadDataState[10];
+  // char payloadData[15];
+
+  fanSpeedValue = fanSpeedValue * 20;
+  fFanSpeed.setValue(fanSpeedValue);
+
+  // if (automaticFanSpeed)
+  // {
+  //   strcpy(payloadDataState, READ_DATA);
+  //   strcpy(payloadID, UI_DEVICE);
+  //   strcpy(payloadDataType, FAN_TYPE);
+  //   sprintf(payloadData, "%lu", fanSpeedValue);
+
+  //   runWifi(payloadID, payloadDataType, payloadDataState, payloadData);
+  // }
 }

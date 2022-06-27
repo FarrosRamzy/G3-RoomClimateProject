@@ -149,7 +149,16 @@ public: /* methods */
      * @param number - To set up the data
      * @return true if success, false for failure
      */
-    bool setMinval(uint32_t number);		
+    bool setMinval(uint32_t number);
+    
+    /**
+     * @brief Set the Visibility object
+     * 
+     * @param flag - boolean to set up the visibility.
+     * @return true 
+     * @return false 
+     */
+    bool setVisibility(bool flag);		
 };
 /**
  * @}

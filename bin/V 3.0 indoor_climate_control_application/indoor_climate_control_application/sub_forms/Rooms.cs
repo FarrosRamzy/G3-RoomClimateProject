@@ -16,5 +16,30 @@ namespace indoor_climate_control_application.subForms
         {
             InitializeComponent();
         }
+
+        private void btnIncreaseTemp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDecreaseTemp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnChangeRoomName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSetFanSpeed_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbSelectRoom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

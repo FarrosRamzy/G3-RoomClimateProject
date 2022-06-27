@@ -1,90 +1,143 @@
 #include <Arduino.h>
-#include <sensors.h>
+#include <room_system.h>
 
-float humid;
-float temp;
+float humidity;
+float temperature;
 float co;
 float co2;
 float voc;
 
-int fanSpeed;
-int tvocDataReceived = 0;
-int co2DataReceived = 0;
-int coDataReceived = 0;
-int humidDataReceived = 0;
-int tempDataReceived = 0;
+uint32_t autoFanValue;
 
-bool autoFan = true;
-bool autoTemp = true;
+int16_t tvocAndCO2DataReceived;
+int16_t coDataReceived;
+
+bool autoFan;
+bool currentProcessPassed;
 
 uint32_t setTempVal;
-uint32_t setFanVal;
+uint32_t setFanValue;
+uint32_t previousSetFanVal;
+uint32_t previousSetTempVal;
+
+String payloadType;
+String payloadState;
+uint32_t payload;
 
 char gasStatus[MAX_CHAR_ARRAY];
-char tvocSetupStatus[MAX_CHAR_ARRAY];
 
 STATE state;
 
-static unsigned long respondTime = 5000;
-static unsigned long startTime = millis();
-bool timePassed = false;
+static unsigned long startTime;
 
 void setup()
 {
   // put your setup code here, to run once:
-  Serial.begin(9600);
+
   state = IDLE;
+  humidity = 0;
+  temperature = 0;
+
+  co = 0;
+  co2 = 0;
+  voc = 0;
+
+  coDataReceived = 0;
+  // co2DataReceived = 0;
+  tvocAndCO2DataReceived = 0;
+
+  autoFanValue = 0;
+
+  autoFan = true;
+  currentProcessPassed = false;
+
+  setTempVal = 0;
+  setFanValue = 0;
+  previousSetFanVal = 0;
+
+  previousSetTempVal = setTempVal;
+
+  payloadType = HUMIDITY_TYPE;
+  payloadState = READ_DATA;
+  payload = 0;
+
+  Serial.begin(9600);
+  Wire.begin();
+
+  setupEspWifi();
   setupTouchsreen();
-  //setupEspWifi();
   setupHumidTempSensor();
-  setupCO2Sensor();
+  setupCJMCUMeasure();
+
   setupFanSystem();
-  setupTVOCSensor(tvocSetupStatus);
+
+  startTime = millis();
 }
 
 void loop()
 {
   // put your main code here, to run repeatedly:
+  readTouchInput();
+  readAutoManualState(&autoFan, &previousSetTempVal, &setTempVal, &setFanValue, payloadType, payloadState, payload);
   switch (state)
   {
   case IDLE:
-    static unsigned long passTime = millis();
-    if (!timePassed)
+    if (!currentProcessPassed)
     {
-      if (startTime - passTime > respondTime)
+      if (millis() - startTime > MAX_PROCESS_TIMER)
       {
-        timePassed = true;
+        currentProcessPassed = true;
+        startTime = millis();
       }
     }
     else
     {
-      state = READ;
+      state = READ_AIR_Q;
     }
     break;
-  case READ:
-    readTouchInput();
-    readAutoManualState(&autoFan, &autoTemp, &setTempVal, &setFanVal);
-    readTempAndHumid(&humid, &temp);
-    readCarbonMonoxide(&co);
-    readCarbonDioxide(&co2, startTime);
-    readOrganicCompounds(&voc, &tvocDataReceived);
+  case READ_AIR_Q:
+    readCarbonMonoxide(&co, &coDataReceived);
+    readCJMCUgas(&voc, &co2, &tvocAndCO2DataReceived);
+
+    state = READ_TMP;
+    break;
+  case READ_TMP:
+    readTempAndHumid(&humidity, &temperature);
+    // if (readInputMessage(&payloadType, &payloadState, &payload))
+    // {
+    //   readAutoManualState(&autoFan, &previousSetTempVal, &setTempVal, &setFanValue, payloadType, payloadState, payload);
+    // }
     state = PROCESS;
     break;
   case PROCESS:
-    processGasSensors(co, co2, voc, tvocDataReceived, gasStatus);
-    // if (autoFan)
-    // {
-    //   setManualSpeed(setFanVal);
-    // }
-    // else if (!autoFan)
-    // {
-    //   processFanSpeed(temp, humid, gasStatus);
-    // }
+    processGasSensors(co, co2, voc, tvocAndCO2DataReceived, gasStatus);
+    if (!autoFan)
+    {
+      setManualSpeed(&setFanValue, &previousSetFanVal, gasStatus, &autoFan);
+    }
+    else
+    {
+      adjustFanSpeed(setTempVal, &autoFanValue, temperature, humidity, gasStatus);
+    }
     state = SEND;
     break;
   case SEND:
-    sendTempAndHumidData(humid, temp);
-    sendGasSensorData(co, co2, voc, gasStatus);
+    sendTemperatureData(temperature);
+    sendHumidityData(humidity);
+    sendCOData(co, coDataReceived);
+    sendCO2Data(co2, tvocAndCO2DataReceived);
+    sendVOCData(voc, tvocAndCO2DataReceived);
+    sendGasStatus(gasStatus);
+
+    if (autoFan)
+    {
+      sendFanSpeedValue(autoFanValue);
+    }
+    else
+    {
+      sendFanSpeedValue(setFanValue);
+    }
+    currentProcessPassed = false;
     state = IDLE;
     break;
   default:

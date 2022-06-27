@@ -1,20 +1,24 @@
-#include <sensors.h>
+#include <room_system.h>
 
 DHT dht(DHT_PIN, DHT_TYPE);
 
 void setupHumidTempSensor()
 {
     dht.begin();
-    Serial.println("DHT Setup Pass");
 }
 
-void readTempAndHumid(float *humid, float *temp)
+void readTempAndHumid(float *humidity, float *temperature)
 {
-    *humid = dht.readHumidity();
-    *temp = dht.readTemperature();
+    float humidityRead = dht.readHumidity();
+    float temperatureRead = dht.readTemperature();
 
-    // Serial.print("temp: ");
-    // Serial.println(*temp);
-    // Serial.print("hum: ");
-    // Serial.println(*humid);
+    if (isnan(humidityRead) || isnan(temperatureRead))
+    {
+        return;
+    }
+    else
+    {
+        *humidity = humidityRead;
+        *temperature = temperatureRead;
+    }
 }

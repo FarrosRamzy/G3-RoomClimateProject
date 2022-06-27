@@ -10,14 +10,13 @@
             "includePath": [
                 "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/include",
                 "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/src",
+                "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/DHT sensor library",
+                "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit Unified Sensor",
                 "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/AltSoftSerial",
-                "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Time",
                 "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/ErriezMHZ19B/src",
                 "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit CCS811 Library",
                 "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit BusIO",
                 "C:/Users/farro/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
-                "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/DHT sensor library",
-                "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit Unified Sensor",
                 "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Nextion",
                 "C:/Users/farro/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                 "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/SD",
@@ -28,7 +27,6 @@
                 "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit SSD1306",
                 "C:/Users/farro/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                 "C:/Users/farro/.platformio/packages/framework-arduino-avr/libraries/HID/src",
-                "C:/Users/farro/.platformio/packages/tool-unity",
                 ""
             ],
             "browse": {
@@ -36,14 +34,13 @@
                 "path": [
                     "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/include",
                     "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/src",
+                    "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/DHT sensor library",
+                    "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit Unified Sensor",
                     "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/AltSoftSerial",
-                    "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Time",
                     "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/ErriezMHZ19B/src",
                     "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit CCS811 Library",
                     "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit BusIO",
                     "C:/Users/farro/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
-                    "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/DHT sensor library",
-                    "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit Unified Sensor",
                     "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Nextion",
                     "C:/Users/farro/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                     "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/SD",
@@ -54,12 +51,11 @@
                     "c:/Users/farro/OneDriveStudent365/OneDrive - Office 365 Fontys/Project/New folder/G3-RoomClimateProject/src/project_ui_system/.pio/libdeps/uno/Adafruit SSD1306",
                     "C:/Users/farro/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                     "C:/Users/farro/.platformio/packages/framework-arduino-avr/libraries/HID/src",
-                    "C:/Users/farro/.platformio/packages/tool-unity",
                     ""
                 ]
             },
             "defines": [
-                "PLATFORMIO=50205",
+                "PLATFORMIO=60002",
                 "ARDUINO_AVR_UNO",
                 "F_CPU=16000000L",
                 "ARDUINO_ARCH_AVR",
