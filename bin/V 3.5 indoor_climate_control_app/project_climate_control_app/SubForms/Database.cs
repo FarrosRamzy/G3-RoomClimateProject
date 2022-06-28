@@ -104,7 +104,6 @@ namespace project_climate_control_app.SubForms
                 dt.Columns.Add("Humidity (%)");
                 dt.Columns.Add("CO2 (ppm)");
                 dt.Columns.Add("TVOC (ppm)");
-                dt.Columns.Add("CO (ppm)");
 
                 foreach (BsonDocument collection in logger.downloadData(startDate, endDate, startTime, endTime))
                 {
@@ -112,7 +111,7 @@ namespace project_climate_control_app.SubForms
                     {
                         MessageBox.Show("Data in this selected Time Frame is unavailable.");
                     }
-                    dt.Rows.Add(collection["Date"], collection["Time"], collection["Room"], collection["Temperature"], collection["Humidity"], collection["CO2"], collection["TVOC"], collection["CO"]);
+                    dt.Rows.Add(collection["Date"], collection["Time"], collection["Room"], collection["Temperature"], collection["Humidity"], collection["CO2"], collection["TVOC"]);
                 }
                 dtCloudData.DataSource = dt;
             }
